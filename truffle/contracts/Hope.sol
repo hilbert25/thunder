@@ -224,53 +224,82 @@ contract Hope{
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
   function createSchool(string _schoolname, string _schoolEmail, string _schoolPassword, string _schoolProvince, string _schoolAddress, string _schoolGovernor, string _schoolAgent) returns(bool){
-    if(checkSchoolByEmail(_schoolEmail)){
-      return 1;
-    }
-    uint26 _schoolId = schoolCount();
-    School memory school = School({schoolId:_schoolId,schoolName:schoolName,schoolEmail:_schoolEmail,schoolPassword:_schoolPassword,schoolProvince:_schoolProvince,schoolAddress:_schoolAddress,schoolGovernor:_schoolGovernor,schoolAgent:_schoolAgent});
-    schoolList.push(school);
-    schoolMap[_schoolemail] = schoolId;
-    return 0;
-  }
+	if(checkSchoolByEmail(_schoolEmail)){
+		return 1;
+	}
+	uint26 _schoolId = schoolCount();
+	School memory school = School({schoolId:_schoolId,schoolName:schoolName,schoolEmail:_schoolEmail,schoolPassword:_schoolPassword,schoolProvince:_schoolProvince,schoolAddress:_schoolAddress,schoolGovernor:_schoolGovernor,schoolAgent:_schoolAgent});
+	schoolList.push(school);
+	schoolMap[_schoolemail] = schoolId;
+	return 0;
+}
 
-  function schoolCount() view returns(uint256){
-    return schoolList.length;
-  }
+function schoolCount() view returns(uint256){
+	return schoolList.length;
+}
 
-  function checkSchoolByEmail(string _schoolEmail) view returns(bool){
-    return schoolMap[_schoolEmail].schoolId != 0;
-  }
+function checkSchoolByEmail(string _schoolEmail) view returns(bool){
+	return schoolMap[_schoolEmail].schoolId != 0;
+}
 
-  function getSchoolIdByEmail() returns() view{
-    return schoolMap[_schoolEmail].schoolId;
-  }
+function getSchoolIdByEmail() returns() view{
+	return schoolMap[_schoolEmail].schoolId;
+}
 
-  function getSchoolBySchoolId(uint 256 _schoolId) returns(string, string, string, string, string, string, uint256[]) view{
-    School school = schoolList[_schoolId];
-    return (school.schoolname, school.schoolEmail, school.Province, school.schoolAddress, school.schoolGovernor, school.schoolAgent,school.projectRecord);
-  }
+function getSchoolBySchoolId(uint 256 _schoolId) returns(School) view{
+	School school = schoolList[_schoolId];
+	return school;
+}
 
-  function getProjectsBySchoolId(uint256 _schoolId) returns(Project[]) view {
-    School school = schoolList[_schoolId];
-    Project[] projects;
-    for(i = 0 ; i < school.project.length ; i ++){
-      Project project = projectList[school.project[i]];
-      projects.push(project);
-    }
-    return projects;
-  }
+function getSchools() returns(School[]) {
+	len = schoolCount();
+	School[] schools;
+	for(i = 0; i < len; i++){
+		School school = schoolList[i];
+		schools.push(school);
+	}
+	return schools;
+}
 
-  function createProject(uint256 _schoolId,string _projectName,string _projectTarget,uint256 _projectTargetMoney,string _projectFinishTime) returns(uint256){
-    Project memorey project = Project({projectCreator:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectFinishTime:_projectFinishTime})
-    projectList.push(school);
-    return 0;
-  }
+function createProject(uint256 _schoolId,string _projectName,string _projectTarget,uint256 _projectTargetMoney,string _projectFinishTime) returns(uint256){
+	Project memorey project = Project({projectCreator:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectFinishTime:_projectFinishTime})
+	projectList.push(school);
+	return 0;
+}
 
-  function getProjectByprojectId(uint256 _projectId) view returns(uint256,uint256,string,string,string,uint256,uint256,string,bool,string,string[],string,string,uint256,uint256){
-    Project project = projectList[_projectId];
-    return (projectId,projectCreator,projectName,projectCreateTime,projectTarget,projectTargetMoney,projectCurrentMoney,projectEndorseState,projectFinishState,projectFinishTime,projectNoteUrl,projectPlanUpNoteTime,projectActualUpNoteTime,totalEndorsor,passEndorsor)
-    }
+function getProjectByprojectId(uint256 _projectId) view returns(Project){
+	Project project = projectList[_projectId];
+	return project;
+}
+
+function getProjectsBySchoolId(uint256 _schoolId) returns(Project[]) view {
+	School school = schoolList[_schoolId];
+	Project[] projects;
+	for(i = 0 ; i < school.project.length ; i ++){
+		Project project = projectList[school.project[i]];
+		projects.push(project);
+	}
+	return projects;
+}
+
+function projectCount() view returns(uint256){
+	return projectList.length;
+}
+
+function getProjects() returns(Project[]) {
+	len = projectCount();
+	Projects[] projects;
+	for(i = 0; i < len; i++){
+		Project project = projectList[i];
+		projects.push(project);
+	}
+	return projects;
+}
+
+
+
+
+
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
   ///////////////////////////////////////////////
