@@ -7,12 +7,13 @@ contract Hope{
     string userName;
     uint256 userPhone;
     string userPassword;
-    uint256[] denoteRecord;
   }
+
 
   struct Endorsor{
     uint256 endorsorId;
-    string endorsorOrg;//背书节点所属机构,教育民政财务……
+    string endorsorOrg;//背书节点所属机构
+    string endorsorOrgType;//教育 财务 审计 司法……
     string endorsorProvince;
     string endorsorEmail;
     string endorsorPassword;
@@ -34,7 +35,7 @@ contract Hope{
   }
 
   struct Project{
-    string projectId;
+    uint256 projectId;
     uint256 projectCreator;
     string projectName;
     string projectCreateTime;
@@ -49,13 +50,28 @@ contract Hope{
     string projectActualUpNoteTime;//实际计划上传票据时间
   }
 
+  struct Denote {
+    uint256 denoteId;
+    uint256 userId;
+    uint256 projectId;
+    uint256 denoteMoney;
+    string denoteTime;
+  }
+
   User[] userList;
   mapping(string=>uint256) userMap;//key是手机号
+
   Endorsor[] endorsorList;
   mapping(string=>uint256) endorsorMap;//key是邮箱
+
   School[] schoolList;
   mapping(string=>uint256)schoolMap;//key是邮箱
+
   Project[] projectList;
+
+  Denote[] denoteList;
+  mapping(uint256=>Denote[]) userDenoteMap;//用户捐赠记录
+  mapping(uint256=>Denote[]) projectDenoteMap;//项目获捐记录。
 
   function Hope(){
     createUser("0",0,"0");
@@ -83,7 +99,6 @@ contract Hope{
     return userList.length;
   }
 
-
   /**
   * @parm:uint256 _userPhone
   * @return: {true:existed false:not exist}
@@ -93,12 +108,56 @@ contract Hope{
   }
 
   function getUserIdByPhone(uint256 _userPhone) returns(uint256){
-
+    return userMap[_userPhone].userId;
   }
 
-  function getUserByUserId(uint256 _userId) returns(){
-
+  function getUserByUserId(uint256 _userId) returns(uint256,string,uint256,uint256[]){
+    User user = userList[_userId];
+    return(user.userId,user.userName,user.userPhone,userDenoteRecord,userDenoteMap[_userId]);
   }
+
+  function userLogin(string _userPhone,string _userPassword) returns(bool){
+    uint256 _userId = getUserIdByPhone(_userPhone);
+    User user = userList[_userId];
+    return _userId!=0 && user.userPassword == _userPassword;
+  }
+  /**
+  * returns {1:捐多了 0:success}
+  **/
+  function userDenote(uint256 _userId,uint256 _projectId,uint256 _denoteMoney) returns(uint256){
+    Project project = projectList[_projectId];
+    if(project.projectCurrentMoney +_denoteMoney > project.projectTargetMoney){
+      return 1;
+    }
+    uint256 _denoteId = denoteCount();
+    Denote memory denote = Denote({denoteId:_denoteId,userId:_userId,projectId:_projectId,denoteMoney:_denoteMoney,denoteTime:now});
+    denoteList.push(denote);
+    userDenoteMap[_userId].push(denote);
+    projectDenoteMap[_projectId].push(denote);
+    project.projectCurrentMoney += _denoteMoney;
+    return 0;
+  }
+
+  function getUserList(uint256 _beginUserId,uint256 _endUserId)returns(uint256[] userIdList,string[] userNameList,string[]userPhoneList){
+    uint256 _userCount = userCount();
+    if(_userCount<_beginUserId){
+      _beginUserId=_userCount;
+    }
+    if(_userCount<_endUserId){
+      _endUserId=_userCount;
+    }
+    uint256[] userIdList;
+    string[] userNameList;
+    string[] userPhoneList;
+    for(uint256 i=_beginUserId;i<=_endUserId;i++){
+      User memory user = userList[i];
+      userIdList.push(user.userId);
+      userNameList.push(user.userName);
+      userPhoneList.push(user.userPhone);
+    }
+    return (userIdList,userNameList,userPhoneList);
+  }
+
   ///////////////////////////////////////////////////////////////////////////////////////////////////
   /**
   * @parm:string _endorsorOrg, string _endorsorProvince, string _endorsorEmail, string _endorsorPassword
@@ -155,5 +214,10 @@ contract Hope{
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
   function createProject(){
 
+  }
+
+  ///////////////////////////////////////////////
+  function denoteCount() returns(uint256){
+    return denoteList.length;
   }
 }
