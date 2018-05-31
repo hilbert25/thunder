@@ -165,9 +165,26 @@ contract Hope{
     return (userIdList,userNameList,userPhoneList);
   }
 
-  function getDenoteListByUserId(uint256 _userId) returns(uint256,uint256,uint256,uint256,string){
-    Denote denote = userDenoteMap[_userId];
-    return (denote.denoteId,denote.userId,denote.projectId,denote.denoteMoney,denote.denoteTime);
+  function getDenoteListByUserId(uint256 _userId,uint _beginId,uint _endId) returns(uint256[],uint256[],uint256[],uint256[]){
+    Denote[] denoteList = userDenoteMap[_userId];
+    uint256[] denoteIdList;
+    uint256[] projectIdList;
+    uint256[] denoteMoneyList;
+    uint256[] denoteTimeList;
+    if(denoteList.length<=_beginId){
+      _beginId = denoteList.length-1;
+    }
+    if(denoteList.length<=_endId){
+      _endId = denoteList.length-1;
+    }
+    for(uint2256 i=_beginId;i<=_endId;i++){
+      Denote denote = denoteList[i];
+      denoteIdList.push(denote.denoteId);
+      projectIdList.push(denote.projectId);
+      denoteMoneyList.push(denote.denoteMoney);
+      denoteTimeList.push(denote.denoteTime);
+    }
+    return (denoteIdList,projectIdList,denote.projectId,denoteMoneyList,denoteTimeList);
   }
   ///////////////////////////////////////////////////////////////////////////////////////////////////
   /**
@@ -249,12 +266,12 @@ contract Hope{
     projectList.push(school);
     return 0;
   }
+
+  function getProjectByprojectId(uint256 _projectId) view returns(uint256,uint256,string,string,string,uint256,uint256,string,bool,string,string[],string,string,uint256,uint256){
+    Project project = projectList[_projectId];
+    return (projectId,projectCreator,projectName,projectCreateTime,projectTarget,projectTargetMoney,projectCurrentMoney,projectEndorseState,projectFinishState,projectFinishTime,projectNoteUrl,projectPlanUpNoteTime,projectActualUpNoteTime,totalEndorsor,passEndorsor)
+    }
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
-  function createProject(){
-    Project memorey project = Project({projectCreator:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectFinishTime:_projectFinishTime})
-    projectList.push(school);
-    return 0;
-  }
 
   ///////////////////////////////////////////////
   function denoteCount() returns(uint256){
