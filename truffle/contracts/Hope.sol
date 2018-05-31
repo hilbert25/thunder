@@ -13,13 +13,11 @@ contract Hope{
   struct Endorsor{
     uint256 endorsorId;
     string endorsorOrg;//背书节点所属机构
-    string endorsorOrgType;//教育 财务 审计 司法……
     string endorsorProvince;
     string endorsorEmail;
     string endorsorPassword;
-    uint256[] endorseRecord;
+    EndorseItem[] endorseRecord;
   }
-
 
   struct School{
     uint256 schoolId;
@@ -30,7 +28,7 @@ contract Hope{
     string schoolAddress;
     string schoolGovernor;//主管部门
     string schoolAgent;//代理人负责人
-    uint256[] projectRecord;
+    Project[] projectRecord;
     string schoolState;//是否可以发起项目
   }
 
@@ -48,6 +46,8 @@ contract Hope{
     string[] projectNoteUrl;//票据图片地址
     string projectPlanUpNoteTime;//计划上传票据时间
     string projectActualUpNoteTime;//实际计划上传票据时间
+    uint256 totalEndorsor;
+    uint256 passEndorsor;
   }
 
   struct Denote {
@@ -58,6 +58,13 @@ contract Hope{
     string denoteTime;
   }
 
+
+  struct EndorseItem{
+    uint256 endorseItemIt;
+    uint256 projectId;
+    uint256 endorsorId;
+    string operate;//pass or reject or undeal
+  }
   User[] userList;
   mapping(string=>uint256) userMap;//key是手机号
 
@@ -111,9 +118,9 @@ contract Hope{
     return userMap[_userPhone].userId;
   }
 
-  function getUserByUserId(uint256 _userId) returns(uint256,string,uint256,uint256[]){
+  function getUserByUserId(uint256 _userId) returns(uint256,string,uint256){
     User user = userList[_userId];
-    return(user.userId,user.userName,user.userPhone,userDenoteRecord,userDenoteMap[_userId]);
+    return(user.userId,user.userName,user.userPhone,userDenoteRecord);
   }
 
   function userLogin(string _userPhone,string _userPassword) returns(bool){
@@ -158,6 +165,10 @@ contract Hope{
     return (userIdList,userNameList,userPhoneList);
   }
 
+  function getDenoteListByUserId(uint256 _userId) returns(uint256,uint256,uint256,uint256,string){
+    Denote denote = userDenoteMap[_userId];
+    return (denote.denoteId,denote.userId,denote.projectId,denote.denoteMoney,denote.denoteTime);
+  }
   ///////////////////////////////////////////////////////////////////////////////////////////////////
   /**
   * @parm:string _endorsorOrg, string _endorsorProvince, string _endorsorEmail, string _endorsorPassword
@@ -184,36 +195,65 @@ contract Hope{
     return endorsorMap[_endorsorEmail].endorsorId != 0;
   }
 
-  function getEndorsorIdByEmail() returns(){
+  function getEndorsorIdByEmail(string _endorsorEmail) returns(){
+    return endorsorMap[_endorsorEmail].endorsorId;
 
   }
-  function getEndorsorByEndorsorId() returns(){
 
+  function getEndorsorByEndorsorId(uint256 _endorsorId) returns(uint256,string,string,string){
+    Endorsor _endorsor =  endorsorList[_endorsorId];
+    return (_endorsor.endorsorId,_endorsor.endorsorOrg,_endorsor.endorsorProvince,_endorsor.endorsorEmail);
   }
+
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
-  function createSchool() returns(bool){
-
+  function createSchool(string _schoolname, string _schoolEmail, string _schoolPassword, string _schoolProvince, string _schoolAddress, string _schoolGovernor, string _schoolAgent) returns(bool){
+    if(checkSchoolByEmail(_schoolEmail)){
+      return 1;
+    }
+    uint26 _schoolId = schoolCount();
+    School memory school = School({schoolId:_schoolId,schoolName:schoolName,schoolEmail:_schoolEmail,schoolPassword:_schoolPassword,schoolProvince:_schoolProvince,schoolAddress:_schoolAddress,schoolGovernor:_schoolGovernor,schoolAgent:_schoolAgent});
+    schoolList.push(school);
+    schoolMap[_schoolemail] = schoolId;
+    return 0;
   }
 
-
-  function schoolCount() returns(uint256){
+  function schoolCount() view returns(uint256){
     return schoolList.length;
   }
 
-
-  function checkSchoolByEmail(uint256 _schoolEmail) returns(bool){
+  function checkSchoolByEmail(string _schoolEmail) view returns(bool){
     return schoolMap[_schoolEmail].schoolId != 0;
   }
 
-  function getSchoolIdByEmail() returns(){
-
+  function getSchoolIdByEmail() returns() view{
+    return schoolMap[_schoolEmail].schoolId;
   }
-  function getSchoolByEndorsorId() returns(){
 
+  function getSchoolBySchoolId(uint 256 _schoolId) returns(string, string, string, string, string, string, uint256[]) view{
+    School school = schoolList[_schoolId];
+    return (school.schoolname, school.schoolEmail, school.Province, school.schoolAddress, school.schoolGovernor, school.schoolAgent,school.projectRecord);
+  }
+
+  function getProjectsBySchoolId(uint256 _schoolId) returns(Project[]) view {
+    School school = schoolList[_schoolId];
+    Project[] projects;
+    for(i = 0 ; i < school.project.length ; i ++){
+      Project project = projectList[school.project[i]];
+      projects.push(project);
+    }
+    return projects;
+  }
+
+  function createProject(uint256 _schoolId,string _projectName,string _projectTarget,uint256 _projectTargetMoney,string _projectFinishTime) returns(uint256){
+    Project memorey project = Project({projectCreator:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectFinishTime:_projectFinishTime})
+    projectList.push(school);
+    return 0;
   }
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
   function createProject(){
-
+    Project memorey project = Project({projectCreator:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectFinishTime:_projectFinishTime})
+    projectList.push(school);
+    return 0;
   }
 
   ///////////////////////////////////////////////
