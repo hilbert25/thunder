@@ -82,8 +82,10 @@ contract Hope{
   mapping(uint256=>Denote[]) userDenoteMap;//用户捐赠记录
   mapping(uint256=>Denote[]) projectDenoteMap;//项目获捐记录。
   mapping(uint256=>EndorseItem[]) endorseItemMap;//背书节点背书记录
+
   function Hope(){
     createUser("0",0,"0");
+    createEndorsor("0","0","0","0");
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   /**
@@ -104,7 +106,7 @@ contract Hope{
   /**
   * @return:uint256
   **/
-  function userCount() returns(uint256){
+  function userCount() view returns(uint256){
     return userList.length;
   }
 
@@ -112,11 +114,11 @@ contract Hope{
   * @parm:uint256 _userPhone
   * @return: {true:existed false:not exist}
   **/
-  function checkUserByPhone(uint256 _userPhone) returns(bool){
+  function checkUserByPhone(uint256 _userPhone) view returns(bool){
     return userMap[_userPhone].userId != 0;
   }
 
-  function getUserIdByPhone(uint256 _userPhone) returns(uint256){
+  function getUserIdByPhone(uint256 _userPhone) view returns(uint256){
     return userMap[_userPhone].userId;
   }
 
@@ -205,21 +207,21 @@ contract Hope{
   }
 
 
-  function endorsorCount() returns(uint256){
+  function endorsorCount() view returns(uint256){
     return endorsorList.length;
   }
 
 
-  function checkEndorsorByEmail(uint256 _endorsorEmail) returns(bool){
+  function checkEndorsorByEmail(uint256 _endorsorEmail) view returns(bool){
     return endorsorMap[_endorsorEmail].endorsorId != 0;
   }
 
-  function getEndorsorIdByEmail(string _endorsorEmail) returns(){
+  function getEndorsorIdByEmail(string _endorsorEmail) view returns(){
     return endorsorMap[_endorsorEmail].endorsorId;
 
   }
 
-  function getEndorsorByEndorsorId(uint256 _endorsorId) returns(uint256,string,string,string){
+  function getEndorsorByEndorsorId(uint256 _endorsorId) view returns(uint256,string,string,string){
     Endorsor _endorsor =  endorsorList[_endorsorId];
     return (_endorsor.endorsorId,_endorsor.endorsorOrg,_endorsor.endorsorProvince,_endorsor.endorsorEmail);
   }
@@ -228,6 +230,18 @@ contract Hope{
     createEndorseItem(_projectId,_endorsorId,_operate);
   }
 
+  function getEndorseListByEndorsorId(uint256 _endorsorId) view returns (uint256[],uint256[],uint256[]){
+    EndorseItem[] _endorseItemList = endorseItemMap[_endorsorId];
+    uint256[] _projectIdList;
+    uint256[] _endorseIdList;
+    uint256[] _operateList;
+    for(uint256 i=0;i<_endorseItemList.list;i++){
+      _projectIdList.push(_endorseItemList[i].projectId);
+      _endorseIdList.push(_endorseItemList[i].endorseId);
+      _operateList.push(_endorseItemList[i].operate);
+    }
+    return (_projectIdList,_endorseIdList,_operateList);
+  }
   function createEndorseItem(uint256 _projectId, uint256 _endorsorId,uint256 _operate){
     Endorsor _endorsor =  endorsorList[_endorsorId];
     uint256 _endorseItemCount = _endorsor.endorseRecord.length;
@@ -254,11 +268,11 @@ contract Hope{
     return schoolMap[_schoolEmail].schoolId != 0;
   }
 
-  function getSchoolIdByEmail() returns() view{
+  function getSchoolIdByEmail() view returns(uint256) {
     return schoolMap[_schoolEmail].schoolId;
   }
 
-  function getSchoolBySchoolId(uint 256 _schoolId) returns(string, string, string, string, string, string, uint256[]) view{
+  function getSchoolBySchoolId(uint256 _schoolId) returns(string, string, string, string, string, string, uint256[]) view{
     School school = schoolList[_schoolId];
     return (school.schoolname, school.schoolEmail, school.Province, school.schoolAddress, school.schoolGovernor, school.schoolAgent,school.projectRecord);
   }
