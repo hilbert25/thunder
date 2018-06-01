@@ -60,16 +60,18 @@ contract Hope{
 
 
   struct EndorseItem{
-    uint256 endorseItemIt;
+    uint256 endorseItemId;
     uint256 projectId;
     uint256 endorsorId;
-    string operate;//pass or reject or undeal
+    uint256 operate;//{0:未处理 1：通过 2：拒绝}
   }
+
+
   User[] userList;
   mapping(string=>uint256) userMap;//key是手机号
 
   Endorsor[] endorsorList;
-  mapping(string=>uint256) endorsorMap;//key是邮箱
+  mapping(string=>uint256) endorsorMap;//key是邮箱 value是projectId
 
   School[] schoolList;
   mapping(string=>uint256)schoolMap;//key是邮箱
@@ -79,7 +81,7 @@ contract Hope{
   Denote[] denoteList;
   mapping(uint256=>Denote[]) userDenoteMap;//用户捐赠记录
   mapping(uint256=>Denote[]) projectDenoteMap;//项目获捐记录。
-
+  mapping(uint256=>EndorseItem[]) endorseItemMap;//背书节点背书记录
   function Hope(){
     createUser("0",0,"0");
   }
@@ -177,7 +179,7 @@ contract Hope{
     if(denoteList.length<=_endId){
       _endId = denoteList.length-1;
     }
-    for(uint2256 i=_beginId;i<=_endId;i++){
+    for(uint256 i=_beginId;i<=_endId;i++){
       Denote denote = denoteList[i];
       denoteIdList.push(denote.denoteId);
       projectIdList.push(denote.projectId);
@@ -222,6 +224,16 @@ contract Hope{
     return (_endorsor.endorsorId,_endorsor.endorsorOrg,_endorsor.endorsorProvince,_endorsor.endorsorEmail);
   }
 
+  function dealEndorse(uint256 _projectId,uint256 _endorsorId, uint256 _operate){
+    createEndorseItem(_projectId,_endorsorId,_operate);
+  }
+
+  function createEndorseItem(uint256 _projectId, uint256 _endorsorId,uint256 _operate){
+    Endorsor _endorsor =  endorsorList[_endorsorId];
+    uint256 _endorseItemCount = _endorsor.endorseRecord.length;
+    EndorseItem endorseItem = EndorseItem({endorseItemId:_endorseItemCount,projectId:_projectId,endorsorId:_endorsorId,operate:_operate});
+    endorseItemMap[_endorsorId].push(endorseItem);
+  }
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
   function createSchool(string _schoolname, string _schoolEmail, string _schoolPassword, string _schoolProvince, string _schoolAddress, string _schoolGovernor, string _schoolAgent) returns(bool){
     if(checkSchoolByEmail(_schoolEmail)){
