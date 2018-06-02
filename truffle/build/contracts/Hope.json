@@ -1,0 +1,4704 @@
+{
+  "contractName": "Hope",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_userName",
+          "type": "string"
+        },
+        {
+          "name": "_userPhone",
+          "type": "uint256"
+        },
+        {
+          "name": "_userPassword",
+          "type": "string"
+        }
+      ],
+      "name": "createUser",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "userCount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6060604052341561000f57600080fd5b6103e48061001e6000396000f30060606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806307973ccf1461005157806326bd87721461007a575b600080fd5b341561005c57600080fd5b610064610123565b6040518082815260200191505060405180910390f35b341561008557600080fd5b610121600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190505061012f565b005b60008080549050905090565b6000610139610201565b610141610123565b91506080604051908101604052808381526020018681526020018581526020018481525090506000805480600101828161017b9190610236565b916000526020600020906004020160008390919091506000820151816000015560208201518160010190805190602001906101b7929190610268565b506040820151816002015560608201518160030190805190602001906101de929190610268565b505050508160016000868152602001908152602001600020819055505050505050565b6080604051908101604052806000815260200161021c6102e8565b8152602001600081526020016102306102e8565b81525090565b8154818355818115116102635760040281600402836000526020600020918201910161026291906102fc565b5b505050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106102a957805160ff19168380011785556102d7565b828001600101855582156102d7579182015b828111156102d65782518255916020019190600101906102bb565b5b5090506102e4919061034b565b5090565b602060405190810160405280600081525090565b61034891905b80821115610344576000808201600090556001820160006103239190610370565b600282016000905560038201600061033b9190610370565b50600401610302565b5090565b90565b61036d91905b80821115610369576000816000905550600101610351565b5090565b90565b50805460018160011615610100020316600290046000825580601f1061039657506103b5565b601f0160209004906000526020600020908101906103b4919061034b565b5b505600a165627a7a7230582020b1e46f3a7828cdf728efaa3aaf9325a842ff814d4bc901cbc7370a7c7958d10029",
+  "deployedBytecode": "0x60606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806307973ccf1461005157806326bd87721461007a575b600080fd5b341561005c57600080fd5b610064610123565b6040518082815260200191505060405180910390f35b341561008557600080fd5b610121600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190505061012f565b005b60008080549050905090565b6000610139610201565b610141610123565b91506080604051908101604052808381526020018681526020018581526020018481525090506000805480600101828161017b9190610236565b916000526020600020906004020160008390919091506000820151816000015560208201518160010190805190602001906101b7929190610268565b506040820151816002015560608201518160030190805190602001906101de929190610268565b505050508160016000868152602001908152602001600020819055505050505050565b6080604051908101604052806000815260200161021c6102e8565b8152602001600081526020016102306102e8565b81525090565b8154818355818115116102635760040281600402836000526020600020918201910161026291906102fc565b5b505050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106102a957805160ff19168380011785556102d7565b828001600101855582156102d7579182015b828111156102d65782518255916020019190600101906102bb565b5b5090506102e4919061034b565b5090565b602060405190810160405280600081525090565b61034891905b80821115610344576000808201600090556001820160006103239190610370565b600282016000905560038201600061033b9190610370565b50600401610302565b5090565b90565b61036d91905b80821115610369576000816000905550600101610351565b5090565b90565b50805460018160011615610100020316600290046000825580601f1061039657506103b5565b601f0160209004906000526020600020908101906103b4919061034b565b5b505600a165627a7a7230582020b1e46f3a7828cdf728efaa3aaf9325a842ff814d4bc901cbc7370a7c7958d10029",
+  "sourceMap": "26:11071:0:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "26:11071:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2387:82;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2066:315;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2387:82;2421:7;2447:8;:15;;;;2440:22;;2387:82;:::o;2066:315::-;2156:15;2195:16;;:::i;:::-;2174:11;:9;:11::i;:::-;2156:29;;2214:92;;;;;;;;;2227:7;2214:92;;;;2245:9;2214:92;;;;2266:10;2214:92;;;;2291:13;2214:92;;;2195:111;;2316:8;:19;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;2330:4;2316:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;2367:7;2345;:19;2353:10;2345:19;;;;;;;;;;;:29;;;;2066:315;;;;;:::o;26:11071::-;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;:::i;:::-;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o",
+  "source": "pragma solidity ^0.4.16;\n\ncontract Hope{\n\n  struct User{\n    uint256 userId;\n    string userName;\n    uint256 userPhone;\n    string userPassword;\n  }\n\n\n  struct Endorsor{\n    uint256 endorsorId;\n    string endorsorOrg;//背书节点所属机构\n    string endorsorProvince;\n    string endorsorEmail;\n    string endorsorPassword;\n    EndorseItem[] endorseRecord;\n  }\n\n  struct School{\n    uint256 schoolId;\n    string schoolName;\n    string schoolEmail;\n    string schoolPassword;\n    string schoolProvince;\n    string schoolAddress;\n    string schoolGovernor;//主管部门\n    string schoolAgent;//代理人负责人\n    Project[] projectRecord;\n    string schoolState;//是否可以发起项目\n  }\n\n  struct Project{\n    uint256 projectId;\n    uint256 projectCreator;\n    string projectName;\n    string projectCreateTime;\n    string projectTarget;//项目用途\n    uint256 projectTargetMoney;\n    uint256 projectCurrentMoney;\n    string projectEndorseState;\n    bool projectFinishState;\n    string projectFinishTime;\n    string[] projectNoteUrl;//票据图片地址\n    string projectPlanUpNoteTime;//计划上传票据时间\n    string projectActualUpNoteTime;//实际计划上传票据时间\n    uint256 totalEndorsor;\n    uint256 passEndorsor;\n  }\n\n  struct Denote {\n    uint256 denoteId;\n    uint256 userId;\n    uint256 projectId;\n    uint256 denoteMoney;\n    string denoteTime;\n  }\n\n\n  struct EndorseItem{\n    uint256 endorseItemId;\n    uint256 projectId;\n    uint256 endorsorId;\n    uint256 operate;//{0:未处理 1：通过 2：拒绝}\n  }\n\n\n  User[] userList;\n  mapping(uint256=>uint256) userMap;//key是手机号\n\n  Endorsor[] endorsorList;\n  mapping(string=>uint256) endorsorMap;//key是邮箱 value是projectId\n\n  School[] schoolList;\n  mapping(string=>uint256)schoolMap;//key是邮箱\n\n  Project[] projectList;\n\n  Denote[] denoteList;\n  mapping(uint256=>Denote[]) userDenoteMap;//用户捐赠记录\n  mapping(uint256=>Denote[]) projectDenoteMap;//项目获捐记录。\n  mapping(uint256=>EndorseItem[]) endorseItemMap;//背书节点背书记录\n\n    function createUser(string _userName, uint256 _userPhone, string _userPassword) {\n        uint256 _userId = userCount();\n        User memory user = User({userId:_userId, userName:_userName, userPhone:_userPhone, userPassword:_userPassword});\n        userList.push(user);\n        userMap[_userPhone] = _userId;\n    }\n\n    function userCount() view returns(uint256) {\n        return userList.length;\n    }\n\n  // /**\n  // * @parm:uint256 _userPhone\n  // * @return: {true:existed false:not exist}\n  // **/\n  // function checkUserByPhone(uint256 _userPhone) view returns(bool){\n  //   return userMap[_userPhone].userId != 0;\n  // }\n\n  // function getUserIdByPhone(uint256 _userPhone) view returns(uint256){\n  //   return userMap[_userPhone].userId;\n  // }\n\n  // function getUserByUserId(uint256 _userId) returns(uint256,string,uint256){\n  //   User user = userList[_userId];\n  //   return(user.userId,user.userName,user.userPhone,userDenoteRecord);\n  // }\n\n  // function userLogin(string _userPhone,string _userPassword) returns(bool){\n  //   uint256 _userId = getUserIdByPhone(_userPhone);\n  //   User user = userList[_userId];\n  //   return _userId!=0 && user.userPassword == _userPassword;\n  // }\n  // /**\n  // * returns {1:捐多了 0:success}\n  // **/\n  // function userDenote(uint256 _userId,uint256 _projectId,uint256 _denoteMoney) returns(uint256){\n  //   Project project = projectList[_projectId];\n  //   if(project.projectCurrentMoney +_denoteMoney > project.projectTargetMoney){\n  //     return 1;\n  //   }\n  //   uint256 _denoteId = denoteCount();\n  //   Denote memory denote = Denote({denoteId:_denoteId,userId:_userId,projectId:_projectId,denoteMoney:_denoteMoney,denoteTime:now});\n  //   denoteList.push(denote);\n  //   userDenoteMap[_userId].push(denote);\n  //   projectDenoteMap[_projectId].push(denote);\n  //   project.projectCurrentMoney += _denoteMoney;\n  //   return 0;\n  // }\n\n  // function getUserList(uint256 _beginUserId,uint256 _endUserId)returns(uint256[] userIdList,string[] userNameList,string[]userPhoneList){\n  //   uint256 _userCount = userCount();\n  //   if(_userCount<_beginUserId){\n  //     _beginUserId=_userCount;\n  //   }\n  //   if(_userCount<_endUserId){\n  //     _endUserId=_userCount;\n  //   }\n  //   uint256[] userIdList;\n  //   string[] userNameList;\n  //   string[] userPhoneList;\n  //   for(uint256 i=_beginUserId;i<=_endUserId;i++){\n  //     User memory user = userList[i];\n  //     userIdList.push(user.userId);\n  //     userNameList.push(user.userName);\n  //     userPhoneList.push(user.userPhone);\n  //   }\n  //   return (userIdList,userNameList,userPhoneList);\n  // }\n\n  // function getDenoteListByUserId(uint256 _userId,uint _beginId,uint _endId) returns(uint256[],uint256[],uint256[],uint256[]){\n  //   Denote[] denoteList = userDenoteMap[_userId];\n  //   uint256[] denoteIdList;\n  //   uint256[] projectIdList;\n  //   uint256[] denoteMoneyList;\n  //   uint256[] denoteTimeList;\n  //   if(denoteList.length<=_beginId){\n  //     _beginId = denoteList.length-1;\n  //   }\n  //   if(denoteList.length<=_endId){\n  //     _endId = denoteList.length-1;\n  //   }\n  //   for(uint256 i=_beginId;i<=_endId;i++){\n  //     Denote denote = denoteList[i];\n  //     denoteIdList.push(denote.denoteId);\n  //     projectIdList.push(denote.projectId);\n  //     denoteMoneyList.push(denote.denoteMoney);\n  //     denoteTimeList.push(denote.denoteTime);\n  //   }\n  //   return (denoteIdList,projectIdList,denote.projectId,denoteMoneyList,denoteTimeList);\n  // }\n  // ///////////////////////////////////////////////////////////////////////////////////////////////////\n  // /**\n  // * @parm:string _endorsorOrg, string _endorsorProvince, string _endorsorEmail, string _endorsorPassword\n  // * @return:uint256 {0:success,1:userPhone has been registered}\n  // **/\n  // function createEndorsor(string _endorsorOrg, string _endorsorProvince, string _endorsorEmail, string _endorsorPassword ){\n  //   if(checkEndorsorByEmail(_endorsorEmail)){\n  //     return 1;\n  //   }\n  //   uint256 _endorsorId = endorsorCount();\n  //   User memory user = User({userId:_userId,userName:userName,userPassword:_userPassword});\n  //   userList.push(user);\n  //   userMap[_userPhone] = user;\n  //   return 0;\n  // }\n\n\n  // function endorsorCount() view returns(uint256){\n  //   return endorsorList.length;\n  // }\n\n\n  // function checkEndorsorByEmail(uint256 _endorsorEmail) view returns(bool){\n  //   return endorsorMap[_endorsorEmail].endorsorId != 0;\n  // }\n\n  // function getEndorsorIdByEmail(string _endorsorEmail) view returns(){\n  //   return endorsorMap[_endorsorEmail].endorsorId;\n\n  // }\n\n  // function getEndorsorByEndorsorId(uint256 _endorsorId) view returns(uint256,string,string,string){\n  //   Endorsor _endorsor =  endorsorList[_endorsorId];\n  //   return (_endorsor.endorsorId,_endorsor.endorsorOrg,_endorsor.endorsorProvince,_endorsor.endorsorEmail);\n  // }\n\n  // function dealEndorse(uint256 _projectId,uint256 _endorsorId, uint256 _operate){\n  //   createEndorseItem(_projectId,_endorsorId,_operate);\n  // }\n\n  // function getEndorseListByEndorsorId(uint256 _endorsorId) view returns (uint256[],uint256[],uint256[]){\n  //   EndorseItem[] _endorseItemList = endorseItemMap[_endorsorId];\n  //   uint256[] _projectIdList;\n  //   uint256[] _endorseIdList;\n  //   uint256[] _operateList;\n  //   for(uint256 i=0;i<_endorseItemList.list;i++){\n  //     _projectIdList.push(_endorseItemList[i].projectId);\n  //     _endorseIdList.push(_endorseItemList[i].endorseId);\n  //     _operateList.push(_endorseItemList[i].operate);\n  //   }\n  //   return (_projectIdList,_endorseIdList,_operateList);\n  // }\n  // function createEndorseItem(uint256 _projectId, uint256 _endorsorId,uint256 _operate){\n  //   Endorsor _endorsor =  endorsorList[_endorsorId];\n  //   uint256 _endorseItemCount = _endorsor.endorseRecord.length;\n  //   EndorseItem endorseItem = EndorseItem({endorseItemId:_endorseItemCount,projectId:_projectId,endorsorId:_endorsorId,operate:_operate});\n  //   endorseItemMap[_endorsorId].push(endorseItem);\n  // }\n  // ///////////////////////////////////////////////////////////////////////////////////////////////////////\n  // function createSchool(string _schoolname, string _schoolEmail, string _schoolPassword, string _schoolProvince, string _schoolAddress, string _schoolGovernor, string _schoolAgent) returns(bool){\n  //   if(checkSchoolByEmail(_schoolEmail)){\n  //     return 1;\n  //   }\n  //   uint26 _schoolId = schoolCount();\n  //   School memory school = School({schoolId:_schoolId,schoolName:schoolName,schoolEmail:_schoolEmail,schoolPassword:_schoolPassword,schoolProvince:_schoolProvince,schoolAddress:_schoolAddress,schoolGovernor:_schoolGovernor,schoolAgent:_schoolAgent});\n  //   schoolList.push(school);\n  //   schoolMap[_schoolemail] = schoolId;\n  //   return 0;\n  // }\n\n  // function schoolCount() view returns(uint256){\n  //   return schoolList.length;\n  // }\n\n  // function checkSchoolByEmail(string _schoolEmail) view returns(bool){\n  //   return schoolMap[_schoolEmail].schoolId != 0;\n  // }\n\n  // function getSchoolIdByEmail() view returns(uint256) {\n  //   return schoolMap[_schoolEmail].schoolId;\n  // }\n\n  // function getSchoolBySchoolId(uint256 _schoolId) returns(string, string, string, string, string, string, uint256[]) view{\n  //   School school = schoolList[_schoolId];\n  //   return (school.schoolname, school.schoolEmail, school.Province, school.schoolAddress, school.schoolGovernor, school.schoolAgent,school.projectRecord);\n  // }\n\n  // function getProjectsBySchoolId(uint256 _schoolId) returns(Project[]) view {\n  //   School school = schoolList[_schoolId];\n  //   Project[] projects;\n  //   for(i = 0 ; i < school.project.length ; i ++){\n  //     Project project = projectList[school.project[i]];\n  //     projects.push(project);\n  //   }\n  //   return projects;\n  // }\n\n  // function createProject(uint256 _schoolId,string _projectName,string _projectTarget,uint256 _projectTargetMoney,string _projectFinishTime) returns(uint256){\n  //   Project memorey project = Project({projectCreator:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectFinishTime:_projectFinishTime})\n  //   projectList.push(school);\n  //   return 0;\n  // }\n\n  // function getProjectByprojectId(uint256 _projectId) view returns(uint256,uint256,string,string,string,uint256,uint256,string,bool,string,string[],string,string,uint256,uint256){\n  //   Project project = projectList[_projectId];\n  //   return (projectId,projectCreator,projectName,projectCreateTime,projectTarget,projectTargetMoney,projectCurrentMoney,projectEndorseState,projectFinishState,projectFinishTime,projectNoteUrl,projectPlanUpNoteTime,projectActualUpNoteTime,totalEndorsor,passEndorsor)\n  //   }\n  // ///////////////////////////////////////////////////////////////////////////////////////////////////////\n\n  // ///////////////////////////////////////////////\n  // function denoteCount() returns(uint256){\n  //   return denoteList.length;\n  // }\n}\n",
+  "sourcePath": "/home/hk-journalist/code/thunder/truffle/contracts/Hope.sol",
+  "ast": {
+    "absolutePath": "/home/hk-journalist/code/thunder/truffle/contracts/Hope.sol",
+    "exportedSymbols": {
+      "Hope": [
+        186
+      ]
+    },
+    "id": 187,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 186,
+        "linearizedBaseContracts": [
+          186
+        ],
+        "name": "Hope",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Hope.User",
+            "id": 10,
+            "members": [
+              {
+                "constant": false,
+                "id": 3,
+                "name": "userId",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "61:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "61:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 5,
+                "name": "userName",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "81:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 4,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "81:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 7,
+                "name": "userPhone",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "102:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 6,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "102:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 9,
+                "name": "userPassword",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "125:19:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 8,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "125:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "User",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "44:105:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Hope.Endorsor",
+            "id": 24,
+            "members": [
+              {
+                "constant": false,
+                "id": 12,
+                "name": "endorsorId",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "175:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "175:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14,
+                "name": "endorsorOrg",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "199:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 13,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "199:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 16,
+                "name": "endorsorProvince",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "249:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 15,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "249:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 18,
+                "name": "endorsorEmail",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "278:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 17,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "278:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 20,
+                "name": "endorsorPassword",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "304:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 19,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "304:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 23,
+                "name": "endorseRecord",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "333:27:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_EndorseItem_$98_storage_$dyn_storage_ptr",
+                  "typeString": "struct Hope.EndorseItem storage ref[] storage pointer"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 21,
+                    "name": "EndorseItem",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 98,
+                    "src": "333:11:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_EndorseItem_$98_storage_ptr",
+                      "typeString": "struct Hope.EndorseItem storage pointer"
+                    }
+                  },
+                  "id": 22,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "333:13:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_EndorseItem_$98_storage_$dyn_storage_ptr",
+                    "typeString": "struct Hope.EndorseItem storage ref[] storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Endorsor",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "154:211:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Hope.School",
+            "id": 46,
+            "members": [
+              {
+                "constant": false,
+                "id": 26,
+                "name": "schoolId",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "388:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 25,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "388:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28,
+                "name": "schoolName",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "410:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 27,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "410:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30,
+                "name": "schoolEmail",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "433:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 29,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "433:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 32,
+                "name": "schoolPassword",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "457:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 31,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "457:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 34,
+                "name": "schoolProvince",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "484:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 33,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "484:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 36,
+                "name": "schoolAddress",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "511:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 35,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "511:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 38,
+                "name": "schoolGovernor",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "537:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 37,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "537:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 40,
+                "name": "schoolAgent",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "578:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 39,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "578:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 43,
+                "name": "projectRecord",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "622:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Project_$78_storage_$dyn_storage_ptr",
+                  "typeString": "struct Hope.Project storage ref[] storage pointer"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 41,
+                    "name": "Project",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 78,
+                    "src": "622:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Project_$78_storage_ptr",
+                      "typeString": "struct Hope.Project storage pointer"
+                    }
+                  },
+                  "id": 42,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "622:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Project_$78_storage_$dyn_storage_ptr",
+                    "typeString": "struct Hope.Project storage ref[] storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 45,
+                "name": "schoolState",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "651:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 44,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "651:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "School",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "369:331:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Hope.Project",
+            "id": 78,
+            "members": [
+              {
+                "constant": false,
+                "id": 48,
+                "name": "projectId",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "724:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 47,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "724:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 50,
+                "name": "projectCreator",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "747:22:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 49,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "747:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 52,
+                "name": "projectName",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "775:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 51,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "775:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 54,
+                "name": "projectCreateTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "799:24:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 53,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "799:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 56,
+                "name": "projectTarget",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "829:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 55,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "829:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 58,
+                "name": "projectTargetMoney",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "869:26:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 57,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "869:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 60,
+                "name": "projectCurrentMoney",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "901:27:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 59,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "901:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 62,
+                "name": "projectEndorseState",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "934:26:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 61,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "934:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 64,
+                "name": "projectFinishState",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "966:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 63,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "966:4:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 66,
+                "name": "projectFinishTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "995:24:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 65,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "995:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 69,
+                "name": "projectNoteUrl",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "1025:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                  "typeString": "string storage ref[] storage pointer"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 67,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1025:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
+                    }
+                  },
+                  "id": 68,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "1025:8:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                    "typeString": "string storage ref[] storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 71,
+                "name": "projectPlanUpNoteTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "1074:28:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 70,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1074:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 73,
+                "name": "projectActualUpNoteTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "1134:30:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 72,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1134:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 75,
+                "name": "totalEndorsor",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "1202:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 74,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1202:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 77,
+                "name": "passEndorsor",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "1229:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 76,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1229:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Project",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "704:550:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Hope.Denote",
+            "id": 89,
+            "members": [
+              {
+                "constant": false,
+                "id": 80,
+                "name": "denoteId",
+                "nodeType": "VariableDeclaration",
+                "scope": 89,
+                "src": "1278:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 79,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1278:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 82,
+                "name": "userId",
+                "nodeType": "VariableDeclaration",
+                "scope": 89,
+                "src": "1300:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 81,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1300:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 84,
+                "name": "projectId",
+                "nodeType": "VariableDeclaration",
+                "scope": 89,
+                "src": "1320:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 83,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1320:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 86,
+                "name": "denoteMoney",
+                "nodeType": "VariableDeclaration",
+                "scope": 89,
+                "src": "1343:19:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 85,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1343:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 88,
+                "name": "denoteTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 89,
+                "src": "1368:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 87,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1368:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Denote",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "1258:132:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Hope.EndorseItem",
+            "id": 98,
+            "members": [
+              {
+                "constant": false,
+                "id": 91,
+                "name": "endorseItemId",
+                "nodeType": "VariableDeclaration",
+                "scope": 98,
+                "src": "1419:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 90,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1419:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 93,
+                "name": "projectId",
+                "nodeType": "VariableDeclaration",
+                "scope": 98,
+                "src": "1446:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 92,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1446:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 95,
+                "name": "endorsorId",
+                "nodeType": "VariableDeclaration",
+                "scope": 98,
+                "src": "1469:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 94,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1469:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 97,
+                "name": "operate",
+                "nodeType": "VariableDeclaration",
+                "scope": 98,
+                "src": "1493:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 96,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1493:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "EndorseItem",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "1395:155:0",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 101,
+            "name": "userList",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1555:15:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_User_$10_storage_$dyn_storage",
+              "typeString": "struct Hope.User storage ref[] storage ref"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 99,
+                "name": "User",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 10,
+                "src": "1555:4:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_User_$10_storage_ptr",
+                  "typeString": "struct Hope.User storage pointer"
+                }
+              },
+              "id": 100,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "1555:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_User_$10_storage_$dyn_storage_ptr",
+                "typeString": "struct Hope.User storage ref[] storage pointer"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 105,
+            "name": "userMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1574:33:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+              "typeString": "mapping(uint256 => uint256)"
+            },
+            "typeName": {
+              "id": 104,
+              "keyType": {
+                "id": 102,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1582:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1574:25:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                "typeString": "mapping(uint256 => uint256)"
+              },
+              "valueType": {
+                "id": 103,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1591:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 108,
+            "name": "endorsorList",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1629:23:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_Endorsor_$24_storage_$dyn_storage",
+              "typeString": "struct Hope.Endorsor storage ref[] storage ref"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 106,
+                "name": "Endorsor",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 24,
+                "src": "1629:8:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Endorsor_$24_storage_ptr",
+                  "typeString": "struct Hope.Endorsor storage pointer"
+                }
+              },
+              "id": 107,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "1629:10:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_Endorsor_$24_storage_$dyn_storage_ptr",
+                "typeString": "struct Hope.Endorsor storage ref[] storage pointer"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 112,
+            "name": "endorsorMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1656:36:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint256_$",
+              "typeString": "mapping(string memory => uint256)"
+            },
+            "typeName": {
+              "id": 111,
+              "keyType": {
+                "id": 109,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "1664:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1656:24:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint256_$",
+                "typeString": "mapping(string memory => uint256)"
+              },
+              "valueType": {
+                "id": 110,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1672:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 115,
+            "name": "schoolList",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1729:19:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_School_$46_storage_$dyn_storage",
+              "typeString": "struct Hope.School storage ref[] storage ref"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 113,
+                "name": "School",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 46,
+                "src": "1729:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_School_$46_storage_ptr",
+                  "typeString": "struct Hope.School storage pointer"
+                }
+              },
+              "id": 114,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "1729:8:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_School_$46_storage_$dyn_storage_ptr",
+                "typeString": "struct Hope.School storage ref[] storage pointer"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 119,
+            "name": "schoolMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1752:33:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint256_$",
+              "typeString": "mapping(string memory => uint256)"
+            },
+            "typeName": {
+              "id": 118,
+              "keyType": {
+                "id": 116,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "1760:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1752:24:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint256_$",
+                "typeString": "mapping(string memory => uint256)"
+              },
+              "valueType": {
+                "id": 117,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1768:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 122,
+            "name": "projectList",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1804:21:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_Project_$78_storage_$dyn_storage",
+              "typeString": "struct Hope.Project storage ref[] storage ref"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 120,
+                "name": "Project",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 78,
+                "src": "1804:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Project_$78_storage_ptr",
+                  "typeString": "struct Hope.Project storage pointer"
+                }
+              },
+              "id": 121,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "1804:9:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_Project_$78_storage_$dyn_storage_ptr",
+                "typeString": "struct Hope.Project storage ref[] storage pointer"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 125,
+            "name": "denoteList",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1830:19:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_Denote_$89_storage_$dyn_storage",
+              "typeString": "struct Hope.Denote storage ref[] storage ref"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 123,
+                "name": "Denote",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 89,
+                "src": "1830:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Denote_$89_storage_ptr",
+                  "typeString": "struct Hope.Denote storage pointer"
+                }
+              },
+              "id": 124,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "1830:8:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_Denote_$89_storage_$dyn_storage_ptr",
+                "typeString": "struct Hope.Denote storage ref[] storage pointer"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 130,
+            "name": "userDenoteMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1853:40:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Denote_$89_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct Hope.Denote storage ref[] storage ref)"
+            },
+            "typeName": {
+              "id": 129,
+              "keyType": {
+                "id": 126,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1861:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1853:26:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Denote_$89_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct Hope.Denote storage ref[] storage ref)"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 127,
+                  "name": "Denote",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 89,
+                  "src": "1870:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Denote_$89_storage_ptr",
+                    "typeString": "struct Hope.Denote storage pointer"
+                  }
+                },
+                "id": 128,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "1870:8:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Denote_$89_storage_$dyn_storage_ptr",
+                  "typeString": "struct Hope.Denote storage ref[] storage pointer"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 135,
+            "name": "projectDenoteMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1917:43:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Denote_$89_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct Hope.Denote storage ref[] storage ref)"
+            },
+            "typeName": {
+              "id": 134,
+              "keyType": {
+                "id": 131,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1925:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1917:26:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Denote_$89_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct Hope.Denote storage ref[] storage ref)"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 132,
+                  "name": "Denote",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 89,
+                  "src": "1934:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Denote_$89_storage_ptr",
+                    "typeString": "struct Hope.Denote storage pointer"
+                  }
+                },
+                "id": 133,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "1934:8:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Denote_$89_storage_$dyn_storage_ptr",
+                  "typeString": "struct Hope.Denote storage ref[] storage pointer"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 140,
+            "name": "endorseItemMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1987:46:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_EndorseItem_$98_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct Hope.EndorseItem storage ref[] storage ref)"
+            },
+            "typeName": {
+              "id": 139,
+              "keyType": {
+                "id": 136,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1995:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1987:31:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_EndorseItem_$98_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct Hope.EndorseItem storage ref[] storage ref)"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 137,
+                  "name": "EndorseItem",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 98,
+                  "src": "2004:11:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_EndorseItem_$98_storage_ptr",
+                    "typeString": "struct Hope.EndorseItem storage pointer"
+                  }
+                },
+                "id": 138,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "2004:13:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_EndorseItem_$98_storage_$dyn_storage_ptr",
+                  "typeString": "struct Hope.EndorseItem storage ref[] storage pointer"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 175,
+              "nodeType": "Block",
+              "src": "2146:235:0",
+              "statements": [
+                {
+                  "assignments": [
+                    150
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 150,
+                      "name": "_userId",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 176,
+                      "src": "2156:15:0",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 149,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2156:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 153,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 151,
+                      "name": "userCount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 185,
+                      "src": "2174:9:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                        "typeString": "function () view returns (uint256)"
+                      }
+                    },
+                    "id": 152,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2174:11:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2156:29:0"
+                },
+                {
+                  "assignments": [
+                    155
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 155,
+                      "name": "user",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 176,
+                      "src": "2195:16:0",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_User_$10_memory_ptr",
+                        "typeString": "struct Hope.User memory"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 154,
+                        "name": "User",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 10,
+                        "src": "2195:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_User_$10_storage_ptr",
+                          "typeString": "struct Hope.User storage pointer"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 162,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 157,
+                        "name": "_userId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 150,
+                        "src": "2227:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 158,
+                        "name": "_userName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 142,
+                        "src": "2245:9:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 159,
+                        "name": "_userPhone",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 144,
+                        "src": "2266:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 160,
+                        "name": "_userPassword",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 146,
+                        "src": "2291:13:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 156,
+                      "name": "User",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 10,
+                      "src": "2214:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_User_$10_storage_ptr_$",
+                        "typeString": "type(struct Hope.User storage pointer)"
+                      }
+                    },
+                    "id": 161,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [
+                      "userId",
+                      "userName",
+                      "userPhone",
+                      "userPassword"
+                    ],
+                    "nodeType": "FunctionCall",
+                    "src": "2214:92:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_User_$10_memory",
+                      "typeString": "struct Hope.User memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2195:111:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 166,
+                        "name": "user",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 155,
+                        "src": "2330:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_User_$10_memory_ptr",
+                          "typeString": "struct Hope.User memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_User_$10_memory_ptr",
+                          "typeString": "struct Hope.User memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 163,
+                        "name": "userList",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 101,
+                        "src": "2316:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_User_$10_storage_$dyn_storage",
+                          "typeString": "struct Hope.User storage ref[] storage ref"
+                        }
+                      },
+                      "id": 165,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "2316:13:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_User_$10_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct Hope.User storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 167,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2316:19:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 168,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2316:19:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 173,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 169,
+                        "name": "userMap",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 105,
+                        "src": "2345:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                          "typeString": "mapping(uint256 => uint256)"
+                        }
+                      },
+                      "id": 171,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 170,
+                        "name": "_userPhone",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 144,
+                        "src": "2353:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "2345:19:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 172,
+                      "name": "_userId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 150,
+                      "src": "2367:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "2345:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 174,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2345:29:0"
+                }
+              ]
+            },
+            "id": 176,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "createUser",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 147,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 142,
+                  "name": "_userName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 176,
+                  "src": "2086:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string memory"
+                  },
+                  "typeName": {
+                    "id": 141,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2086:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 144,
+                  "name": "_userPhone",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 176,
+                  "src": "2104:18:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 143,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2104:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 146,
+                  "name": "_userPassword",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 176,
+                  "src": "2124:20:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string memory"
+                  },
+                  "typeName": {
+                    "id": 145,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2124:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2085:60:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 148,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2146:0:0"
+            },
+            "scope": 186,
+            "src": "2066:315:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 184,
+              "nodeType": "Block",
+              "src": "2430:39:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 181,
+                      "name": "userList",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 101,
+                      "src": "2447:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_User_$10_storage_$dyn_storage",
+                        "typeString": "struct Hope.User storage ref[] storage ref"
+                      }
+                    },
+                    "id": 182,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "length",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "2447:15:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 180,
+                  "id": 183,
+                  "nodeType": "Return",
+                  "src": "2440:22:0"
+                }
+              ]
+            },
+            "id": 185,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "userCount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 177,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2405:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 180,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 179,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 185,
+                  "src": "2421:7:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 178,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2421:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2420:9:0"
+            },
+            "scope": 186,
+            "src": "2387:82:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 187,
+        "src": "26:11071:0"
+      }
+    ],
+    "src": "0:11098:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/hk-journalist/code/thunder/truffle/contracts/Hope.sol",
+    "exportedSymbols": {
+      "Hope": [
+        186
+      ]
+    },
+    "id": 187,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 186,
+        "linearizedBaseContracts": [
+          186
+        ],
+        "name": "Hope",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Hope.User",
+            "id": 10,
+            "members": [
+              {
+                "constant": false,
+                "id": 3,
+                "name": "userId",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "61:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "61:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 5,
+                "name": "userName",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "81:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 4,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "81:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 7,
+                "name": "userPhone",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "102:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 6,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "102:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 9,
+                "name": "userPassword",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "125:19:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 8,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "125:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "User",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "44:105:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Hope.Endorsor",
+            "id": 24,
+            "members": [
+              {
+                "constant": false,
+                "id": 12,
+                "name": "endorsorId",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "175:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "175:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14,
+                "name": "endorsorOrg",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "199:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 13,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "199:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 16,
+                "name": "endorsorProvince",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "249:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 15,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "249:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 18,
+                "name": "endorsorEmail",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "278:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 17,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "278:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 20,
+                "name": "endorsorPassword",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "304:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 19,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "304:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 23,
+                "name": "endorseRecord",
+                "nodeType": "VariableDeclaration",
+                "scope": 24,
+                "src": "333:27:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_EndorseItem_$98_storage_$dyn_storage_ptr",
+                  "typeString": "struct Hope.EndorseItem storage ref[] storage pointer"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 21,
+                    "name": "EndorseItem",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 98,
+                    "src": "333:11:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_EndorseItem_$98_storage_ptr",
+                      "typeString": "struct Hope.EndorseItem storage pointer"
+                    }
+                  },
+                  "id": 22,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "333:13:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_EndorseItem_$98_storage_$dyn_storage_ptr",
+                    "typeString": "struct Hope.EndorseItem storage ref[] storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Endorsor",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "154:211:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Hope.School",
+            "id": 46,
+            "members": [
+              {
+                "constant": false,
+                "id": 26,
+                "name": "schoolId",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "388:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 25,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "388:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28,
+                "name": "schoolName",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "410:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 27,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "410:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30,
+                "name": "schoolEmail",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "433:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 29,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "433:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 32,
+                "name": "schoolPassword",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "457:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 31,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "457:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 34,
+                "name": "schoolProvince",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "484:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 33,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "484:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 36,
+                "name": "schoolAddress",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "511:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 35,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "511:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 38,
+                "name": "schoolGovernor",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "537:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 37,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "537:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 40,
+                "name": "schoolAgent",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "578:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 39,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "578:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 43,
+                "name": "projectRecord",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "622:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Project_$78_storage_$dyn_storage_ptr",
+                  "typeString": "struct Hope.Project storage ref[] storage pointer"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 41,
+                    "name": "Project",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 78,
+                    "src": "622:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Project_$78_storage_ptr",
+                      "typeString": "struct Hope.Project storage pointer"
+                    }
+                  },
+                  "id": 42,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "622:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Project_$78_storage_$dyn_storage_ptr",
+                    "typeString": "struct Hope.Project storage ref[] storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 45,
+                "name": "schoolState",
+                "nodeType": "VariableDeclaration",
+                "scope": 46,
+                "src": "651:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 44,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "651:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "School",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "369:331:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Hope.Project",
+            "id": 78,
+            "members": [
+              {
+                "constant": false,
+                "id": 48,
+                "name": "projectId",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "724:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 47,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "724:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 50,
+                "name": "projectCreator",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "747:22:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 49,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "747:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 52,
+                "name": "projectName",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "775:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 51,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "775:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 54,
+                "name": "projectCreateTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "799:24:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 53,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "799:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 56,
+                "name": "projectTarget",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "829:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 55,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "829:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 58,
+                "name": "projectTargetMoney",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "869:26:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 57,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "869:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 60,
+                "name": "projectCurrentMoney",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "901:27:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 59,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "901:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 62,
+                "name": "projectEndorseState",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "934:26:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 61,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "934:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 64,
+                "name": "projectFinishState",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "966:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 63,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "966:4:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 66,
+                "name": "projectFinishTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "995:24:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 65,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "995:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 69,
+                "name": "projectNoteUrl",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "1025:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                  "typeString": "string storage ref[] storage pointer"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 67,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1025:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
+                    }
+                  },
+                  "id": 68,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "1025:8:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                    "typeString": "string storage ref[] storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 71,
+                "name": "projectPlanUpNoteTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "1074:28:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 70,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1074:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 73,
+                "name": "projectActualUpNoteTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "1134:30:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 72,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1134:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 75,
+                "name": "totalEndorsor",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "1202:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 74,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1202:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 77,
+                "name": "passEndorsor",
+                "nodeType": "VariableDeclaration",
+                "scope": 78,
+                "src": "1229:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 76,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1229:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Project",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "704:550:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Hope.Denote",
+            "id": 89,
+            "members": [
+              {
+                "constant": false,
+                "id": 80,
+                "name": "denoteId",
+                "nodeType": "VariableDeclaration",
+                "scope": 89,
+                "src": "1278:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 79,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1278:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 82,
+                "name": "userId",
+                "nodeType": "VariableDeclaration",
+                "scope": 89,
+                "src": "1300:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 81,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1300:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 84,
+                "name": "projectId",
+                "nodeType": "VariableDeclaration",
+                "scope": 89,
+                "src": "1320:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 83,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1320:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 86,
+                "name": "denoteMoney",
+                "nodeType": "VariableDeclaration",
+                "scope": 89,
+                "src": "1343:19:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 85,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1343:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 88,
+                "name": "denoteTime",
+                "nodeType": "VariableDeclaration",
+                "scope": 89,
+                "src": "1368:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                },
+                "typeName": {
+                  "id": 87,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1368:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Denote",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "1258:132:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Hope.EndorseItem",
+            "id": 98,
+            "members": [
+              {
+                "constant": false,
+                "id": 91,
+                "name": "endorseItemId",
+                "nodeType": "VariableDeclaration",
+                "scope": 98,
+                "src": "1419:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 90,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1419:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 93,
+                "name": "projectId",
+                "nodeType": "VariableDeclaration",
+                "scope": 98,
+                "src": "1446:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 92,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1446:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 95,
+                "name": "endorsorId",
+                "nodeType": "VariableDeclaration",
+                "scope": 98,
+                "src": "1469:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 94,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1469:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 97,
+                "name": "operate",
+                "nodeType": "VariableDeclaration",
+                "scope": 98,
+                "src": "1493:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 96,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1493:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "EndorseItem",
+            "nodeType": "StructDefinition",
+            "scope": 186,
+            "src": "1395:155:0",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 101,
+            "name": "userList",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1555:15:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_User_$10_storage_$dyn_storage",
+              "typeString": "struct Hope.User storage ref[] storage ref"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 99,
+                "name": "User",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 10,
+                "src": "1555:4:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_User_$10_storage_ptr",
+                  "typeString": "struct Hope.User storage pointer"
+                }
+              },
+              "id": 100,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "1555:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_User_$10_storage_$dyn_storage_ptr",
+                "typeString": "struct Hope.User storage ref[] storage pointer"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 105,
+            "name": "userMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1574:33:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+              "typeString": "mapping(uint256 => uint256)"
+            },
+            "typeName": {
+              "id": 104,
+              "keyType": {
+                "id": 102,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1582:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1574:25:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                "typeString": "mapping(uint256 => uint256)"
+              },
+              "valueType": {
+                "id": 103,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1591:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 108,
+            "name": "endorsorList",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1629:23:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_Endorsor_$24_storage_$dyn_storage",
+              "typeString": "struct Hope.Endorsor storage ref[] storage ref"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 106,
+                "name": "Endorsor",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 24,
+                "src": "1629:8:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Endorsor_$24_storage_ptr",
+                  "typeString": "struct Hope.Endorsor storage pointer"
+                }
+              },
+              "id": 107,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "1629:10:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_Endorsor_$24_storage_$dyn_storage_ptr",
+                "typeString": "struct Hope.Endorsor storage ref[] storage pointer"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 112,
+            "name": "endorsorMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1656:36:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint256_$",
+              "typeString": "mapping(string memory => uint256)"
+            },
+            "typeName": {
+              "id": 111,
+              "keyType": {
+                "id": 109,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "1664:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1656:24:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint256_$",
+                "typeString": "mapping(string memory => uint256)"
+              },
+              "valueType": {
+                "id": 110,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1672:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 115,
+            "name": "schoolList",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1729:19:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_School_$46_storage_$dyn_storage",
+              "typeString": "struct Hope.School storage ref[] storage ref"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 113,
+                "name": "School",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 46,
+                "src": "1729:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_School_$46_storage_ptr",
+                  "typeString": "struct Hope.School storage pointer"
+                }
+              },
+              "id": 114,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "1729:8:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_School_$46_storage_$dyn_storage_ptr",
+                "typeString": "struct Hope.School storage ref[] storage pointer"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 119,
+            "name": "schoolMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1752:33:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint256_$",
+              "typeString": "mapping(string memory => uint256)"
+            },
+            "typeName": {
+              "id": 118,
+              "keyType": {
+                "id": 116,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "1760:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1752:24:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint256_$",
+                "typeString": "mapping(string memory => uint256)"
+              },
+              "valueType": {
+                "id": 117,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1768:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 122,
+            "name": "projectList",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1804:21:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_Project_$78_storage_$dyn_storage",
+              "typeString": "struct Hope.Project storage ref[] storage ref"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 120,
+                "name": "Project",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 78,
+                "src": "1804:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Project_$78_storage_ptr",
+                  "typeString": "struct Hope.Project storage pointer"
+                }
+              },
+              "id": 121,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "1804:9:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_Project_$78_storage_$dyn_storage_ptr",
+                "typeString": "struct Hope.Project storage ref[] storage pointer"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 125,
+            "name": "denoteList",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1830:19:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_Denote_$89_storage_$dyn_storage",
+              "typeString": "struct Hope.Denote storage ref[] storage ref"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 123,
+                "name": "Denote",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 89,
+                "src": "1830:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Denote_$89_storage_ptr",
+                  "typeString": "struct Hope.Denote storage pointer"
+                }
+              },
+              "id": 124,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "1830:8:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_Denote_$89_storage_$dyn_storage_ptr",
+                "typeString": "struct Hope.Denote storage ref[] storage pointer"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 130,
+            "name": "userDenoteMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1853:40:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Denote_$89_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct Hope.Denote storage ref[] storage ref)"
+            },
+            "typeName": {
+              "id": 129,
+              "keyType": {
+                "id": 126,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1861:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1853:26:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Denote_$89_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct Hope.Denote storage ref[] storage ref)"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 127,
+                  "name": "Denote",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 89,
+                  "src": "1870:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Denote_$89_storage_ptr",
+                    "typeString": "struct Hope.Denote storage pointer"
+                  }
+                },
+                "id": 128,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "1870:8:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Denote_$89_storage_$dyn_storage_ptr",
+                  "typeString": "struct Hope.Denote storage ref[] storage pointer"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 135,
+            "name": "projectDenoteMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1917:43:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Denote_$89_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct Hope.Denote storage ref[] storage ref)"
+            },
+            "typeName": {
+              "id": 134,
+              "keyType": {
+                "id": 131,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1925:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1917:26:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Denote_$89_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct Hope.Denote storage ref[] storage ref)"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 132,
+                  "name": "Denote",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 89,
+                  "src": "1934:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Denote_$89_storage_ptr",
+                    "typeString": "struct Hope.Denote storage pointer"
+                  }
+                },
+                "id": 133,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "1934:8:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Denote_$89_storage_$dyn_storage_ptr",
+                  "typeString": "struct Hope.Denote storage ref[] storage pointer"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 140,
+            "name": "endorseItemMap",
+            "nodeType": "VariableDeclaration",
+            "scope": 186,
+            "src": "1987:46:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_EndorseItem_$98_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct Hope.EndorseItem storage ref[] storage ref)"
+            },
+            "typeName": {
+              "id": 139,
+              "keyType": {
+                "id": 136,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1995:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1987:31:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_EndorseItem_$98_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct Hope.EndorseItem storage ref[] storage ref)"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 137,
+                  "name": "EndorseItem",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 98,
+                  "src": "2004:11:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_EndorseItem_$98_storage_ptr",
+                    "typeString": "struct Hope.EndorseItem storage pointer"
+                  }
+                },
+                "id": 138,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "2004:13:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_EndorseItem_$98_storage_$dyn_storage_ptr",
+                  "typeString": "struct Hope.EndorseItem storage ref[] storage pointer"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 175,
+              "nodeType": "Block",
+              "src": "2146:235:0",
+              "statements": [
+                {
+                  "assignments": [
+                    150
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 150,
+                      "name": "_userId",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 176,
+                      "src": "2156:15:0",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 149,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2156:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 153,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 151,
+                      "name": "userCount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 185,
+                      "src": "2174:9:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                        "typeString": "function () view returns (uint256)"
+                      }
+                    },
+                    "id": 152,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2174:11:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2156:29:0"
+                },
+                {
+                  "assignments": [
+                    155
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 155,
+                      "name": "user",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 176,
+                      "src": "2195:16:0",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_User_$10_memory_ptr",
+                        "typeString": "struct Hope.User memory"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 154,
+                        "name": "User",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 10,
+                        "src": "2195:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_User_$10_storage_ptr",
+                          "typeString": "struct Hope.User storage pointer"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 162,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 157,
+                        "name": "_userId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 150,
+                        "src": "2227:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 158,
+                        "name": "_userName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 142,
+                        "src": "2245:9:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 159,
+                        "name": "_userPhone",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 144,
+                        "src": "2266:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 160,
+                        "name": "_userPassword",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 146,
+                        "src": "2291:13:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 156,
+                      "name": "User",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 10,
+                      "src": "2214:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_User_$10_storage_ptr_$",
+                        "typeString": "type(struct Hope.User storage pointer)"
+                      }
+                    },
+                    "id": 161,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [
+                      "userId",
+                      "userName",
+                      "userPhone",
+                      "userPassword"
+                    ],
+                    "nodeType": "FunctionCall",
+                    "src": "2214:92:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_User_$10_memory",
+                      "typeString": "struct Hope.User memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2195:111:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 166,
+                        "name": "user",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 155,
+                        "src": "2330:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_User_$10_memory_ptr",
+                          "typeString": "struct Hope.User memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_User_$10_memory_ptr",
+                          "typeString": "struct Hope.User memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 163,
+                        "name": "userList",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 101,
+                        "src": "2316:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_User_$10_storage_$dyn_storage",
+                          "typeString": "struct Hope.User storage ref[] storage ref"
+                        }
+                      },
+                      "id": 165,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "2316:13:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_User_$10_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct Hope.User storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 167,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2316:19:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 168,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2316:19:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 173,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 169,
+                        "name": "userMap",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 105,
+                        "src": "2345:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                          "typeString": "mapping(uint256 => uint256)"
+                        }
+                      },
+                      "id": 171,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 170,
+                        "name": "_userPhone",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 144,
+                        "src": "2353:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "2345:19:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 172,
+                      "name": "_userId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 150,
+                      "src": "2367:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "2345:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 174,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2345:29:0"
+                }
+              ]
+            },
+            "id": 176,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "createUser",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 147,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 142,
+                  "name": "_userName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 176,
+                  "src": "2086:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string memory"
+                  },
+                  "typeName": {
+                    "id": 141,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2086:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 144,
+                  "name": "_userPhone",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 176,
+                  "src": "2104:18:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 143,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2104:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 146,
+                  "name": "_userPassword",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 176,
+                  "src": "2124:20:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string memory"
+                  },
+                  "typeName": {
+                    "id": 145,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2124:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2085:60:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 148,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2146:0:0"
+            },
+            "scope": 186,
+            "src": "2066:315:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 184,
+              "nodeType": "Block",
+              "src": "2430:39:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 181,
+                      "name": "userList",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 101,
+                      "src": "2447:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_User_$10_storage_$dyn_storage",
+                        "typeString": "struct Hope.User storage ref[] storage ref"
+                      }
+                    },
+                    "id": 182,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "length",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "2447:15:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 180,
+                  "id": 183,
+                  "nodeType": "Return",
+                  "src": "2440:22:0"
+                }
+              ]
+            },
+            "id": 185,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "userCount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 177,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2405:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 180,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 179,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 185,
+                  "src": "2421:7:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 178,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2421:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2420:9:0"
+            },
+            "scope": 186,
+            "src": "2387:82:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 187,
+        "src": "26:11071:0"
+      }
+    ],
+    "src": "0:11098:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-06-02T06:37:54.690Z"
+}

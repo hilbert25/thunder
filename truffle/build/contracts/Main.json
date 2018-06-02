@@ -1,0 +1,104 @@
+{
+  "contractName": "Main",
+  "abi": [],
+  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820a75f56de62c03749f1efaaa5fb91e9ff0debb513ef0e2ce2bd31783d2a2c20a10029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820a75f56de62c03749f1efaaa5fb91e9ff0debb513ef0e2ce2bd31783d2a2c20a10029",
+  "sourceMap": "26:11299:0:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "26:11299:0:-;;;;;",
+  "source": "pragma solidity ^0.4.16;\n\ncontract Main{\n\n  // struct User{\n  //   uint256 userId;\n  //   string userName;\n  //   uint256 userPhone;\n  //   string userPassword;\n  // }\n\n\n  // struct Endorsor{\n  //   uint256 endorsorId;\n  //   string endorsorOrg;//背书节点所属机构\n  //   string endorsorProvince;\n  //   string endorsorEmail;\n  //   string endorsorPassword;\n  //   EndorseItem[] endorseRecord;\n  // }\n\n  // struct School{\n  //   uint256 schoolId;\n  //   string schoolName;\n  //   string schoolEmail;\n  //   string schoolPassword;\n  //   string schoolProvince;\n  //   string schoolAddress;\n  //   string schoolGovernor;//主管部门\n  //   string schoolAgent;//代理人负责人\n  //   Project[] projectRecord;\n  //   string schoolState;//是否可以发起项目\n  // }\n\n  // struct Project{\n  //   uint256 projectId;\n  //   uint256 projectCreator;\n  //   string projectName;\n  //   string projectCreateTime;\n  //   string projectTarget;//项目用途\n  //   uint256 projectTargetMoney;\n  //   uint256 projectCurrentMoney;\n  //   string projectEndorseState;\n  //   bool projectFinishState;\n  //   string projectFinishTime;\n  //   string[] projectNoteUrl;//票据图片地址\n  //   string projectPlanUpNoteTime;//计划上传票据时间\n  //   string projectActualUpNoteTime;//实际计划上传票据时间\n  //   uint256 totalEndorsor;\n  //   uint256 passEndorsor;\n  // }\n\n  // struct Denote {\n  //   uint256 denoteId;\n  //   uint256 userId;\n  //   uint256 projectId;\n  //   uint256 denoteMoney;\n  //   string denoteTime;\n  // }\n\n\n  // struct EndorseItem{\n  //   uint256 endorseItemId;\n  //   uint256 projectId;\n  //   uint256 endorsorId;\n  //   uint256 operate;//{0:未处理 1：通过 2：拒绝}\n  // }\n\n\n  // User[] userList;\n  // mapping(uint256=>uint256) userMap;//key是手机号\n\n  // Endorsor[] endorsorList;\n  // mapping(string=>uint256) endorsorMap;//key是邮箱 value是projectId\n\n  // School[] schoolList;\n  // mapping(string=>uint256)schoolMap;//key是邮箱\n\n  // Project[] projectList;\n\n  // Denote[] denoteList;\n  // mapping(uint256=>Denote[]) userDenoteMap;//用户捐赠记录\n  // mapping(uint256=>Denote[]) projectDenoteMap;//项目获捐记录。\n  // mapping(uint256=>EndorseItem[]) endorseItemMap;//背书节点背书记录\n\n  //   function createUser(string _userName, uint256 _userPhone, string _userPassword) {\n  //       uint256 _userId = userCount();\n  //       User memory user = User({userId:_userId, userName:_userName, userPhone:_userPhone, userPassword:_userPassword});\n  //       userList.push(user);\n  //       userMap[_userPhone] = _userId;\n  //   }\n\n  //   function userCount() view returns(uint256) {\n  //       return userList.length;\n  //   }\n\n  // /**\n  // * @parm:uint256 _userPhone\n  // * @return: {true:existed false:not exist}\n  // **/\n  // function checkUserByPhone(uint256 _userPhone) view returns(bool){\n  //   return userMap[_userPhone].userId != 0;\n  // }\n\n  // function getUserIdByPhone(uint256 _userPhone) view returns(uint256){\n  //   return userMap[_userPhone].userId;\n  // }\n\n  // function getUserByUserId(uint256 _userId) returns(uint256,string,uint256){\n  //   User user = userList[_userId];\n  //   return(user.userId,user.userName,user.userPhone,userDenoteRecord);\n  // }\n\n  // function userLogin(string _userPhone,string _userPassword) returns(bool){\n  //   uint256 _userId = getUserIdByPhone(_userPhone);\n  //   User user = userList[_userId];\n  //   return _userId!=0 && user.userPassword == _userPassword;\n  // }\n  // /**\n  // * returns {1:捐多了 0:success}\n  // **/\n  // function userDenote(uint256 _userId,uint256 _projectId,uint256 _denoteMoney) returns(uint256){\n  //   Project project = projectList[_projectId];\n  //   if(project.projectCurrentMoney +_denoteMoney > project.projectTargetMoney){\n  //     return 1;\n  //   }\n  //   uint256 _denoteId = denoteCount();\n  //   Denote memory denote = Denote({denoteId:_denoteId,userId:_userId,projectId:_projectId,denoteMoney:_denoteMoney,denoteTime:now});\n  //   denoteList.push(denote);\n  //   userDenoteMap[_userId].push(denote);\n  //   projectDenoteMap[_projectId].push(denote);\n  //   project.projectCurrentMoney += _denoteMoney;\n  //   return 0;\n  // }\n\n  // function getUserList(uint256 _beginUserId,uint256 _endUserId)returns(uint256[] userIdList,string[] userNameList,string[]userPhoneList){\n  //   uint256 _userCount = userCount();\n  //   if(_userCount<_beginUserId){\n  //     _beginUserId=_userCount;\n  //   }\n  //   if(_userCount<_endUserId){\n  //     _endUserId=_userCount;\n  //   }\n  //   uint256[] userIdList;\n  //   string[] userNameList;\n  //   string[] userPhoneList;\n  //   for(uint256 i=_beginUserId;i<=_endUserId;i++){\n  //     User memory user = userList[i];\n  //     userIdList.push(user.userId);\n  //     userNameList.push(user.userName);\n  //     userPhoneList.push(user.userPhone);\n  //   }\n  //   return (userIdList,userNameList,userPhoneList);\n  // }\n\n  // function getDenoteListByUserId(uint256 _userId,uint _beginId,uint _endId) returns(uint256[],uint256[],uint256[],uint256[]){\n  //   Denote[] denoteList = userDenoteMap[_userId];\n  //   uint256[] denoteIdList;\n  //   uint256[] projectIdList;\n  //   uint256[] denoteMoneyList;\n  //   uint256[] denoteTimeList;\n  //   if(denoteList.length<=_beginId){\n  //     _beginId = denoteList.length-1;\n  //   }\n  //   if(denoteList.length<=_endId){\n  //     _endId = denoteList.length-1;\n  //   }\n  //   for(uint256 i=_beginId;i<=_endId;i++){\n  //     Denote denote = denoteList[i];\n  //     denoteIdList.push(denote.denoteId);\n  //     projectIdList.push(denote.projectId);\n  //     denoteMoneyList.push(denote.denoteMoney);\n  //     denoteTimeList.push(denote.denoteTime);\n  //   }\n  //   return (denoteIdList,projectIdList,denote.projectId,denoteMoneyList,denoteTimeList);\n  // }\n  // ///////////////////////////////////////////////////////////////////////////////////////////////////\n  // /**\n  // * @parm:string _endorsorOrg, string _endorsorProvince, string _endorsorEmail, string _endorsorPassword\n  // * @return:uint256 {0:success,1:userPhone has been registered}\n  // **/\n  // function createEndorsor(string _endorsorOrg, string _endorsorProvince, string _endorsorEmail, string _endorsorPassword ){\n  //   if(checkEndorsorByEmail(_endorsorEmail)){\n  //     return 1;\n  //   }\n  //   uint256 _endorsorId = endorsorCount();\n  //   User memory user = User({userId:_userId,userName:userName,userPassword:_userPassword});\n  //   userList.push(user);\n  //   userMap[_userPhone] = user;\n  //   return 0;\n  // }\n\n\n  // function endorsorCount() view returns(uint256){\n  //   return endorsorList.length;\n  // }\n\n\n  // function checkEndorsorByEmail(uint256 _endorsorEmail) view returns(bool){\n  //   return endorsorMap[_endorsorEmail].endorsorId != 0;\n  // }\n\n  // function getEndorsorIdByEmail(string _endorsorEmail) view returns(){\n  //   return endorsorMap[_endorsorEmail].endorsorId;\n\n  // }\n\n  // function getEndorsorByEndorsorId(uint256 _endorsorId) view returns(uint256,string,string,string){\n  //   Endorsor _endorsor =  endorsorList[_endorsorId];\n  //   return (_endorsor.endorsorId,_endorsor.endorsorOrg,_endorsor.endorsorProvince,_endorsor.endorsorEmail);\n  // }\n\n  // function dealEndorse(uint256 _projectId,uint256 _endorsorId, uint256 _operate){\n  //   createEndorseItem(_projectId,_endorsorId,_operate);\n  // }\n\n  // function getEndorseListByEndorsorId(uint256 _endorsorId) view returns (uint256[],uint256[],uint256[]){\n  //   EndorseItem[] _endorseItemList = endorseItemMap[_endorsorId];\n  //   uint256[] _projectIdList;\n  //   uint256[] _endorseIdList;\n  //   uint256[] _operateList;\n  //   for(uint256 i=0;i<_endorseItemList.list;i++){\n  //     _projectIdList.push(_endorseItemList[i].projectId);\n  //     _endorseIdList.push(_endorseItemList[i].endorseId);\n  //     _operateList.push(_endorseItemList[i].operate);\n  //   }\n  //   return (_projectIdList,_endorseIdList,_operateList);\n  // }\n  // function createEndorseItem(uint256 _projectId, uint256 _endorsorId,uint256 _operate){\n  //   Endorsor _endorsor =  endorsorList[_endorsorId];\n  //   uint256 _endorseItemCount = _endorsor.endorseRecord.length;\n  //   EndorseItem endorseItem = EndorseItem({endorseItemId:_endorseItemCount,projectId:_projectId,endorsorId:_endorsorId,operate:_operate});\n  //   endorseItemMap[_endorsorId].push(endorseItem);\n  // }\n  // ///////////////////////////////////////////////////////////////////////////////////////////////////////\n  // function createSchool(string _schoolname, string _schoolEmail, string _schoolPassword, string _schoolProvince, string _schoolAddress, string _schoolGovernor, string _schoolAgent) returns(bool){\n  //   if(checkSchoolByEmail(_schoolEmail)){\n  //     return 1;\n  //   }\n  //   uint26 _schoolId = schoolCount();\n  //   School memory school = School({schoolId:_schoolId,schoolName:schoolName,schoolEmail:_schoolEmail,schoolPassword:_schoolPassword,schoolProvince:_schoolProvince,schoolAddress:_schoolAddress,schoolGovernor:_schoolGovernor,schoolAgent:_schoolAgent});\n  //   schoolList.push(school);\n  //   schoolMap[_schoolemail] = schoolId;\n  //   return 0;\n  // }\n\n  // function schoolCount() view returns(uint256){\n  //   return schoolList.length;\n  // }\n\n  // function checkSchoolByEmail(string _schoolEmail) view returns(bool){\n  //   return schoolMap[_schoolEmail].schoolId != 0;\n  // }\n\n  // function getSchoolIdByEmail() view returns(uint256) {\n  //   return schoolMap[_schoolEmail].schoolId;\n  // }\n\n  // function getSchoolBySchoolId(uint256 _schoolId) returns(string, string, string, string, string, string, uint256[]) view{\n  //   School school = schoolList[_schoolId];\n  //   return (school.schoolname, school.schoolEmail, school.Province, school.schoolAddress, school.schoolGovernor, school.schoolAgent,school.projectRecord);\n  // }\n\n  // function getProjectsBySchoolId(uint256 _schoolId) returns(Project[]) view {\n  //   School school = schoolList[_schoolId];\n  //   Project[] projects;\n  //   for(i = 0 ; i < school.project.length ; i ++){\n  //     Project project = projectList[school.project[i]];\n  //     projects.push(project);\n  //   }\n  //   return projects;\n  // }\n\n  // function createProject(uint256 _schoolId,string _projectName,string _projectTarget,uint256 _projectTargetMoney,string _projectFinishTime) returns(uint256){\n  //   Project memorey project = Project({projectCreator:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectFinishTime:_projectFinishTime})\n  //   projectList.push(school);\n  //   return 0;\n  // }\n\n  // function getProjectByprojectId(uint256 _projectId) view returns(uint256,uint256,string,string,string,uint256,uint256,string,bool,string,string[],string,string,uint256,uint256){\n  //   Project project = projectList[_projectId];\n  //   return (projectId,projectCreator,projectName,projectCreateTime,projectTarget,projectTargetMoney,projectCurrentMoney,projectEndorseState,projectFinishState,projectFinishTime,projectNoteUrl,projectPlanUpNoteTime,projectActualUpNoteTime,totalEndorsor,passEndorsor)\n  //   }\n  // ///////////////////////////////////////////////////////////////////////////////////////////////////////\n\n  // ///////////////////////////////////////////////\n  // function denoteCount() returns(uint256){\n  //   return denoteList.length;\n  // }\n}\n",
+  "sourcePath": "/home/hk-journalist/code/thunder/truffle/contracts/Main.sol",
+  "ast": {
+    "absolutePath": "/home/hk-journalist/code/thunder/truffle/contracts/Main.sol",
+    "exportedSymbols": {
+      "Main": [
+        2
+      ]
+    },
+    "id": 3,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2,
+        "linearizedBaseContracts": [
+          2
+        ],
+        "name": "Main",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3,
+        "src": "26:11299:0"
+      }
+    ],
+    "src": "0:11326:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/hk-journalist/code/thunder/truffle/contracts/Main.sol",
+    "exportedSymbols": {
+      "Main": [
+        2
+      ]
+    },
+    "id": 3,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2,
+        "linearizedBaseContracts": [
+          2
+        ],
+        "name": "Main",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3,
+        "src": "26:11299:0"
+      }
+    ],
+    "src": "0:11326:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
+  },
+  "networks": {
+    "4447": {
+      "events": {},
+      "links": {},
+      "address": "0x8e4c131b37383e431b9cd0635d3cf9f3f628edae",
+      "transactionHash": "0xb36034069ef07e4c145c0f2cb3f6b0da6940595dc429906afdb6768159c09abb"
+    }
+  },
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-06-02T06:48:30.904Z"
+}
