@@ -79,4 +79,14 @@ contract TestMain {
         Assert.equal(schoolAgent, eSchoolAgent, "getSchoolById not pass");
         Assert.equal(schoolState, true, "getSchoolById not pass");
     }
+
+    // function testProject() {
+    //     uint256 eProjectCount = 1;
+    //     Assert.equal(eProjectCount, main.projectCount(), "projectCount not pass");
+    //     bytes32 projectName = "建图书馆";
+    //     bytes32 projectTarget = "图书馆管理员没钱发工资了";
+    //     main.createProject(1, projectName, projectTarget, 100, 123);
+    //     var(projectId, schoolId, projectName, projectCreateTime, projectTarget, projectTargetMoney, projectCurrentMoney, projectEndorseState, projectFinishState, projectFinishTime, projectPlanUpNoteTime, projectActualUpNoteTime, totalEndorsor, passEndorsor, rejectEndorsor) =main.getProjectByprojectId(1);
+    //     Assert.equal(projectId, 1, "getProjectById not pass");
+    // }
 }

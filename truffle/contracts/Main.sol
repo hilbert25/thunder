@@ -33,21 +33,24 @@ contract Main{
 
   struct Project{
     uint256 projectId;
-    uint256 projectCreator;
+    uint256 schoolId;
     bytes32 projectName;
-    bytes32 projectCreateTime;
+    uint256 projectCreateTime;
     bytes32 projectTarget;//项目用途
     uint256 projectTargetMoney;
     uint256 projectCurrentMoney;
-    bytes32 projectEndorseState;
+    uint256 projectEndorseState;//0 通过 1 未通过 2 pending
     bool projectFinishState;
-    bytes32 projectFinishTime;
-    bytes32[] projectNoteUrl;//票据图片地址
-    bytes32 projectPlanUpNoteTime;//计划上传票据时间
-    bytes32 projectActualUpNoteTime;//实际计划上传票据时间
+    uint256 projectFinishTime;
+    uint256 projectPlanUpNoteTime;//计划上传票据时间
+    uint256 projectActualUpNoteTime;//实际计划上传票据时间
     uint256 totalEndorsor;
     uint256 passEndorsor;
+    uint256 rejectEndorsor;
   }
+
+
+
 
   struct Denote {
     uint256 denoteId;
@@ -81,11 +84,13 @@ contract Main{
   mapping(uint256=>Denote[]) userDenoteMap;//用户捐赠记录
   mapping(uint256=>Denote[]) projectDenoteMap;//项目获捐记录。
   mapping(uint256=>EndorseItem[]) endorseItemMap;//背书节点背书记录
-  mapping(uint256=>Project[]) schoolProjectMap;
+  mapping(uint256=>uint256[]) schoolProjectMap;
+  mapping(uint256=>bytes32[]) projectNoteUrlMap;
 
     function Main() {
         createUser("0", 0, "0");
         createSchool("0", "0", "0", "0", "0", "0", "0"); 
+        createProject(0, "0", "0", 0, 0) ;
     }
 
     function createUser(bytes32 _userName, bytes32 _userPhone, bytes32 _userPassword) {
@@ -244,6 +249,23 @@ contract Main{
         return (school.schoolName, school.schoolEmail, school.schoolProvince, school.schoolAddress, school.schoolGovernor, school.schoolAgent, school.schoolState);
     }
 
+    function createProject(uint256 _schoolId, bytes32 _projectName, bytes32 _projectTarget, uint256 _projectTargetMoney, uint256 _projectFinishTime) returns(uint256) {
+        require(_schoolId < schoolList.length);
+        uint256 _projectId = projectCount();
+        Project memory project = Project({projectId:_projectId, schoolId:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectCurrentMoney:0, projectEndorseState:2, projectFinishState:false, projectFinishTime:_projectFinishTime, projectPlanUpNoteTime:0, projectActualUpNoteTime:0, totalEndorsor:0, passEndorsor:0, rejectEndorsor:0});
+        projectList.push(project);
+        schoolProjectMap[_schoolId].push(_projectId);
+        return 0;
+    }
+
+    function projectCount() view returns(uint256) {
+        return projectList.length;
+    }
+
+    function getProjectByprojectId(uint256 _projectId) view returns(uint256, uint256, bytes32, uint256, bytes32, uint256, uint256, uint256, bool, uint256, uint256, uint256, uint256, uint256, uint256) {
+        Project project = projectList[_projectId];
+        return (project.projectId, project.schoolId, project.projectName, project.projectCreateTime, project.projectTarget, project.projectTargetMoney, project.projectCurrentMoney, project.projectEndorseState, project.projectFinishState, project.projectFinishTime, project.projectPlanUpNoteTime, project.projectActualUpNoteTime, project.totalEndorsor, project.passEndorsor, project.rejectEndorsor);
+    }
   // function getProjectsBySchoolId(uint256 _schoolId) returns(Project[]) view {
   //   School school = schoolList[_schoolId];
   //   Project[] projects;
@@ -254,16 +276,10 @@ contract Main{
   //   return projects;
   // }
 
-  // function createProject(uint256 _schoolId,bytes32 _projectName,bytes32 _projectTarget,uint256 _projectTargetMoney,bytes32 _projectFinishTime) returns(uint256){
-  //   Project memorey project = Project({projectCreator:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectFinishTime:_projectFinishTime})
-  //   projectList.push(school);
-  //   return 0;
-  // }
+  
 
-  // function getProjectByprojectId(uint256 _projectId) view returns(uint256,uint256,bytes32,bytes32,bytes32,uint256,uint256,bytes32,bool,bytes32,bytes32[],bytes32,bytes32,uint256,uint256){
-  //   Project project = projectList[_projectId];
-  //   return (projectId,projectCreator,projectName,projectCreateTime,projectTarget,projectTargetMoney,projectCurrentMoney,projectEndorseState,projectFinishState,projectFinishTime,projectNoteUrl,projectPlanUpNoteTime,projectActualUpNoteTime,totalEndorsor,passEndorsor)
-  //   }
+
+
   // ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // ///////////////////////////////////////////////
