@@ -53,11 +53,11 @@ contract Main{
 
 
   struct Denote {
-    uint256 denoteId;
-    uint256 userId;
-    uint256 projectId;
-    uint256 denoteMoney;
-    bytes32 denoteTime;
+    uint256 denoteId;//捐赠id
+    uint256 userId;//捐赠人id
+    uint256 projectId;//捐赠项目id
+    uint256 denoteMoney;//捐了多少钱
+    bytes32 denoteTime;//捐赠时间
   }
 
 
@@ -90,7 +90,7 @@ contract Main{
     function Main() {
         createUser("0", 0, "0");
         createSchool("0", "0", "0", "0", "0", "0", "0"); 
-        createProject(0, "0", "0", 0, 0) ;
+        createProject(0, "0", "0", 0, 0);
     }
 
     function createUser(bytes32 _userName, bytes32 _userPhone, bytes32 _userPassword) {
@@ -262,19 +262,19 @@ contract Main{
         return projectList.length;
     }
 
-    function getProjectByprojectId(uint256 _projectId) view returns(uint256, uint256, bytes32, uint256, bytes32, uint256, uint256, uint256, bool, uint256, uint256, uint256, uint256, uint256, uint256) {
+    function getProjectByprojectId(uint256 _projectId) view returns(uint256, uint256, bytes32, uint256, bytes32, uint256, uint256, uint256, bool, uint256, uint256, uint256) {
         Project project = projectList[_projectId];
-        return (project.projectId, project.schoolId, project.projectName, project.projectCreateTime, project.projectTarget, project.projectTargetMoney, project.projectCurrentMoney, project.projectEndorseState, project.projectFinishState, project.projectFinishTime, project.projectPlanUpNoteTime, project.projectActualUpNoteTime, project.totalEndorsor, project.passEndorsor, project.rejectEndorsor);
+        return (project.projectId, project.schoolId, project.projectName, project.projectCreateTime, project.projectTarget, project.projectTargetMoney, project.projectCurrentMoney, project.projectEndorseState, project.projectFinishState, project.projectFinishTime, project.projectPlanUpNoteTime, project.projectActualUpNoteTime);
     }
-  // function getProjectsBySchoolId(uint256 _schoolId) returns(Project[]) view {
-  //   School school = schoolList[_schoolId];
-  //   Project[] projects;
-  //   for(i = 0 ; i < school.project.length ; i ++){
-  //     Project project = projectList[school.project[i]];
-  //     projects.push(project);
-  //   }
-  //   return projects;
-  // }
+
+    function getProjectsBySchoolId(uint256 _schoolId) view returns(Project[]) {
+        Project[] projects = schoolProjectMap[_schoolId];
+        for(uint256 i = 0; i < projects.project.length; i++) {
+            Project project = projectList[school.project[i]];
+            projects.push(project);
+        }
+        return projects;
+    }
 
   
 
