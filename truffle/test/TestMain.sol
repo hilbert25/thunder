@@ -87,7 +87,9 @@ contract TestMain {
         bytes32 projectTarget = "没钱发工资了";
 
         main.createProject(1, projectName, projectTarget, 100, 123);
-        var(projectId, , , , , , , , , , , ) = main.getProjectByprojectId(1);
+        var(projectId, , , , , , , , , , , ) = main.getProjectByProjectId(1);
         Assert.equal(projectId, 1, "getProjectById not pass");
+        var(getProjectId) = main.getProjectIdBySchoolId(1, 0);
+        Assert.equal(getProjectId, 1, "getProjectBySchoolId not pass");
     }
 }

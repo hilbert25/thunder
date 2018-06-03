@@ -262,20 +262,19 @@ contract Main{
         return projectList.length;
     }
 
-    function getProjectByprojectId(uint256 _projectId) view returns(uint256, uint256, bytes32, uint256, bytes32, uint256, uint256, uint256, bool, uint256, uint256, uint256) {
+    function getProjectByProjectId(uint256 _projectId) view returns(uint256, uint256, bytes32, uint256, bytes32, uint256, uint256, uint256, bool, uint256, uint256, uint256) {
         Project project = projectList[_projectId];
         return (project.projectId, project.schoolId, project.projectName, project.projectCreateTime, project.projectTarget, project.projectTargetMoney, project.projectCurrentMoney, project.projectEndorseState, project.projectFinishState, project.projectFinishTime, project.projectPlanUpNoteTime, project.projectActualUpNoteTime);
     }
 
-    function getProjectsBySchoolId(uint256 _schoolId) view returns(Project[]) {
-        Project[] projects = schoolProjectMap[_schoolId];
-        for(uint256 i = 0; i < projects.project.length; i++) {
-            Project project = projectList[school.project[i]];
-            projects.push(project);
-        }
-        return projects;
+    function getSchoolProjectCounts(uint256 _schoolId) view returns(uint256) {
+        return schoolProjectMap[_schoolId].length;
     }
 
+    function getProjectIdBySchoolId(uint256 _schoolId, uint256 _schoolProjectId) view returns(uint256) {
+        require(_schoolId < schoolList.length && _schoolProjectId < schoolProjectMap[_schoolProjectId].length);
+        return schoolProjectMap[_schoolId][_schoolProjectId];
+    }
   
 
 
