@@ -408,7 +408,9 @@
   </div>
   </div>
    <!--管理员页面 -->
-  <div class="manage-center"></div>
+  <div class="manage-center">
+    
+  </div>
   
 </div>
 </div>
@@ -538,6 +540,16 @@ export default {
   },
   components: {},
   methods: {
+    test() {
+      var _this = this;
+      var url = "/aaa/asss/cc/vv1";
+      var body = {};
+      function successCallback(res) {
+        console.log(res);
+        // 这里的this不是指向Vue本身，访问Vue变量请使用_this
+      }
+      this.$post(url, body, successCallback);
+    },
     handleEdit(index, row) {
       console.log(index, row);
     },

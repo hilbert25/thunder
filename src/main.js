@@ -8,6 +8,9 @@ import "element-ui/lib/theme-chalk/index.css";
 import $ from "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min";
+
+import "./http";
+Vue.prototype.apiUrl = ""; // 务必修改成接口baseURL
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 /* eslint-disable no-new */
