@@ -113,6 +113,14 @@ contract TestMain {
         Assert.equal(_operate, 1, "_operate not pass");
     }
 
+    function testDenote() {
+        main.userDenote(1, 1, 50);
+        var( , , , , , ,curMoney , , , , , ) = main.getProjectByProjectId(1);
+        Assert.equal(curMoney, 50, "donote not pass");
+        var(,,money,time) = main.getDenoteByUserId(1, 0);
+        Assert.equal(money, 50, "getDenoteByUserId not pass");
+        Assert.equal(time, 0, "time not pass");
+    }
     // function testRandom() {
     //     uint256 eRan = 0;
     //     uint256 random = main.random();

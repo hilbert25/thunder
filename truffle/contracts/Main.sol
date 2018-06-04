@@ -138,27 +138,11 @@ contract Main {
     function denoteCount() returns(uint256) {
         return denoteList.length;
     }
-  // function getDenoteListByUserId(uint256 _userId,uint _beginId,uint _endId) returns(uint256[],uint256[],uint256[],uint256[]){
-  //   Denote[] denoteList = userDenoteMap[_userId];
-  //   uint256[] denoteIdList;
-  //   uint256[] projectIdList;
-  //   uint256[] denoteMoneyList;
-  //   uint256[] denoteTimeList;
-  //   if(denoteList.length<=_beginId){
-  //     _beginId = denoteList.length-1;
-  //   }
-  //   if(denoteList.length<=_endId){
-  //     _endId = denoteList.length-1;
-  //   }
-  //   for(uint256 i=_beginId;i<=_endId;i++){
-  //     Denote denote = denoteList[i];
-  //     denoteIdList.push(denote.denoteId);
-  //     projectIdList.push(denote.projectId);
-  //     denoteMoneyList.push(denote.denoteMoney);
-  //     denoteTimeList.push(denote.denoteTime);
-  //   }
-  //   return (denoteIdList,projectIdList,denote.projectId,denoteMoneyList,denoteTimeList);
-  // }
+
+    function getDenoteByUserId(uint256 _userId, uint _userDenoteId) returns(uint256, uint256, uint256, uint256){
+        Denote denote = userDenoteMap[_userId][_userDenoteId];
+        return (denote.denoteId, denote.projectId, denote.denoteMoney, denote.denoteTime);
+    }
   // ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     function createEndorsor(bytes32 _endorsorOrg, bytes32 _endorsorProvince, bytes32 _endorsorEmail, bytes32 _endorsorPassword){
@@ -229,7 +213,7 @@ contract Main {
         return (school.schoolName, school.schoolEmail, school.schoolProvince, school.schoolAddress, school.schoolGovernor, school.schoolAgent, school.schoolState);
     }
 
-    function createProject(uint256 _schoolId, bytes32 _projectName, bytes32 _projectTarget, uint256 _projectTargetMoney, uint256 _projectFinishTime) returns(uint256) {
+    function createProject(uint256 _schoolId, bytes32 _projectName, bytes32 _projectTarget, uint256 _projectTargetMoney, uint256 _projectFinishTime) {
         require(_schoolId < schoolList.length);
         uint256 _projectId = projectCount();
         Project memory project = Project({projectId:_projectId, schoolId:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectCurrentMoney:0, projectEndorseState:2, projectFinishState:false, projectFinishTime:_projectFinishTime, projectPlanUpNoteTime:0, projectActualUpNoteTime:0, totalEndorsor:0, passEndorsor:0, rejectEndorsor:0});
@@ -238,7 +222,6 @@ contract Main {
         if (_schoolId != 0) {
             emitEndorse(_projectId);
         }
-        return 0;
     }
 
     function emitEndorse(uint256 _projectId) {
@@ -285,8 +268,6 @@ contract Main {
   
     // return random[0,n)
     function random(uint256 n) returns(uint256) {
-        // uint256 lastRand = uint256(block.blockhash(block.number - 1));
-        // lastRand = uint256(keccak256(lastRand ^ uint256(block.blockhash(block.number - 1))));
         return uint(sha256(now, msg.sender))%n;
     }
 
