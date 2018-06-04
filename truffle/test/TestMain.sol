@@ -92,4 +92,30 @@ contract TestMain {
         var(getProjectId) = main.getProjectIdBySchoolId(1, 0);
         Assert.equal(getProjectId, 1, "getProjectBySchoolId not pass");
     }
+
+    function testEndorsor() {
+        uint256 eEndorsorCount = 1;
+        Assert.equal(eEndorsorCount, main.endorsorCount(), "endorosrCount not pass");
+        main.createEndorsor("org", "bj", "org@org", "123");
+        Assert.equal(2, main.endorsorCount(), "endorosrCount not pass");
+        Assert.equal(true, main.checkEndorsorByEmail("org@org"), "checkEndorsor1 not pass");
+        Assert.equal(false, main.checkEndorsorByEmail("org"), "checkEndorsor1 not pass");
+        Assert.equal(1, main.getEndorsorIdByEmail("org@org"), "checkEndorsor1 not pass");
+        var(, org, province, email) = main.getEndorsorByEndorsorId(1);
+        Assert.equal(org, "org", "getEndorsorOrg not pass");
+        Assert.equal(province, "bj", "getEndorsorBj not pass");
+        Assert.equal(email, "org@org", "getEndorsorEmail not pass");
+        main.createEndorseItem(1, 1, 1);
+        Assert.equal(main.getEndorseItemCountOfEndorsor(1), 1, "getEndorseItemCountOfEndorsor not pass");
+        var(_projectId, _endorsorId, _operate) = main.getEndorseByEndorsorId(1, 0);
+        Assert.equal(_projectId, 1, "_projectId not pass");
+        Assert.equal(_endorsorId, 1, "_endorsorId not pass");
+        Assert.equal(_operate, 1, "_operate not pass");
+    }
+
+    // function testRandom() {
+    //     uint256 eRan = 0;
+    //     uint256 random = main.random();
+    //     Assert.equal(random, eRan, "random");
+    // }
 }
