@@ -91,6 +91,7 @@ contract Main {
     }
 
     function createUser(bytes32 _userName, bytes32 _userPhone, bytes32 _userPassword) {
+        require(!checkUserByPhone(_userPhone));
         uint256 _userId = userCount();
         User memory user = User({userId:_userId, userName:_userName, userPhone:_userPhone, userPassword:_userPassword});
         userList.push(user);
@@ -105,27 +106,36 @@ contract Main {
         return userMap[_userPhone] != 0;
     }
 
-    function getUserIdByPhone(bytes32 _userPhone) view returns(uint256){
+    function getUserIdByPhone(bytes32 _userPhone) view returns(uint256) {
         return userMap[_userPhone];
     }
 
-    function getUserByUserId(uint256 _userId) returns(uint256, bytes32, bytes32){
+    function getUserByUserId(uint256 _userId) returns(uint256, bytes32, bytes32) {
+        require(_userId < userList.length);
         User user = userList[_userId];
         return(user.userId, user.userName, user.userPhone);
     }
 
-    function login(bytes32 _userAccount, bytes32 _userPassword) returns(uint256 userType, uint256 userId){
+    function login(bytes32 _userAccount, bytes32 _userPassword) returns(uint256, uint256) {
         uint256 _userType = 0;
         uint256 _userId = 0;
-        _userId = getUserIdByPhone(_userAccount);
-        if (_userId != 0) {
+        uint256 _userIdA = getUserIdByPhone(_userAccount);
+        uint256 _userIdB = getSchoolIdByEmail(_userAccount);
+        uint256 _userIdC = getEndorsorIdByEmail(_userAccount);
+        _userId = _userIdA ^ _userIdB ^ _userIdC;
+
+        if (_userIdA != 0) {
             _userType = 1;
-            return (_userType, _userId);
+        }else if (_userIdB != 0) {
+            _userType = 2;
+        }else if (_userIdC != 0) {
+            _userType = 3;
         }
-        return (0, 0);
+        return (_userType, _userId);
     }
 
     function userDenote(uint256 _userId, uint256 _projectId, uint256 _denoteMoney) returns(uint256) {
+        require(_userId < userList.length && _projectId < projectList.length);
         Project project = projectList[_projectId];
         uint256 _denoteId = denoteCount();
         Denote memory denote = Denote({denoteId:_denoteId, userId:_userId, projectId:_projectId, denoteMoney:_denoteMoney, denoteTime:now});
@@ -139,13 +149,15 @@ contract Main {
         return denoteList.length;
     }
 
-    function getDenoteByUserId(uint256 _userId, uint _userDenoteId) returns(uint256, uint256, uint256, uint256){
+    function getDenoteByUserId(uint256 _userId, uint _userDenoteId) returns(uint256, uint256, uint256, uint256) {
+        require(_userId < userList.length && _userDenoteId < userDenoteMap[_userId].length);
         Denote denote = userDenoteMap[_userId][_userDenoteId];
         return (denote.denoteId, denote.projectId, denote.denoteMoney, denote.denoteTime);
     }
   // ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-    function createEndorsor(bytes32 _endorsorOrg, bytes32 _endorsorProvince, bytes32 _endorsorEmail, bytes32 _endorsorPassword){
+    function createEndorsor(bytes32 _endorsorOrg, bytes32 _endorsorProvince, bytes32 _endorsorEmail, bytes32 _endorsorPassword) {
+        require(!checkEndorsorByEmail(_endorsorEmail));
         uint256 _endorsorId = endorsorCount();
         Endorsor memory endorsor = Endorsor({endorsorId:_endorsorId, endorsorOrg:_endorsorOrg, endorsorProvince:_endorsorProvince, endorsorEmail:_endorsorEmail, endorsorPassword:_endorsorPassword});
         endorsorList.push(endorsor);
@@ -166,17 +178,20 @@ contract Main {
     }
 
     function getEndorsorByEndorsorId(uint256 _endorsorId) view returns(uint256, bytes32, bytes32, bytes32) {
+        require(_endorsorId < endorsorList.length);
         Endorsor _endorsor =  endorsorList[_endorsorId];
         return (_endorsor.endorsorId, _endorsor.endorsorOrg, _endorsor.endorsorProvince, _endorsor.endorsorEmail);
     }
 
-    function getEndorseByEndorsorId(uint256 _endorsorId, uint256 _endorseItemIndex) view returns (uint256, uint256, uint256){
+    function getEndorseByEndorsorId(uint256 _endorsorId, uint256 _endorseItemIndex) view returns (uint256, uint256, uint256) {
+        require(_endorsorId < endorsorList.length && _endorseItemIndex < endorseItemMap[_endorsorId].length);
         uint256 endorseItemId = endorseItemMap[_endorsorId][_endorseItemIndex];
         EndorseItem _endorseItem = endorseItemList[endorseItemId];
         return (_endorseItem.endorsorId, _endorseItem.projectId, _endorseItem.operate);
     }
 
     function createEndorseItem(uint256 _projectId, uint256 _endorsorId, uint256 _operate) {
+        require(_projectId < projectList.length && _operate >= 0 && _operate <= 2);
         uint256 _endorseItemId = endorseItemMap[_endorsorId].length;
         EndorseItem memory endorseItem = EndorseItem({endorseItemId:_endorseItemId, projectId:_projectId, endorsorId:_endorsorId, operate:_operate});
         endorseItemMap[_endorsorId].push(_endorseItemId);
@@ -190,6 +205,7 @@ contract Main {
   // ///////////////////////////////////////////////////////////////////////////////////////////////////////
     
     function createSchool(bytes32 _schoolEmail, bytes32 _schoolName, bytes32 _schoolPassword, bytes32 _schoolProvince, bytes32 _schoolAddress, bytes32 _schoolGovernor, bytes32 _schoolAgent) {
+        require(!checkSchoolByEmail(_schoolEmail));
         uint256 _schoolId = schoolCount();
         School memory school = School({schoolId:_schoolId, schoolName:_schoolName, schoolEmail:_schoolEmail, schoolPassword:_schoolPassword, schoolProvince:_schoolProvince, schoolAddress:_schoolAddress, schoolGovernor:_schoolGovernor, schoolAgent:_schoolAgent, schoolState:true});
         schoolList.push(school);
@@ -200,7 +216,7 @@ contract Main {
         return schoolList.length;
     }
 
-    function checkSchoolByEmail(bytes32 _schoolEmail) view returns(bool){
+    function checkSchoolByEmail(bytes32 _schoolEmail) view returns(bool) {
       return schoolMap[_schoolEmail] != 0;
     }
 
@@ -209,6 +225,7 @@ contract Main {
     }
 
     function getSchoolBySchoolId(uint256 _schoolId) view returns(bytes32, bytes32, bytes32, bytes32, bytes32, bytes32, bool) {
+        require(_schoolId < schoolList.length);
         School school = schoolList[_schoolId];
         return (school.schoolName, school.schoolEmail, school.schoolProvince, school.schoolAddress, school.schoolGovernor, school.schoolAgent, school.schoolState);
     }
@@ -225,6 +242,7 @@ contract Main {
     }
 
     function emitEndorse(uint256 _projectId) {
+        require(_projectId < projectList.length && _projectId > 0);
         Project project = projectList[_projectId];
         School school = schoolList[project.schoolId];
         uint256[] endorsorList = provinceToEndorsorMap[school.schoolProvince];
@@ -253,6 +271,7 @@ contract Main {
     }
 
     function getProjectByProjectId(uint256 _projectId) view returns(uint256, uint256, bytes32, uint256, bytes32, uint256, uint256, uint256, bool, uint256, uint256, uint256) {
+        require(_projectId > 0 && _projectId < projectList.length);
         Project project = projectList[_projectId];
         return (project.projectId, project.schoolId, project.projectName, project.projectCreateTime, project.projectTarget, project.projectTargetMoney, project.projectCurrentMoney, project.projectEndorseState, project.projectFinishState, project.projectFinishTime, project.projectPlanUpNoteTime, project.projectActualUpNoteTime);
     }

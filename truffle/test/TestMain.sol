@@ -117,9 +117,9 @@ contract TestMain {
         main.userDenote(1, 1, 50);
         var( , , , , , ,curMoney , , , , , ) = main.getProjectByProjectId(1);
         Assert.equal(curMoney, 50, "donote not pass");
-        var(,,money,time) = main.getDenoteByUserId(1, 0);
+        var(, , money, time) = main.getDenoteByUserId(1, 0);
         Assert.equal(money, 50, "getDenoteByUserId not pass");
-        Assert.equal(time, 0, "time not pass");
+        Assert.equal(time, now, "time not pass");
     }
     // function testRandom() {
     //     uint256 eRan = 0;
