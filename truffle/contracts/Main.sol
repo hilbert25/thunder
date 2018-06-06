@@ -98,6 +98,10 @@ contract Main {
         userMap[_userPhone] = _userId;
     }
 
+    function getBytes32() view returns(string) {
+        string memory str = "abc";
+        return str;
+    }
     function userCount() view returns(uint256) {
         return userList.length;
     }

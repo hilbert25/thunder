@@ -93,12 +93,20 @@ const abi = require('../../truffle/build/contracts/Main').abi
 const main = web3.loadContract(
   abi,
   '0x345ca3e014aaf5dca488057592ee47305d9b3e10'
-)
 console.log(main);
 export default {
   async beforeMount () {
-    var userCount = await main.userCount();
-    console.log("userCount",userCount.toString());
+    // var userCount = await main.userCount();
+    // console.log("userCount",userCount.toString());
+    // console.log("str",(await main.getBytes32()).toString());
+   // await main.createUser("hht","111","333");
+  //  console.log((await main.getUserByUserId(1)).toString());
+  },
+  methods: {
+    downUseCount: async function () {
+     let str = await main.getBytes32();
+     console.log("str",str);
+    }
   },
   methods: {
     getuser: async function () {
