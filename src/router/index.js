@@ -14,8 +14,8 @@ export default new Router({
     // },
     {
       path: "/",
-      name: "Test",
-      component: Test
+      name: "HelloWorld",
+      component: HelloWorld
     }
   ]
 });

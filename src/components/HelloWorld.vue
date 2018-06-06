@@ -17,14 +17,14 @@
     <el-form-item label="手机号" :label-width="formLabelWidth">
       <el-input v-model="loginform.phone" auto-complete="off"></el-input>
     </el-form-item>
-    <el-form-item label="密码" :label-width="formLabelWidth">
+    <el-form-item v-model="loginform.password" label="密码" :label-width="formLabelWidth">
       <el-input type="password" auto-complete="off"></el-input>
     </el-form-item>
      <el-form-item label="确认密码" :label-width="formLabelWidth">
       <el-input type="password" auto-complete="off"></el-input>
     </el-form-item>
      <el-form-item label="昵称" :label-width="formLabelWidth">
-      <el-input  auto-complete="off"></el-input>
+      <el-input auto-complete="off" v-model="loginform.name"></el-input>
     </el-form-item>
     </el-form>
   </el-tab-pane>
@@ -68,7 +68,7 @@
     </el-tab-pane>
   </el-tabs>
   <div slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="dialogloginVisible= false">注册</el-button>
+    <el-button type="primary" @click="dialogloginVisible= false" v-on:click = "create(loginform.name,loginform.phone,loginform.password)">注册</el-button>
   </div>
 </el-dialog>
 <el-dialog :visible.sync="dialogFormVisible">
@@ -77,11 +77,11 @@
       <el-input v-model="form.name" auto-complete="off"></el-input>
     </el-form-item>
     <el-form-item label="密码" :label-width="formLabelWidth">
-      <el-input type="password" auto-complete="off"></el-input>
+      <el-input v-model="form.password" type="password" auto-complete="off"></el-input>
     </el-form-item>
   </el-form>
   <div slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="dialogFormVisible = false">登录</el-button>
+    <el-button type="primary" @click="dialogFormVisible = false" v-on:click = "userLogin(form.name,form.password)">登录</el-button>
   </div>
 </el-dialog>
 
@@ -418,8 +418,55 @@
 </template>
 
 <script>
+import vis from 'vis'
+import { web3 } from 'wallet'
+const abi = require('../../truffle/build/contracts/Main').abi
+const main = web3.loadContract(
+  abi,
+  '0x345ca3e014aaf5dca488057592ee47305d9b3e10'
+)
 export default {
+  async beforeMount () {
+    var userCount = await main.userCount();
+    console.log("userCount",userCount.toString());
+  },
   name: "HelloWorld",
+  methods: {
+    test() {
+      var _this = this;
+      var url = "/aaa/asss/cc/vv1";
+      var body = {};
+      function successCallback(res) {
+        console.log(res);
+        // 这里的this不是指向Vue本身，访问Vue变量请使用_this
+      }
+      this.$post(url, body, successCallback);
+    },
+    handleEdit(index, row) {
+      console.log(index, row);
+    },
+    infoopenCenter() {
+      this.$message({
+        message: "王凯同学紧急开发中",
+        center: true
+      });
+    },
+    getuser: async function () {
+      var res = await main.getUserByUserId(1);
+      console.log("res----"+res);
+      //alert(res)
+    },
+    create: async function (name,phone,password) {
+      await main.createUser(name,phone,password);
+      //console.log("userId",userId.toString());
+      alert("success")
+    },
+    userLogin: async function(account,password) {
+      var loginid,loginstatus = await main.login(account,password);
+      console.log(loginid,loginstatus)
+      alert("loginsuccess")
+    }
+  },
   data() {
     return {
       status: 2,
@@ -539,27 +586,6 @@ export default {
     };
   },
   components: {},
-  methods: {
-    test() {
-      var _this = this;
-      var url = "/aaa/asss/cc/vv1";
-      var body = {};
-      function successCallback(res) {
-        console.log(res);
-        // 这里的this不是指向Vue本身，访问Vue变量请使用_this
-      }
-      this.$post(url, body, successCallback);
-    },
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    infoopenCenter() {
-      this.$message({
-        message: "王凯同学紧急开发中",
-        center: true
-      });
-    }
-  }
 };
 </script>
 
