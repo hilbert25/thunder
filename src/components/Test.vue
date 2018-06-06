@@ -80,6 +80,8 @@
         </a>
       </li>
     </ul>
+    <button class="ui button" v-on:click ="create()">创建</button>
+    <button class="ui button" v-on:click ="getuser()">订购</button>
   </div>
   
 </template>
@@ -90,7 +92,7 @@ import { web3 } from 'wallet'
 const abi = require('../../truffle/build/contracts/Main').abi
 const main = web3.loadContract(
   abi,
-  '0x5ca9f95992eb68163efdf8bf751e813f2c53c450'
+  '0x345ca3e014aaf5dca488057592ee47305d9b3e10'
 )
 console.log(main);
 export default {
@@ -98,12 +100,24 @@ export default {
     var userCount = await main.userCount();
     console.log("userCount",userCount.toString());
   },
+  methods: {
+    getuser: async function () {
+      var res = await main.getUserByUserId(1);
+      console.log("res----"+res);
+      //alert(res)
+    },
+    create: async function () {
+      await main.createUser("1wwwww","111dsdgfg","uyhjg");
+      //console.log("userId",userId.toString());
+      alert("success")
+    }
+  },
   name: 'Test',
   data () {
     return {
-      msg: 'Welcome to Test Vue.js App'
+      msg: "hello"
     }
-  }
+  },
 }
 </script>
 
