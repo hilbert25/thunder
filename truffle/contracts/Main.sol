@@ -284,6 +284,10 @@ contract Main {
         return schoolProjectMap[_schoolId].length;
     }
 
+    function getSchoolProjectidByNum(uint256 _schoolId ,uint256 _num) view returns(uint256) {
+        return schoolProjectMap[_schoolId][_num];
+    }
+
     function getProjectIdBySchoolId(uint256 _schoolId, uint256 _schoolProjectId) view returns(uint256) {
         require(_schoolId < schoolList.length && _schoolProjectId < schoolProjectMap[_schoolProjectId].length);
         return schoolProjectMap[_schoolId][_schoolProjectId];
