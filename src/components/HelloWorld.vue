@@ -95,7 +95,7 @@
   <div id="actitiy" class="actitiy">
     <div class="activity-name">项目广场</div> 
     <div id = "projecttest">
-      <ol v-for = "project in projects">
+      <!-- <ol v-for = "project in projects">
         <li >
           {{project.projectId}}
           </li>
@@ -123,11 +123,11 @@
           <li>
           {{project.projectFinishState}}
           </li>
-      </ol>
+      </ol> -->
     </div>
   <div class="project-square"> 
   <el-table
-    :data="tableData"
+    :data="activeDetail"
     style="width: 100%">
     <el-table-column
       label="项目编号"
@@ -147,7 +147,7 @@
      <el-table-column
       label="项目发起时间">
       <template slot-scope="scope">
-        <span style="margin-left: 10px">{{scope.row.projectCreateTime}}</span>
+        <span style="margin-left: 10px">{{scope.row.projectCreateTime | formatTime}}</span>
       </template>
     </el-table-column>
      <el-table-column
@@ -183,6 +183,17 @@
       </template>
     </el-table-column>
   </el-table>
+  <el-dialog title="捐赠" :visible.sync="juanzeng">
+  <el-form :model="form">
+    <el-form-item label="捐赠金额" :label-width="formLabelWidth">
+      <el-input v-model="donatemoney" auto-complete="off"></el-input>
+    </el-form-item>
+  </el-form>
+  <div slot="footer" class="dialog-footer">
+    <el-button @click="juanzeng = false">取 消</el-button>
+    <el-button type="primary" @click="juanzeng = false">确 定</el-button>
+  </div>
+</el-dialog>
   </div>
 </div>
 <!--个人中心0  学校中心1  背书页面2  管理元页面3-->
@@ -305,14 +316,18 @@
       <el-input v-model="form.money" auto-complete="off"></el-input>
     </el-form-item>
     <el-form-item label="结束时间" :label-width="formLabelWidth">
-      <el-input v-model="form.time" auto-complete="off"></el-input>
+       <el-date-picker
+      v-model="datavalue1"
+      type="date"
+      placeholder="选择日期">
+    </el-date-picker>
     </el-form-item>
   </el-form>
   <div slot="footer" class="dialog-footer">
     <el-button type="primary" @click="dialogFormVisible = false" v-on:click = "createProject(form.name,form.tag,form.money,form.time)">申请</el-button>
   </div>
 </el-dialog>
-    </div>
+</div>
 
   </div>
    <!--背书页面 -->
@@ -456,31 +471,54 @@
 </template>
 
 <script>
-import vis from 'vis'
-import { web3 } from 'wallet'
-import '../util/cookie'
-const cookie = require('../util/cookie.js')
-const abi = require('../../truffle/build/contracts/Main').abi
+import vis from "vis";
+import { web3 } from "wallet";
+import "../util/cookie";
+const cookie = require("../util/cookie.js");
+const abi = require("../../truffle/build/contracts/Main").abi;
 const main = web3.loadContract(
   abi,
-  '0x345ca3e014aaf5dca488057592ee47305d9b3e10'
-)
+  "0x345ca3e014aaf5dca488057592ee47305d9b3e10"
+);
 export default {
-  async beforeMount () {
-    let projectdata = []
-    let projectcount = await main.projectCount()
+  async beforeMount() {
+    let projectdata = [];
+    let projectcount = await main.projectCount();
     let userCount = await main.userCount();
-    console.log("userCount",userCount.toString());
-    for(let i = 1; i < projectcount ; i++){
+    console.log("userCount", userCount.toString());
+    for (let i = 1; i < projectcount; i++) {
       let project = await main.getProjectByProjectId(i);
-      projectdata.push({projectId:project[0],schoolId:project[1],projectName:project[2],projectCreateTime:project[3],projectTarget:project[4],projectTargetMoney:project[5],projectCurrentMoney:project[6],projectEndorseState:project[7],projectFinishState:project[8]})
+      projectdata.push({
+        projectId: project[0],
+        schoolId: project[1],
+        projectName: project[2],
+        projectCreateTime: project[3],
+        projectTarget: project[4],
+        projectTargetMoney: project[5],
+        projectCurrentMoney: project[6],
+        projectEndorseState: project[7],
+        projectFinishState: project[8]
+      });
       //console.log(project[0].toString()+"\t"+project[1].toString()+"\t"+project[2].toString()+"\t"+project[3].toString()+"\t"+project[4].toString())
       //console.log(this.tableData.projectId.toString()+"\t"+this.tableData.projectName.toString()+"\t"+this.tableData.projectCreateTime.toString()+"\t"+this.tableData.projectTarget.toString())
-      console.log(project.toString()+"------------------")
+      // console.log(project.toString() + "------------------");
     }
-    this.$data.projects = projectdata
-    console.log(projectdata)
-    
+    this.$data.projects = projectdata;
+    // this.projectdata = projectdata
+    console.log("=====projectdata=======", projectdata[0]);
+    // let arr = [];
+    // for (let key in projectdata) {
+    //   if (!projectdata.hasOwnProperty(key)) {
+    //     continue;
+    //   }
+    //   let item = {};
+    //   item[key] = projectdata[key];
+    //   arr.push(item);
+    // }
+    this.activeDetail = projectdata;
+    // console.log("=====arr======", arr);
+    // [{a: 1}, {b: 2}, {c: 3}]
+
     //this.tableData.projectId = project[0]
     //this.tableData.schoolId = project[1]
     //this.tableData.projectName = project[2]
@@ -490,12 +528,25 @@ export default {
     //this.tableData.projectCurrentMoney = project[6]
     //this.tableData.projectEndorseState = project[7]
     //this.tableData.projectFinishState = project[8]
-   
   },
-  async mounted () {
-    
-  },
+  async mounted() {},
   name: "HelloWorld",
+  filters: {
+    formatTime(str) {
+      console.log("===str==", str.c[0]);
+      var date = new Date(str.c[0] * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+      let Y = date.getFullYear() + "-";
+      let M =
+        (date.getMonth() + 1 < 10
+          ? "0" + (date.getMonth() + 1)
+          : date.getMonth() + 1) + "-";
+      let D = date.getDate() + " ";
+      let h = date.getHours() + ":";
+      let m = date.getMinutes() + ":";
+      let s = date.getSeconds();
+      return Y + M + D + h + m + s;
+    }
+  },
   methods: {
     test() {
       var _this = this;
@@ -509,6 +560,7 @@ export default {
     },
     handleEdit(index, row) {
       console.log(index, row);
+      this.juanzeng = true;
     },
     infoopenCenter() {
       this.$message({
@@ -516,43 +568,61 @@ export default {
         center: true
       });
     },
-    createUser: async function (name,phone,password) {
-      await main.createUser(name,phone,password);
+    createUser: async function(name, phone, password) {
+      await main.createUser(name, phone, password);
       //console.log("userId",userId.toString());
-      alert("success")
+      alert("success");
     },
-    createSchool: async function (email,name,password,province,address,governor,agent) {
-      await main.createSchool(email,name,password,province,address,governor,agent);
+    createSchool: async function(
+      email,
+      name,
+      password,
+      province,
+      address,
+      governor,
+      agent
+    ) {
+      await main.createSchool(
+        email,
+        name,
+        password,
+        province,
+        address,
+        governor,
+        agent
+      );
       //console.log("userId",userId.toString());
-      alert("success")
+      alert("success");
     },
-    createProject: async function (name,tag,money,time) {
-      await main.createProject(this.loginid,name,tag,money,time);
+    createProject: async function(name, tag, money, time) {
+      await main.createProject(this.loginid, name, tag, money, time);
       //console.log("userId",userId.toString());
-      alert("success")
+      alert("success");
     },
-    userLogin: async function(account,password) {
-      var res = await main.login(account,password);
+    userLogin: async function(account, password) {
+      var res = await main.login(account, password);
       this.loginid = res[1];
       var loginstatus = parseInt(res[0]);
       if (loginstatus === 1) {
         this.userdata = await main.getUserByUserId(this.loginid);
-        console.log("userdata----"+this.userdata.toString());
+        console.log("userdata----" + this.userdata.toString());
         //document.getElementById("userid").innerHTML = userdata[0];
-        //document.getElementById("username").innerHTML = userdata[1]; 
-        //document.getElementById("userphone2").innerHTML = userdata[2]; 
-      //console.log("userId",userId.toString());
+        //document.getElementById("username").innerHTML = userdata[1];
+        //document.getElementById("userphone2").innerHTML = userdata[2];
+        //console.log("userId",userId.toString());
       } else if (loginstatus === 2) {
         this.schooldata = await main.getSchoolBySchoolId(this.loginid);
-        console.log("schooldata"+this.schooldata.toString());
-        let schoolprojectcount = await main.getSchoolProjectCounts(this.loginid)
-        console.log("projectcount"+ schoolprojectcount.toString())
-        for(let i =0; i < schoolprojectcount; i++){
-          console.log("for------")
-          let projectid = await main.getSchoolProjectidByNum(this.loginid, i)
-          console.log("projectid------"+projectid.toString())
-          let tmpproject = await main.getProjectByProjectId(projectid)
-          console.log("tmpproject-----"+tmpproject.toString())
+        console.log("schooldata" + this.schooldata.toString());
+        let schoolprojectcount = await main.getSchoolProjectCounts(
+          this.loginid
+        );
+        console.log("projectcount" + schoolprojectcount.toString());
+        for (let i = 0; i < schoolprojectcount; i++) {
+          console.log("for------");
+          let projectid = await main.getSchoolProjectidByNum(this.loginid, i);
+          console.log("projectid------" + projectid.toString());
+          let tmpproject = await main.getProjectByProjectId(projectid);
+          console.log("tmpproject-----" + tmpproject.toString());
         }
         //document.getElementById("schoolid").innerHTML = "学校编码："+ loginid;
         //document.getElementById("schoolname").innerHTML = "学校名称："+ schooldata[0];
@@ -561,10 +631,10 @@ export default {
         //document.getElementById("schooladdress").innerHTML = "详细地址："+ schooldata[3];
         //document.getElementById("schoolgovernor").innerHTML = "主管单位："+ schooldata[4];
         //document.getElementById("schoolagent").innerHTML = "学校代理人："+ schooldata[5];
-      //console.log("userId",userId.toString());
+        //console.log("userId",userId.toString());
       }
       this.status = loginstatus;
-      alert("loginsuccess")
+      alert("loginsuccess");
     }
   },
   data() {
@@ -576,9 +646,11 @@ export default {
       loginid: 0,
       userdata: [],
       projects: null,
-
+      datavalue1: "",
       activeName: "first",
       eopleList: [],
+      activeDetail: [],
+      juanzeng: false,
       form: {
         name: "",
         region: "",
@@ -589,6 +661,7 @@ export default {
         resource: "",
         desc: ""
       },
+      donatemoney: "",
       loginform: {
         phone: "",
         password: "",
@@ -605,7 +678,7 @@ export default {
         address: "",
         danwei: ""
       },
-      addProject: true,
+      addProject: false,
       dialogloginVisible: false,
       formLabelWidth: "120px",
       tableData: [
@@ -630,11 +703,11 @@ export default {
           projectCurrentMoney: "23456",
           projectEndorseState: "0",
           projectFinishState: "1"
-        },
+        }
       ]
     };
   },
-  components: {},
+  components: {}
 };
 </script>
 
