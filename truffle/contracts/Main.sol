@@ -2,6 +2,12 @@ pragma solidity ^0.4.16;
 
 contract Main {
 
+    struct Admin {
+        uint256 adminId;
+        string adminAccount;
+        string admingPassword;
+    }
+
     struct User {
         uint256 userId;
         string userName;
@@ -43,9 +49,9 @@ contract Main {
         uint256 projectFinishTime;
         uint256 projectPlanUpNoteTime;//计划上传票据时间
         uint256 projectActualUpNoteTime;//实际计划上传票据时间
-        uint256 totalEndorsor;
-        uint256 passEndorsor;
-        uint256 rejectEndorsor;
+        int256 totalScore;// 总分
+        uint256 totalEndorsor;//背书节点数量
+        uint256 finishEndorsor;//参与的背书节点数量
     }
 
     struct Denote {
@@ -60,7 +66,7 @@ contract Main {
         uint256 endorseItemId;
         uint256 projectId;
         uint256 endorsorId;
-        uint256 operate;//{0:未处理 1：通过 2：拒绝}
+        int256 score;//{0:未处理 1：通过 2：拒绝}
     }
 
 
@@ -71,7 +77,7 @@ contract Main {
     mapping(string=>uint256) endorsorMap;//key是邮箱 value是projectId
 
     School[] schoolList;
-    mapping(string=>uint256)schoolMap;//key是邮箱
+    mapping(string=>uint256) schoolMap;//key是邮箱
 
     Project[] projectList;
     Denote[] denoteList;
@@ -82,6 +88,7 @@ contract Main {
     mapping(uint256=>uint256[]) schoolProjectMap;
     mapping(uint256=>string[]) projectNoteUrlMap;
     mapping(string=>uint256[]) provinceToEndorsorMap;
+    mapping(uint256=>uint256[]) projectEnodrsorListMap;//给该项目背书的节点
 
     function Main() {
         createUser("0", "0", "0");
@@ -124,16 +131,21 @@ contract Main {
         uint256 _userType = 0;
         uint256 _userId = 0;
         uint256 _userIdA = getUserIdByPhone(_userAccount);
+        User memory user = userList[_userIdA];
         uint256 _userIdB = getSchoolIdByEmail(_userAccount);
+        School memory school = schoolList[_userIdB];
         uint256 _userIdC = getEndorsorIdByEmail(_userAccount);
+        Endorsor memory endorsor = endorsorList[_userIdC];
         _userId = _userIdA ^ _userIdB ^ _userIdC;
 
-        if (_userIdA != 0) {
+        if (_userIdA != 0 && strEqual(user.userPassword, _userPassword)) {
             _userType = 1;
-        }else if (_userIdB != 0) {
+        }else if (_userIdB != 0 && strEqual(school.schoolPassword, _userPassword)) {
             _userType = 2;
-        }else if (_userIdC != 0) {
+        }else if (_userIdC != 0 && strEqual(endorsor.endorsorPassword, _userPassword)) {
             _userType = 3;
+        }else if (strEqual(_userAccount, "admin") && strEqual(_userPassword, "admin") ) {
+            _userType = 4;
         }
         return (_userType, _userId);
     }
@@ -187,19 +199,29 @@ contract Main {
         return (_endorsor.endorsorId, _endorsor.endorsorOrg, _endorsor.endorsorProvince, _endorsor.endorsorEmail);
     }
 
-    function getEndorseByEndorsorId(uint256 _endorsorId, uint256 _endorseItemIndex) view returns (uint256, uint256, uint256) {
+    function getEndorseByEndorsorId(uint256 _endorsorId, uint256 _endorseItemIndex) view returns (uint256, uint256, int256) {
         require(_endorsorId < endorsorList.length && _endorseItemIndex < endorseItemMap[_endorsorId].length);
         uint256 endorseItemId = endorseItemMap[_endorsorId][_endorseItemIndex];
         EndorseItem _endorseItem = endorseItemList[endorseItemId];
-        return (_endorseItem.endorsorId, _endorseItem.projectId, _endorseItem.operate);
+        return (_endorseItem.endorsorId, _endorseItem.projectId, _endorseItem.score);
     }
 
-    function createEndorseItem(uint256 _projectId, uint256 _endorsorId, uint256 _operate) {
-        require(_projectId < projectList.length && _operate >= 0 && _operate <= 2);
+    function createEndorseItem(uint256 _projectId, uint256 _endorsorId, int256 _score) {
+        require(_projectId < projectList.length);
         uint256 _endorseItemId = endorseItemMap[_endorsorId].length;
-        EndorseItem memory endorseItem = EndorseItem({endorseItemId:_endorseItemId, projectId:_projectId, endorsorId:_endorsorId, operate:_operate});
+        EndorseItem memory endorseItem = EndorseItem({endorseItemId:_endorseItemId, projectId:_projectId, endorsorId:_endorsorId, score:_score});
         endorseItemMap[_endorsorId].push(_endorseItemId);
         endorseItemList.push(endorseItem);
+        Project project = projectList[_projectId];
+        project.totalScore += _score;
+        project.finishEndorsor+=1;
+        if(project.finishEndorsor == project.totalEndorsor){
+            if(project.totalScore>0){
+                project.projectEndorseState = 0;
+            }else{
+                project.projectEndorseState = 1;
+            }
+        }
     }
 
     function getEndorseItemCountOfEndorsor(uint256 _endorsorId) returns(uint256) {
@@ -237,7 +259,7 @@ contract Main {
     function createProject(uint256 _schoolId, string _projectName, string _projectTarget, uint256 _projectTargetMoney, uint256 _projectFinishTime) {
         require(_schoolId < schoolList.length);
         uint256 _projectId = projectCount();
-        Project memory project = Project({projectId:_projectId, schoolId:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectCurrentMoney:0, projectEndorseState:2, projectFinishState:false, projectFinishTime:_projectFinishTime, projectPlanUpNoteTime:0, projectActualUpNoteTime:0, totalEndorsor:0, passEndorsor:0, rejectEndorsor:0});
+        Project memory project = Project({projectId:_projectId, schoolId:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectCurrentMoney:0, projectEndorseState:2, projectFinishState:false, projectFinishTime:_projectFinishTime, projectPlanUpNoteTime:0, projectActualUpNoteTime:0, totalScore:0, totalEndorsor:0, finishEndorsor:0});
         projectList.push(project);
         schoolProjectMap[_schoolId].push(_projectId);
         if (_schoolId != 0) {
@@ -267,7 +289,10 @@ contract Main {
                 len--;
             }
         }
-        project.totalEndorsor = targetEndorsorCount;
+        projectEnodrsorListMap[_projectId] = emitEndorsorList;
+        project.totalEndorsor = emitEndorsorList.length;
+        project.totalScore = 0;
+        project.finishEndorsor = 0;
     }
 
     function projectCount() view returns(uint256) {
@@ -298,4 +323,18 @@ contract Main {
         return uint(sha256(now, msg.sender))%n;
     }
 
+    function strEqual(string strA, string strB) returns(bool) {
+        bytes memory byteA = bytes(strA);
+        bytes memory byteB = bytes(strB);
+        if (byteA.length != byteB.length) {
+            return false;
+        }else {
+            for (uint256 i=0; i < byteA.length; i++){
+                if (byteA[i] != byteB[i]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
