@@ -198,7 +198,7 @@
 </div>
 <!--个人中心0  学校中心1  背书页面2  管理元页面3-->
 <div id="center">
-  <div class="activity-name">用户中心</div> 
+  <div class="activity-name">用户中心</div>  
   <!--个人中心 -->
   <div class="person-center" v-if="status === 1">
     <div class="left-people">
@@ -569,9 +569,15 @@ export default {
       });
     },
     createUser: async function(name, phone, password) {
-      await main.createUser(name, phone, password);
+      var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;  
+      if(!phoneReg.test(phone)) {
+        alert("手机号不符合规则");
+      }else{
+        await main.createUser(name, phone, password);
+        alert("register success");
+      }
       //console.log("userId",userId.toString());
-      alert("success");
+
     },
     createSchool: async function(
       email,
@@ -639,7 +645,7 @@ export default {
   },
   data() {
     return {
-      status: 2,
+      status: 999,
       list: ["首页", "关于", "公示", "联系"],
       dialogFormVisible: false,
       schooldata: [],
