@@ -20,11 +20,11 @@
     ]">
       <el-input v-model="loginform.phone" auto-complete="off"></el-input>
     </el-form-item>
-    <el-form-item v-model="loginform.password" label="密码" :label-width="formLabelWidth">
-      <el-input type="password" auto-complete="off"></el-input>
+    <el-form-item  label="密码" :label-width="formLabelWidth">
+      <el-input type="password" v-model="loginform.password" auto-complete="off"></el-input>
     </el-form-item>
-     <el-form-item label="确认密码" v-model="loginform.confirmpass" :label-width="formLabelWidth">
-      <el-input type="password" auto-complete="off"></el-input>
+     <el-form-item label="确认密码"  :label-width="formLabelWidth">
+      <el-input type="password" v-model="loginform.confirmpass" auto-complete="off"></el-input>
     </el-form-item>
      <el-form-item label="昵称" :label-width="formLabelWidth">
       <el-input auto-complete="off" v-model="loginform.name"></el-input>
