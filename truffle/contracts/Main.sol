@@ -30,6 +30,7 @@ contract Main {
         string schoolEmail;
         string schoolPassword;
         string schoolProvince;
+        
         string schoolAddress;
         string schoolGovernor;//主管部门
         string schoolAgent;//代理人负责人
@@ -89,6 +90,27 @@ contract Main {
     mapping(uint256=>string[]) projectNoteUrlMap;
     mapping(string=>uint256[]) provinceToEndorsorMap;
     mapping(uint256=>uint256[]) projectEnodrsorListMap;//给该项目背书的节点
+
+    function getUserDenoteCount(uint256 userId) view returns(uint256) {
+        require(userId < userList.length);
+        return userDenoteMap[userId].length;
+    } 
+ 
+    function getProjectDenoteCount(uint256 projectId) view returns(uint256) {
+        require(projectId < projectList.length);
+        return projectDenoteMap[projectId].length;
+    }
+
+    function getEndorseItemRecord(uint256 endorseId) view returns(uint256) {
+        require(endorseId < endorsorList.length);
+        return endorseItemMap[endorseId].length;
+    }
+
+    function getSchoolProjectCount(uint256 schoolId) view returns(uint256) {
+        require(schoolId < schoolList.length);
+        return schoolProjectMap[schoolId].length;
+    }
+ 
 
     function Main() {
         createUser("0", "0", "0");
@@ -158,14 +180,14 @@ contract Main {
         denoteList.push(denote);
         userDenoteMap[_userId].push(denote);
         projectDenoteMap[_projectId].push(denote);
-        project.projectCurrentMoney += _denoteMoney;
+        project.projectCurrentMoney = add(project.projectCurrentMoney, _denoteMoney);
     }
 
-    function denoteCount() returns(uint256) {
+    function denoteCount() view returns(uint256) {
         return denoteList.length;
     }
 
-    function getDenoteByUserId(uint256 _userId, uint _userDenoteId) returns(uint256, uint256, uint256, uint256) {
+    function getDenoteByUserId(uint256 _userId, uint _userDenoteId) view returns(uint256, uint256, uint256, uint256) {
         require(_userId < userList.length && _userDenoteId < userDenoteMap[_userId].length);
         Denote denote = userDenoteMap[_userId][_userDenoteId];
         return (denote.denoteId, denote.projectId, denote.denoteMoney, denote.denoteTime);
@@ -214,7 +236,7 @@ contract Main {
         endorseItemList.push(endorseItem);
         Project project = projectList[_projectId];
         project.totalScore += _score;
-        project.finishEndorsor+=1;
+        project.finishEndorsor=add(project.finishEndorsor,1);
         if(project.finishEndorsor == project.totalEndorsor){
             if(project.totalScore>0){
                 project.projectEndorseState = 0;
@@ -224,7 +246,7 @@ contract Main {
         }
     }
 
-    function getEndorseItemCountOfEndorsor(uint256 _endorsorId) returns(uint256) {
+    function getEndorseItemCountOfEndorsor(uint256 _endorsorId) view returns(uint256) {
         return endorseItemMap[_endorsorId].length;
     }
 
@@ -319,7 +341,7 @@ contract Main {
     }
   
     // return random[0,n)
-    function random(uint256 n) returns(uint256) {
+    function random(uint256 n) view returns(uint256) {
         return uint(sha256(now, msg.sender))%n;
     }
 
@@ -337,4 +359,45 @@ contract Main {
         }
         return true;
     }
+
+  // from safemath.sol
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+  function mul(uint256 a, uint256 b) internal pure returns (uint256 c) {
+    if (a == 0) {
+      return 0;
+    }
+
+    c = a * b;
+    assert(c / a == b);
+    return c;
+  }
+
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    // uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return a / b;
+  }
+
+  /**
+  * @dev Subtracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+
+  /**
+  * @dev Adds two numbers, throws on overflow.
+  */
+  function add(uint256 a, uint256 b) internal pure returns (uint256 c) {
+    c = a + b;
+    assert(c >= a);
+    return c;
+  }
 }

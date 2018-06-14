@@ -109,35 +109,6 @@
   <div id="actitiy" class="actitiy">
     <div class="activity-name">项目广场</div> 
     <div id = "projecttest">
-      <!-- <ol v-for = "project in projects">
-        <li >
-          {{project.projectId}}
-          </li>
-          <li >
-          {{project.schoolId}}
-          </li>
-          <li >
-          {{project.projectName}}
-          </li>
-          <li>
-          {{project.projectCreateTime}}
-          </li>
-          <li>
-          {{project.projectTarget}}
-          </li>
-          <li >
-          {{project.projectTargetMoney}}
-          </li>
-          <li >
-          {{project.projectCurrentMoney}}
-          </li>
-          <li >
-          {{project.projectEndorseState}}
-          </li>
-          <li>
-          {{project.projectFinishState}}
-          </li>
-      </ol> -->
     </div>
   <div class="project-square"> 
   <el-table
@@ -193,7 +164,7 @@
       <template slot-scope="scope">
         <el-button
           size="mini"
-          @click="handleEdit(scope.$index, scope.row)">捐赠</el-button>
+          @click="donate(scope.$index, scope.row)">捐赠123</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -228,7 +199,7 @@
     </div>
     <div class="right-people">
        <el-table
-      :data="peopleList"
+      :data="userList"
       style="width: 100%">
       <el-table-column
         prop="date"
@@ -285,7 +256,7 @@
     </div>
     <div class="right-people" >
       <el-table
-    :data="activeDetail"
+    :data="listuser"
     style="width: 100%">
     <el-table-column
       label="项目编号"
@@ -331,6 +302,12 @@
       label="当前金额">
       <template slot-scope="scope">
         <span style="margin-left: 10px">{{scope.row.projectCurrentMoney}}</span>
+      </template>
+    </el-table-column>
+    <el-table-column
+      label="是否通过">
+      <template slot-scope="scope">
+        <span style="margin-left: 10px">{{scope.row.projectEndorseState}}</span>
       </template>
     </el-table-column>
   </el-table>
@@ -552,7 +529,7 @@ const cookie = require("../util/cookie.js");
 const abi = require("../../truffle/build/contracts/Main").abi;
 const main = web3.loadContract(
   abi,
-  "0x69ea1a393b5729e018c75ee8abdeb689c3554026"
+  " 0x345ca3e014aaf5dca488057592ee47305d9b3e10"
 );
 export default {
   async beforeMount() {
@@ -580,7 +557,7 @@ export default {
     }
     this.$data.projects = projectdata;
     // this.projectdata = projectdata
-    console.log("=====projectdata=======", projectdata[0]);
+    console.log("=====projectdata234=======", projectdata);
     // let arr = [];
     // for (let key in projectdata) {
     //   if (!projectdata.hasOwnProperty(key)) {
@@ -590,10 +567,31 @@ export default {
     //   item[key] = projectdata[key];
     //   arr.push(item);
     // }
-    this.activeDetail = projectdata;
+
     // console.log("=====arr======", arr);
     // [{a: 1}, {b: 2}, {c: 3}]
-
+    let detailList = [];
+    projectdata.forEach(item => {
+      console.log(
+        "item.projectEndorseState.c[0]",
+        item.projectEndorseState.c[0]
+      );
+      if (item.projectEndorseState.c[0] === 2) {
+        detailList.push({
+          projectId: item.projectId,
+          schoolId: item.schoolId,
+          projectName: item.projectName,
+          projectCreateTime: item.projectCreateTime,
+          projectTarget: item.projectTarget,
+          projectTargetMoney: item.projectTargetMoney,
+          projectCurrentMoney: item.projectCurrentMoney,
+          projectEndorseState: item.projectEndorseState,
+          projectFinishState: item.projectFinishState
+        });
+      }
+    });
+    this.activeDetail = detailList;
+    console.log("====activeDetail ====", this.activeDetail);
     //this.tableData.projectId = project[0]
     //this.tableData.schoolId = project[1]
     //this.tableData.projectName = project[2]
@@ -623,6 +621,9 @@ export default {
     }
   },
   methods: {
+    donate(index, scope) {
+      console.log("index", index);
+    },
     test() {
       var _this = this;
       var url = "/aaa/asss/cc/vv1";
@@ -669,11 +670,18 @@ export default {
       governor,
       agent
     ) {
+      console.log("email", email);
+      console.log("name", name);
+      console.log("password", password);
+      console.log("province", province);
+      console.log("address", address);
+      console.log("governor", governor);
+      console.log("agent", agent);
       await main.createSchool(
         email,
         name,
         password,
-        province,
+        "345",
         address,
         governor,
         agent
@@ -682,20 +690,20 @@ export default {
       alert("success");
     },
     createProject: async function(name, tag, money, time) {
-      let t = Date.parse(time)
-      console.log(typeof(time))
-      console.log(time)
-      console.log(typeof(t))
-      console.log(t)
-      let tt = parseInt(t/1000);
-      console.log(typeof(tt))
-      console.log(tt)
+      let t = Date.parse(time);
+      console.log(typeof time);
+      console.log(time);
+      console.log(typeof t);
+      console.log(t);
+      let tt = parseInt(t / 1000);
+      console.log(typeof tt);
+      console.log(tt);
       await main.createProject(this.loginid, name, tag, money, tt);
       //console.log("userId",userId.toString());
       alert("success");
     },
 
-    userDenote:async function(projectid, money) {
+    userDenote: async function(projectid, money) {
       console.log("userDenote----------------");
       console.log(projectid);
       console.log(money);
@@ -734,8 +742,53 @@ export default {
       }
       this.status = loginstatus;
       alert("loginsuccess");
+      let uselist = [];
+      console.log("this.log, inid", this.loginid);
+      this.activeDetail.forEach(item => {
+        console.log("activeDetail", item);
+        if (item.schoolId.c[0] === this.loginid.c[0]) {
+          uselist.push({
+            projectId: item.projectId,
+            schoolId: item.schoolId,
+            projectName: item.projectName,
+            projectCreateTime: item.projectCreateTime,
+            projectTarget: item.projectTarget,
+            projectTargetMoney: item.projectTargetMoney,
+            projectCurrentMoney: item.projectCurrentMoney,
+            projectEndorseState:
+              item.projectEndorseState.c[0] == "2" ? "通过" : "不通过",
+            projectFinishState: item.projectFinishState
+          });
+        }
+      });
+      this.listuser = uselist;
+      console.log(" this.listuser  this.listuser ", this.listuser);
     }
   },
+  computed: {
+    userList() {
+      let uselist = [];
+      this.activeDetail.forEach(item => {
+        console.log("activeDetail", item);
+        if (item.schoolId.c[0] === this.schooldata[0]) {
+          uselist.push({
+            projectId: item.projectId,
+            schoolId: item.schoolId,
+            projectName: item.projectName,
+            projectCreateTime: item.projectCreateTime,
+            projectTarget: item.projectTarget,
+            projectTargetMoney: item.projectTargetMoney,
+            projectCurrentMoney: item.projectCurrentMoney,
+            projectEndorseState: item.projectEndorseState,
+            projectFinishState: item.projectFinishState
+          });
+        }
+      });
+      console.log("uselist", uselist);
+      return uselist;
+    }
+  },
+  created() {},
   data() {
     return {
       status: 5,
@@ -772,28 +825,110 @@ export default {
       juanzeng: false,
       selectedOption: "", // 选中的省份
       peopleList: [], //
+      listuser: [],
       options: [
         {
           value: "bj",
-          label: "北京"
+          label: "北京市"
         },
         {
           value: "sh",
-          label: "上海"
-        },
-        {
-          value: "gz",
-          label: "广州"
-        },
-        {
-          value: "js",
-          label: "江苏"
-        },
-        {
-          value: "hlj",
-          label: "黑龙江"
+          label: "天津市"
         }
       ],
+      //   {
+      //     value: "gz",
+      //     label: "上海市"
+      //   },
+      //   {
+      //     value: "js",
+      //     label: "重庆市"
+      //   },
+      //   {
+      //     value: "hlj",
+      //     label: "河北省"
+      //   },
+      //   {
+      //     value: "bj",
+      //     label: "山西省"
+      //   },
+      //   {
+      //     value: "sh",
+      //     label: "辽宁省"
+      //   },
+      //   {
+      //     value: "gz",
+      //     label: "吉林省"
+      //   },
+      //   {
+      //     value: "js",
+      //     label: "黑龙江"
+      //   },
+      //   {
+      //     value: "hlj",
+      //     label: "黑龙江"
+      //   },
+      //   {
+      //     value: "bj",
+      //     label: "北京"
+      //   },
+      //   {
+      //     value: "sh",
+      //     label: "上海"
+      //   },
+      //   {
+      //     value: "gz",
+      //     label: "广州"
+      //   },
+      //   {
+      //     value: "js",
+      //     label: "江苏"
+      //   },
+      //   {
+      //     value: "hlj",
+      //     label: "黑龙江"
+      //   },
+      //   {
+      //     value: "bj",
+      //     label: "北京"
+      //   },
+      //   {
+      //     value: "sh",
+      //     label: "上海"
+      //   },
+      //   {
+      //     value: "gz",
+      //     label: "广州"
+      //   },
+      //   {
+      //     value: "js",
+      //     label: "江苏"
+      //   },
+      //   {
+      //     value: "hlj",
+      //     label: "黑龙江"
+      //   },
+      //   {
+      //     value: "bj",
+      //     label: "北京"
+      //   },
+      //   {
+      //     value: "sh",
+      //     label: "上海"
+      //   },
+      //   {
+      //     value: "gz",
+      //     label: "广州"
+      //   },
+      //   {
+      //     value: "js",
+      //     label: "江苏"
+      //   },
+      //   {
+      //     value: "hlj",
+      //     label: "黑龙江"
+      //   }
+      // ],
       form: {
         name: "",
         region: "",
@@ -823,7 +958,7 @@ export default {
       },
       addProject: false,
       dialogloginVisible: false,
-      formLabelWidth: "120px",
+      formLabelWidth: "120px"
       /*
       tableData: [
         {
@@ -909,13 +1044,21 @@ export default {
   font-size: 24px;
 }
 
-.el-carousel__item:nth-child(2n) {
+.el-carousel__item:nth-child(4n) {
   background-image: url("../assets/bg3.jpeg");
   background-size: cover;
 }
 
-.el-carousel__item:nth-child(2n + 1) {
+.el-carousel__item:nth-child(4n + 1) {
   background-image: url("../assets/bg4.jpeg");
+  background-size: cover;
+}
+.el-carousel__item:nth-child(4n + 2) {
+  background-image: url("../assets/timg.jpeg");
+  background-size: cover;
+}
+.el-carousel__item:nth-child(4n + 3) {
+  background-image: url("../assets/timg-1.jpeg");
   background-size: cover;
 }
 // .el-carousel__item:nth-child(3n + 1) {
