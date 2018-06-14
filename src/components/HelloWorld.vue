@@ -176,7 +176,7 @@
   </el-form>
   <div slot="footer" class="dialog-footer">
     <el-button @click="juanzeng = false">取 消</el-button>
-    <el-button type="primary" @click="juanzeng = false" v-on:click = "userDenote(scope.$index, scope.row)">确 定</el-button>
+    <el-button type="primary" @click="juanzeng = false" v-on:click = "userDenote()">确 定</el-button>
   </div>
 </el-dialog>
   </div>
@@ -521,7 +521,7 @@
       <p class="manage-beishu" >管理员背书</p>
       <p class="people-phone" >{{userdata[1]}}</p>
       <p class="people-phone" >{{userdata[2]}}</p>
-      <el-button type="primary" @click="addbeishu">新增背书节点</el-button>
+      <el-button type="primary" @click="addbeishu" >新增背书节点</el-button>
       </div>
     </div>
     <div class="right-people">
@@ -561,7 +561,7 @@
     </el-form-item>
   </el-form>
   <div slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="addnew = false" >新增</el-button>
+    <el-button type="primary" @click="addnew = false" v-on:click = "createEndorsor(manageAdd.name,manageAdd.province,manageAdd.email,manageAdd.password)">新增</el-button>
   </div>
 </el-dialog>
   </div>
@@ -579,7 +579,7 @@ const cookie = require("../util/cookie.js");
 const abi = require("../../truffle/build/contracts/Main").abi;
 const main = web3.loadContract(
   abi,
-  "0x35fcbe2e83b1795adee4f477cfe6afccf4b84974"
+  "0x9284B58D77BEA22B0E6397B89dC42f2BFd518eB4"
 );
 export default {
   async beforeMount() {
@@ -672,7 +672,10 @@ export default {
   },
   methods: {
     donate(index, scope) {
-      console.log("index", index);
+      console.log('index',index)
+      this.juanzeng = true;
+      console.log('scope',scope.projectId.c[0])
+      this.donateprojectId = scope.projectId.c[0]
     },
     test() {
       var _this = this;
@@ -756,14 +759,33 @@ export default {
       alert("success");
     },
 
-    userDenote: async function(projectid, money) {
-      console.log("userDenote----------------");
-      console.log(projectid);
-      console.log(money);
-      console.log(this.loginid);
-      await main.userDenote(this.loginid, projectid, money);
+    userDenote:async function() {
+      console.log("donateprojectId----------------",this.donateprojectId);
+      console.log("donatemoney----------------",this.donatemoney);
+      console.log("loginid----------------",this.loginid.c[0]);
+      await main.userDenote(parseInt(this.loginid.c[0]), parseInt(this.donateprojectId), parseInt(this.donatemoney));
       //console.log("userId",userId.toString());
       alert("success");
+    },
+    createEndorsor: async function(org, province, email, password) {
+      console.log("org---",org)
+      console.log("province---",province)
+      console.log("email---",email)
+      console.log("password---",password)
+      await main.createEndorsor(org.toString(),province.toString(),email.toString(),password.toString);
+      console.log("success")
+    },
+//背书节点打分的方法
+    createEndorseItem:async function(){
+      console.log("给项目打分，需要三个参数---projectId, endorsorId,score")
+      console.log("projectId需要点击button获取")
+      console.log("score需要点击button弹出的框内添加,score有范围")
+      let projectId = ""
+      let score = ""
+      await main.createEndorseItem(projectId,parseInt(this.loginid.c[0]),score)
+      console.log("projectId",projectId)
+      console.log("score",score)
+      console.log("success")
     },
 
     userLogin: async function() {
@@ -774,6 +796,21 @@ export default {
       if (loginstatus === 1) {
         this.userdata = await main.getUserByUserId(this.loginid);
         console.log("userdata----" + this.userdata.toString());
+        let i = 0;
+        let allproject = [];
+        console.log("loginid--",this.loginid.c[0])
+        let userprojectcount = await main.getUserDenoteCount(parseInt(this.loginid.c[0]))
+        let l = userprojectcount.c[length]
+        let userprojects = []
+        console.log("projectcount------",userprojectcount,"------",l)
+        for(let i = 0 ; i < l ; i++){
+          console.log("for----")
+          let userproject = await main.getDenoteByUserId(parseInt(this.loginid.c[0]),i)
+          console.log("userproject--------",userproject[0].toString(), userproject[1].toString(), userproject[2].toString(), userproject[3].toString())
+          userprojects.push(userproject)
+        }
+        this.userdonateprojects = userprojects
+
       } else if (loginstatus === 2) {
         this.schooldata = await main.getSchoolBySchoolId(this.loginid);
         console.log("schooldata" + this.schooldata.toString());
@@ -782,24 +819,27 @@ export default {
         );
         console.log("projectcount" + schoolprojectcount.toString());
         let tmpdata = this.projects;
-        /*
-        for (let i = 0; i < schoolprojectcount; i++) {
-          console.log("for------");
-          let projectid = await main.getSchoolProjectidByNum(this.loginid, i);
-          console.log("projectid------" + projectid.toString());
-          let tmpproject = await main.getProjectByProjectId(projectid);
-          console.log("tmpproject-----" + tmpproject.toString());
-          
-        }
-        */
+
       } else if (loginstatus === 3) {
         console.log("背书节点");
+        let endorsor = await main.getEndorsorByEndorsorId(parseInt(this.loginid.c[0]))
+        console.log("endorsor--",endorsor[0].toString(),endorsor[1].toString(),endorsor[2].toString(),endorsor[3].toString())
+        let endorsorprojectcount = main.getEndorseItemRecord(parseInt(this.loginid.c[0]))
+        console.log("endorsorprojectcount----项目总数",endorsorprojectcount)
+        let endorsorprojects = []
+        for(let i = 0; i < endorsorprojectcount;i++){
+          let endorsorproject = await main.getEndorseByEndorsorId(parseInt(this.loginid.c[0]),i)
+          console.log("endorsorproject----",endorsorproject)
+          endorsorprojects.push(endorsorproject)
+        }
+        this.endorsorpaojectsdata = endorsorprojects
         //背书节点
       } else if (loginstatus === 4) {
         console.log("管理员");
         //管理员
       } else {
         alert("登录失败");
+        //登录失败的时候  不显示捐赠按钮
       }
       this.status = loginstatus;
       console.log("this.status", this.status);
@@ -853,7 +893,7 @@ export default {
   created() {},
   data() {
     return {
-      status: 3,
+      status: 5,
       addnew: false, //新增背书页面显示否
       userInfo: {
         // 用户信息
@@ -862,6 +902,8 @@ export default {
       },
       list: ["首页", "关于", "公示", "联系"],
       dialogFormVisible: false,
+      userdonateprojects:null,
+      endorsorpaojectsdata:null,
       schooldata: [],
       tmpprojects: null,
       /*
