@@ -241,8 +241,8 @@
       <p class="people-phone" >学校编号：<span>{{ schooldata[0] || '无' }}</span></p>
       <p class="people-phone" >学校名称：<span>{{ schooldata[1] || '暂无名称' }}</span></p>
       <p class="people-phone" >联系方式：<span>{{ schooldata[2] || 'test@test.com' }}</span></p>
-      <p class="people-phone" >所在省份：<span>{{ schooldata[3] || '北京' }}</span></p>
-      <p class="people-phone" >详细地址：<span>{{ schooldata[4] || '北京市海淀区' }}</span></p>
+      <p class="people-phone" >详细地址：<span>{{ schooldata[3] || '北京' }}</span></p>
+      <p class="people-phone" >所在省份：<span>{{ schooldata[4] || '北京市海淀区' }}</span></p>
       <p class="people-phone" >主管单位：<span>{{ schooldata[5] || '北京大学' }}</span></p>
 
       <p class="people-phone" >学校代理人：<span>{{ schooldata[6] || '仙女珺' }}</span></p>
@@ -737,7 +737,7 @@ export default {
         email,
         name,
         password,
-        "345",
+        "北京",
         address,
         governor,
         agent
@@ -772,7 +772,7 @@ export default {
       console.log("province---",province)
       console.log("email---",email)
       console.log("password---",password)
-      await main.createEndorsor(org.toString(),province.toString(),email.toString(),password.toString);
+      await main.createEndorsor(org.toString(),province.toString(),email.toString(),password.toString());
       console.log("success")
     },
 //背书节点打分的方法
@@ -824,10 +824,12 @@ export default {
         console.log("背书节点");
         let endorsor = await main.getEndorsorByEndorsorId(parseInt(this.loginid.c[0]))
         console.log("endorsor--",endorsor[0].toString(),endorsor[1].toString(),endorsor[2].toString(),endorsor[3].toString())
-        let endorsorprojectcount = main.getEndorseItemRecord(parseInt(this.loginid.c[0]))
-        console.log("endorsorprojectcount----项目总数",endorsorprojectcount)
+        let endorsorprojectcount = await main.getEndorseItemRecord(parseInt(this.loginid.c[0]))
+        //let getEndorseItemCountOfEndorsor = main.getEndorseItemRecord(parseInt(this.loginid.c[0]))
+        console.log("endorsorprojectcount----项目总数",endorsorprojectcount.toString())
         let endorsorprojects = []
-        for(let i = 0; i < endorsorprojectcount;i++){
+        for(let i = 0; i < endorsorprojectcount.toString();i++){
+          console.log("for---------")
           let endorsorproject = await main.getEndorseByEndorsorId(parseInt(this.loginid.c[0]),i)
           console.log("endorsorproject----",endorsorproject)
           endorsorprojects.push(endorsorproject)
@@ -836,6 +838,16 @@ export default {
         //背书节点
       } else if (loginstatus === 4) {
         console.log("管理员");
+        let endorsorcount = await main.endorsorCount()
+        console.log("endorsorcount---",endorsorcount.toString())
+        let allendorsors = []
+        for (let i=1; i<endorsorcount.toString();i++){
+          console.log("for-------")
+          let endorsor = await main.getEndorsorByEndorsorId(i)
+          console.log(endorsor.toString())
+          allendorsors.push(endorsor.toString())
+        }
+        this.endorsors = allendorsors
         //管理员
       } else {
         alert("登录失败");
@@ -904,6 +916,7 @@ export default {
       dialogFormVisible: false,
       userdonateprojects:null,
       endorsorpaojectsdata:null,
+      endorsors:null,
       schooldata: [],
       tmpprojects: null,
       /*
