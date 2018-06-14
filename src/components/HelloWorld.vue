@@ -20,11 +20,11 @@
     ]">
       <el-input v-model="loginform.phone" auto-complete="off"></el-input>
     </el-form-item>
-    <el-form-item v-model="loginform.password" label="密码" :label-width="formLabelWidth">
-      <el-input type="password" auto-complete="off"></el-input>
+    <el-form-item  label="密码" :label-width="formLabelWidth">
+      <el-input type="password" v-model="loginform.password" auto-complete="off"></el-input>
     </el-form-item>
-     <el-form-item label="确认密码" v-model="loginform.confirmpass" :label-width="formLabelWidth">
-      <el-input type="password" auto-complete="off"></el-input>
+     <el-form-item label="确认密码"  :label-width="formLabelWidth">
+      <el-input type="password" v-model="loginform.confirmpass" auto-complete="off"></el-input>
     </el-form-item>
      <el-form-item label="昵称" :label-width="formLabelWidth">
       <el-input auto-complete="off" v-model="loginform.name"></el-input>
@@ -109,35 +109,6 @@
   <div id="actitiy" class="actitiy">
     <div class="activity-name">项目广场</div> 
     <div id = "projecttest">
-      <!-- <ol v-for = "project in projects">
-        <li >
-          {{project.projectId}}
-          </li>
-          <li >
-          {{project.schoolId}}
-          </li>
-          <li >
-          {{project.projectName}}
-          </li>
-          <li>
-          {{project.projectCreateTime}}
-          </li>
-          <li>
-          {{project.projectTarget}}
-          </li>
-          <li >
-          {{project.projectTargetMoney}}
-          </li>
-          <li >
-          {{project.projectCurrentMoney}}
-          </li>
-          <li >
-          {{project.projectEndorseState}}
-          </li>
-          <li>
-          {{project.projectFinishState}}
-          </li>
-      </ol> -->
     </div>
   <div class="project-square"> 
   <el-table
@@ -146,7 +117,7 @@
     <el-table-column
       label="项目编号"
       >
-      <template slot-scope="scope">
+      <template slot-scope="scope" id="testid">
         <!-- <i class="el-icon-time"></i> -->
         <span style="margin-left: 10px">{{scope.row.projectId}}</span>
       </template>
@@ -193,7 +164,7 @@
       <template slot-scope="scope">
         <el-button
           size="mini"
-          @click="handleEdit(scope.$index, scope.row)">捐赠</el-button>
+          @click="donate(scope.$index, scope.row)">捐赠123</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -205,7 +176,7 @@
   </el-form>
   <div slot="footer" class="dialog-footer">
     <el-button @click="juanzeng = false">取 消</el-button>
-    <el-button type="primary" @click="juanzeng = false">确 定</el-button>
+    <el-button type="primary" @click="juanzeng = false" v-on:click = "userDenote(scope.$index, scope.row)">确 定</el-button>
   </div>
 </el-dialog>
   </div>
@@ -228,7 +199,7 @@
     </div>
     <div class="right-people">
        <el-table
-      :data="peopleList"
+      :data="userList"
       style="width: 100%">
       <el-table-column
         prop="date"
@@ -267,21 +238,80 @@
       </div>
 
 
-      <p class="people-phone" >学校编号：<span>{{ schooldata.id || '无' }}</span></p>
-      <p class="people-phone" >学校名称：<span>{{ schooldata.name || '暂无名称' }}</span></p>
-      <p class="people-phone" >联系方式：<span>{{ schooldata.email || 'test@test.com' }}</span></p>
-      <p class="people-phone" >所在省份：<span>{{ schooldata.province || '北京' }}</span></p>
-      <p class="people-phone" >详细地址：<span>{{ schooldata.address || '北京市海淀区' }}</span></p>
-      <p class="people-phone" >主管单位：<span>{{ schooldata.governor || '北京大学' }}</span></p>
-      <p class="people-phone" >学校代理人：<span>{{ schooldata.lagent || '仙女珺' }}</span></p>
-    <p class="people-phone" >学校状态：<span>{{ schooldata.status ? '已认证' : '未认证' }}</span></p>
-      <p class="people-phone" >已完成的项目：<span v-for="item in schooldata.project">{{ item }}</span></p>
-      <p class="people-phone" >筹款总金额：<span>{{ schooldata.money || 0 }}</span></p>
+      <p class="people-phone" >学校编号：<span>{{ schooldata[0] || '无' }}</span></p>
+      <p class="people-phone" >学校名称：<span>{{ schooldata[1] || '暂无名称' }}</span></p>
+      <p class="people-phone" >联系方式：<span>{{ schooldata[2] || 'test@test.com' }}</span></p>
+      <p class="people-phone" >所在省份：<span>{{ schooldata[3] || '北京' }}</span></p>
+      <p class="people-phone" >详细地址：<span>{{ schooldata[4] || '北京市海淀区' }}</span></p>
+      <p class="people-phone" >主管单位：<span>{{ schooldata[5] || '北京大学' }}</span></p>
 
+      <p class="people-phone" >学校代理人：<span>{{ schooldata[6] || '仙女珺' }}</span></p>
+<!--
+    <p class="people-phone" >学校状态：<span>{{ schooldata[7] ? '已认证' : '未认证' }}</span></p>
+      <p class="people-phone" >已完成的项目：<span v-for="item in schooldata[8]">{{ item }}</span></p>
+      <p class="people-phone" >筹款总金额：<span>{{ schooldata[9] || 0 }}</span></p>
+-->
       <p>学校项目</p>
       <div><el-button  type="primary" @click="addProject = true">新增项目</el-button></div>
     </div>
-    <div class="right-people">
+    <div class="right-people" >
+      <el-table
+    :data="listuser"
+    style="width: 100%">
+    <el-table-column
+      label="项目编号"
+      >
+      <template slot-scope="scope">
+        <!-- <i class="el-icon-time"></i> -->
+        <span style="margin-left: 10px" >{{scope.row.projectId}}</span>
+      </template>
+    </el-table-column>
+    <el-table-column
+      label="项目名称"
+    >
+      <template slot-scope="scope">
+       <span style="margin-left: 10px">{{scope.row.projectName}}</span>
+      </template> 
+    </el-table-column>
+     <el-table-column
+      label="项目发起时间">
+      <template slot-scope="scope">
+        <span style="margin-left: 10px">{{scope.row.projectCreateTime | formatTime}}</span>
+      </template>
+    </el-table-column>
+     <el-table-column
+      label="发起方">
+      <template slot-scope="scope">
+        <span style="margin-left: 10px">{{scope.row.schoolId}}</span>
+      </template>
+    </el-table-column>
+     <el-table-column
+      label="用途"
+>
+  <template slot-scope="scope">
+    <span style="margin-left: 10px">{{scope.row.projectTarget}}</span>
+  </template>
+  </el-table-column>
+     <el-table-column
+      label="目标金额">
+      <template slot-scope="scope">
+        <span style="margin-left: 10px">{{scope.row.projectTargetMoney}}</span>
+      </template>
+    </el-table-column>
+     <el-table-column
+      label="当前金额">
+      <template slot-scope="scope">
+        <span style="margin-left: 10px">{{scope.row.projectCurrentMoney}}</span>
+      </template>
+    </el-table-column>
+    <el-table-column
+      label="是否通过">
+      <template slot-scope="scope">
+        <span style="margin-left: 10px">{{scope.row.projectEndorseState}}</span>
+      </template>
+    </el-table-column>
+  </el-table>
+      <!--
       <el-table
       :data="peopleList"
       style="width: 100%">
@@ -290,36 +320,41 @@
         label="项目编号"
         >
       </el-table-column>
+      <template slot-scope="scope">
+       <span style="margin-left: 10px">{{scope.row.projectId}}</span>
+      </template> 
       <el-table-column
         prop="name"
         label="项目名称"
     >
       </el-table-column>
+      <template slot-scope="scope">
+       <span style="margin-left: 10px">{{scope.row.projectName}}</span>
+      </template> 
       <el-table-column
         prop="address"
         label="计划用途">
       </el-table-column>
+      <template slot-scope="scope">
+       <span style="margin-left: 10px">{{scope.row.projectCreateTime | formatTime}}</span>
+      </template> 
        <el-table-column
         prop="address"
         label="目标金额">
       </el-table-column>
+      <template slot-scope="scope">
+       <span style="margin-left: 10px">{{scope.row.projectId}}</span>
+      </template> 
        <el-table-column
         prop="address"
         label="实筹金额">
       </el-table-column>
-      <el-table-column
-        prop="address"
-        label="开始时间">
-      </el-table-column>
-       <el-table-column
-        prop="address"
-        label="结束时间">
-      </el-table-column>
-       <el-table-column
-        prop="address"
-        label="状态">
-      </el-table-column>
+      <template slot-scope="scope">
+       <span style="margin-left: 10px">{{scope.row.projectId}}</span>
+      </template> 
+
     </el-table>
+    -->
     <el-dialog :visible.sync="addProject">
     <el-form :model="form">
     <el-form-item label="项目名" :label-width="formLabelWidth">
@@ -340,7 +375,7 @@
     </el-form-item>
   </el-form>
   <div slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="dialogFormVisible = false" v-on:click = "createProject(form.name,form.tag,form.money,form.time)">申请</el-button>
+    <el-button type="primary" @click="dialogFormVisible = false" v-on:click = "createProject(form.name,form.tag,form.money,datavalue1)">申请</el-button>
   </div>
 </el-dialog>
 </div>
@@ -494,11 +529,12 @@ const cookie = require("../util/cookie.js");
 const abi = require("../../truffle/build/contracts/Main").abi;
 const main = web3.loadContract(
   abi,
-  "0x345ca3e014aaf5dca488057592ee47305d9b3e10"
+  " 0x345ca3e014aaf5dca488057592ee47305d9b3e10"
 );
 export default {
   async beforeMount() {
     let projectdata = [];
+    let tmpdata = [];
     let projectcount = await main.projectCount();
     let userCount = await main.userCount();
     console.log("userCount", userCount.toString());
@@ -521,7 +557,7 @@ export default {
     }
     this.$data.projects = projectdata;
     // this.projectdata = projectdata
-    console.log("=====projectdata=======", projectdata[0]);
+    console.log("=====projectdata234=======", projectdata);
     // let arr = [];
     // for (let key in projectdata) {
     //   if (!projectdata.hasOwnProperty(key)) {
@@ -531,10 +567,31 @@ export default {
     //   item[key] = projectdata[key];
     //   arr.push(item);
     // }
-    this.activeDetail = projectdata;
+
     // console.log("=====arr======", arr);
     // [{a: 1}, {b: 2}, {c: 3}]
-
+    let detailList = [];
+    projectdata.forEach(item => {
+      console.log(
+        "item.projectEndorseState.c[0]",
+        item.projectEndorseState.c[0]
+      );
+      if (item.projectEndorseState.c[0] === 2) {
+        detailList.push({
+          projectId: item.projectId,
+          schoolId: item.schoolId,
+          projectName: item.projectName,
+          projectCreateTime: item.projectCreateTime,
+          projectTarget: item.projectTarget,
+          projectTargetMoney: item.projectTargetMoney,
+          projectCurrentMoney: item.projectCurrentMoney,
+          projectEndorseState: item.projectEndorseState,
+          projectFinishState: item.projectFinishState
+        });
+      }
+    });
+    this.activeDetail = detailList;
+    console.log("====activeDetail ====", this.activeDetail);
     //this.tableData.projectId = project[0]
     //this.tableData.schoolId = project[1]
     //this.tableData.projectName = project[2]
@@ -564,6 +621,9 @@ export default {
     }
   },
   methods: {
+    donate(index, scope) {
+      console.log("index", index);
+    },
     test() {
       var _this = this;
       var url = "/aaa/asss/cc/vv1";
@@ -610,11 +670,18 @@ export default {
       governor,
       agent
     ) {
+      console.log("email", email);
+      console.log("name", name);
+      console.log("password", password);
+      console.log("province", province);
+      console.log("address", address);
+      console.log("governor", governor);
+      console.log("agent", agent);
       await main.createSchool(
         email,
         name,
         password,
-        province,
+        "345",
         address,
         governor,
         agent
@@ -623,10 +690,29 @@ export default {
       alert("success");
     },
     createProject: async function(name, tag, money, time) {
-      await main.createProject(this.loginid, name, tag, money, time);
+      let t = Date.parse(time);
+      console.log(typeof time);
+      console.log(time);
+      console.log(typeof t);
+      console.log(t);
+      let tt = parseInt(t / 1000);
+      console.log(typeof tt);
+      console.log(tt);
+      await main.createProject(this.loginid, name, tag, money, tt);
       //console.log("userId",userId.toString());
       alert("success");
     },
+
+    userDenote: async function(projectid, money) {
+      console.log("userDenote----------------");
+      console.log(projectid);
+      console.log(money);
+      console.log(this.loginid);
+      await main.userDenote(this.loginid, projectid, money);
+      //console.log("userId",userId.toString());
+      alert("success");
+    },
+
     userLogin: async function() {
       this.dialogFormVisible = false;
       var res = await main.login(this.userInfo.name, this.userInfo.password);
@@ -642,21 +728,70 @@ export default {
           this.loginid
         );
         console.log("projectcount" + schoolprojectcount.toString());
+        let tmpdata = this.projects;
+        /*
         for (let i = 0; i < schoolprojectcount; i++) {
           console.log("for------");
           let projectid = await main.getSchoolProjectidByNum(this.loginid, i);
           console.log("projectid------" + projectid.toString());
           let tmpproject = await main.getProjectByProjectId(projectid);
           console.log("tmpproject-----" + tmpproject.toString());
+          
         }
+        */
       }
       this.status = loginstatus;
       alert("loginsuccess");
+      let uselist = [];
+      console.log("this.log, inid", this.loginid);
+      this.activeDetail.forEach(item => {
+        console.log("activeDetail", item);
+        if (item.schoolId.c[0] === this.loginid.c[0]) {
+          uselist.push({
+            projectId: item.projectId,
+            schoolId: item.schoolId,
+            projectName: item.projectName,
+            projectCreateTime: item.projectCreateTime,
+            projectTarget: item.projectTarget,
+            projectTargetMoney: item.projectTargetMoney,
+            projectCurrentMoney: item.projectCurrentMoney,
+            projectEndorseState:
+              item.projectEndorseState.c[0] == "2" ? "通过" : "不通过",
+            projectFinishState: item.projectFinishState
+          });
+        }
+      });
+      this.listuser = uselist;
+      console.log(" this.listuser  this.listuser ", this.listuser);
     }
   },
+  computed: {
+    userList() {
+      let uselist = [];
+      this.activeDetail.forEach(item => {
+        console.log("activeDetail", item);
+        if (item.schoolId.c[0] === this.schooldata[0]) {
+          uselist.push({
+            projectId: item.projectId,
+            schoolId: item.schoolId,
+            projectName: item.projectName,
+            projectCreateTime: item.projectCreateTime,
+            projectTarget: item.projectTarget,
+            projectTargetMoney: item.projectTargetMoney,
+            projectCurrentMoney: item.projectCurrentMoney,
+            projectEndorseState: item.projectEndorseState,
+            projectFinishState: item.projectFinishState
+          });
+        }
+      });
+      console.log("uselist", uselist);
+      return uselist;
+    }
+  },
+  created() {},
   data() {
     return {
-      status: 2,
+      status: 5,
       userInfo: {
         // 用户信息
         name: "",
@@ -664,6 +799,9 @@ export default {
       },
       list: ["首页", "关于", "公示", "联系"],
       dialogFormVisible: false,
+      schooldata: [],
+      tmpprojects: null,
+      /*
       schooldata: {
         id: "",
         name: "",
@@ -676,47 +814,121 @@ export default {
         project: ["粉笔擦项目"],
         money: 0
       },
+      */
       loginid: 0,
       userdata: [],
       projects: null,
       datavalue1: "",
       activeName: "first",
       eopleList: [],
-      activeDetail: [
-        {
-          projectId: "1",
-          projectName: "wankaishabi",
-          schoolId: "234",
-          projectTarget: "2",
-          projectTargetMoney: "34678",
-          projectCurrentMoney: "345"
-        }
-      ],
+      activeDetail: [],
       juanzeng: false,
       selectedOption: "", // 选中的省份
       peopleList: [], //
+      listuser: [],
       options: [
         {
           value: "bj",
-          label: "北京"
+          label: "北京市"
         },
         {
           value: "sh",
-          label: "上海"
-        },
-        {
-          value: "gz",
-          label: "广州"
-        },
-        {
-          value: "js",
-          label: "江苏"
-        },
-        {
-          value: "hlj",
-          label: "黑龙江"
+          label: "天津市"
         }
       ],
+      //   {
+      //     value: "gz",
+      //     label: "上海市"
+      //   },
+      //   {
+      //     value: "js",
+      //     label: "重庆市"
+      //   },
+      //   {
+      //     value: "hlj",
+      //     label: "河北省"
+      //   },
+      //   {
+      //     value: "bj",
+      //     label: "山西省"
+      //   },
+      //   {
+      //     value: "sh",
+      //     label: "辽宁省"
+      //   },
+      //   {
+      //     value: "gz",
+      //     label: "吉林省"
+      //   },
+      //   {
+      //     value: "js",
+      //     label: "黑龙江"
+      //   },
+      //   {
+      //     value: "hlj",
+      //     label: "黑龙江"
+      //   },
+      //   {
+      //     value: "bj",
+      //     label: "北京"
+      //   },
+      //   {
+      //     value: "sh",
+      //     label: "上海"
+      //   },
+      //   {
+      //     value: "gz",
+      //     label: "广州"
+      //   },
+      //   {
+      //     value: "js",
+      //     label: "江苏"
+      //   },
+      //   {
+      //     value: "hlj",
+      //     label: "黑龙江"
+      //   },
+      //   {
+      //     value: "bj",
+      //     label: "北京"
+      //   },
+      //   {
+      //     value: "sh",
+      //     label: "上海"
+      //   },
+      //   {
+      //     value: "gz",
+      //     label: "广州"
+      //   },
+      //   {
+      //     value: "js",
+      //     label: "江苏"
+      //   },
+      //   {
+      //     value: "hlj",
+      //     label: "黑龙江"
+      //   },
+      //   {
+      //     value: "bj",
+      //     label: "北京"
+      //   },
+      //   {
+      //     value: "sh",
+      //     label: "上海"
+      //   },
+      //   {
+      //     value: "gz",
+      //     label: "广州"
+      //   },
+      //   {
+      //     value: "js",
+      //     label: "江苏"
+      //   },
+      //   {
+      //     value: "hlj",
+      //     label: "黑龙江"
+      //   }
+      // ],
       form: {
         name: "",
         region: "",
@@ -746,7 +958,8 @@ export default {
       },
       addProject: false,
       dialogloginVisible: false,
-      formLabelWidth: "120px",
+      formLabelWidth: "120px"
+      /*
       tableData: [
         {
           projectId: "0987667",
@@ -771,6 +984,7 @@ export default {
           projectFinishState: "1"
         }
       ]
+      */
     };
   },
   components: {}
@@ -830,13 +1044,21 @@ export default {
   font-size: 24px;
 }
 
-.el-carousel__item:nth-child(2n) {
+.el-carousel__item:nth-child(4n) {
   background-image: url("../assets/bg3.jpeg");
   background-size: cover;
 }
 
-.el-carousel__item:nth-child(2n + 1) {
+.el-carousel__item:nth-child(4n + 1) {
   background-image: url("../assets/bg4.jpeg");
+  background-size: cover;
+}
+.el-carousel__item:nth-child(4n + 2) {
+  background-image: url("../assets/timg.jpeg");
+  background-size: cover;
+}
+.el-carousel__item:nth-child(4n + 3) {
+  background-image: url("../assets/timg-1.jpeg");
   background-size: cover;
 }
 // .el-carousel__item:nth-child(3n + 1) {
