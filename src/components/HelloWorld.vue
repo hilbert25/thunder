@@ -191,7 +191,7 @@
         <img class="headpic" src="../assets/head.jpeg"/>
       </div>
       <div>
-      <p class="people-phone" >{{loginid}}</p>
+      <p class="manage-people" >{{loginid}}</p>
       <p class="people-phone" >{{userdata[1]}}</p>
       <p class="people-phone" >{{userdata[2]}}</p>
       <p>我参与的项目</p>
@@ -512,8 +512,58 @@
   </div>
   </div>
    <!--管理员页面 -->
-  <div class="manage-center">
-    
+  <div class="manage-center" v-if="status === 4">
+    <div class="left-people">
+      <div class="headpic">
+        <img class="headpic" src="../assets/head.jpeg"/>
+      </div>
+      <div>
+      <p class="manage-beishu" >管理员背书</p>
+      <p class="people-phone" >{{userdata[1]}}</p>
+      <p class="people-phone" >{{userdata[2]}}</p>
+      <el-button type="primary" @click="addbeishu">新增背书节点</el-button>
+      </div>
+    </div>
+    <div class="right-people">
+       <el-table
+      :data="manageList"
+      style="width: 100%">
+      <el-table-column
+        prop="name"
+        label="背书节点"
+       >
+      </el-table-column>
+      <el-table-column
+        prop="province"
+        label="所在省份"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="address"
+        label="邮箱">
+      </el-table-column>
+       
+    </el-table>
+  </div>
+  <el-dialog :visible.sync="addnew">
+    <el-form :model="manageAdd">
+    <el-form-item label="背书节点名称" :label-width="formLabelWidth">
+      <el-input v-model="manageAdd.name" auto-complete="off"></el-input>
+    </el-form-item>
+    <el-form-item label="所在省" :label-width="formLabelWidth">
+      <el-input v-model="manageAdd.province" auto-complete="off"></el-input>
+    </el-form-item>
+    <el-form-item label="邮箱" :label-width="formLabelWidth">
+      <el-input v-model="manageAdd.email" auto-complete="off"></el-input>
+    </el-form-item>
+    <el-form-item label="密码" :label-width="formLabelWidth">
+      <el-input v-model="manageAdd.password" type="password" auto-complete="off"></el-input>
+    </el-form-item>
+  </el-form>
+  <div slot="footer" class="dialog-footer">
+    <el-button type="primary" @click="addnew = false" >新增</el-button>
+  </div>
+</el-dialog>
   </div>
   
 </div>
@@ -529,7 +579,7 @@ const cookie = require("../util/cookie.js");
 const abi = require("../../truffle/build/contracts/Main").abi;
 const main = web3.loadContract(
   abi,
-  " 0x345ca3e014aaf5dca488057592ee47305d9b3e10"
+  "0x35fcbe2e83b1795adee4f477cfe6afccf4b84974"
 );
 export default {
   async beforeMount() {
@@ -638,6 +688,9 @@ export default {
       console.log(index, row);
       this.juanzeng = true;
     },
+    addbeishu() {
+      this.addnew = true;
+    },
     infoopenCenter() {
       this.$message({
         message: "王凯同学紧急开发中",
@@ -739,8 +792,17 @@ export default {
           
         }
         */
+      } else if (loginstatus === 3) {
+        console.log("背书节点");
+        //背书节点
+      } else if (loginstatus === 4) {
+        console.log("管理员");
+        //管理员
+      } else {
+        alert("登录失败");
       }
       this.status = loginstatus;
+      console.log("this.status", this.status);
       alert("loginsuccess");
       let uselist = [];
       console.log("this.log, inid", this.loginid);
@@ -791,7 +853,8 @@ export default {
   created() {},
   data() {
     return {
-      status: 5,
+      status: 3,
+      addnew: false, //新增背书页面显示否
       userInfo: {
         // 用户信息
         name: "",
@@ -826,6 +889,10 @@ export default {
       selectedOption: "", // 选中的省份
       peopleList: [], //
       listuser: [],
+      //新增背书节点
+      manageAdd: [],
+      //背书节点展示的list
+      manageList: [],
       options: [
         {
           value: "bj",
@@ -1094,6 +1161,10 @@ export default {
   display: flex;
   padding: 30px;
 }
+.manage-center {
+  display: flex;
+  padding: 30px;
+}
 .left-people {
   flex: 0 0 20%;
   height: 700px;
@@ -1125,6 +1196,16 @@ export default {
   span {
     color: #333;
   }
+}
+.manage-beishu {
+  width: auto;
+  margin-top: 30px;
+  margin: 10px 20px;
+  padding: 10px 20px;
+  padding-top: 0;
+  font-size: 14px;
+  color: #6c6d09;
+  text-align: center;
 }
 .right-people {
   display: flex;
