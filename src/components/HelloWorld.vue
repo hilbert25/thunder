@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello pages">
     <div class="nav">
       <div class="logo">引火链</div>
       <ul>
@@ -14,19 +14,22 @@
   <el-tabs v-model="activeName" type="card" >
     <el-tab-pane label="个人注册" name="first">
     <el-form :model="loginform">
-    <el-form-item label="手机号" :label-width="formLabelWidth">
+    <el-form-item label="手机号" :label-width="formLabelWidth" :rules="[
+      { required: true, message: '请输入手机号', trigger: 'blur' },
+      { type: 'phone', message: '请输入正确的手机号', trigger: ['blur', 'change'] }
+    ]">
       <el-input v-model="loginform.phone" auto-complete="off"></el-input>
     </el-form-item>
     <el-form-item v-model="loginform.password" label="密码" :label-width="formLabelWidth">
       <el-input type="password" auto-complete="off"></el-input>
     </el-form-item>
-     <el-form-item label="确认密码" :label-width="formLabelWidth">
+     <el-form-item label="确认密码" v-model="loginform.confirmpass" :label-width="formLabelWidth">
       <el-input type="password" auto-complete="off"></el-input>
     </el-form-item>
      <el-form-item label="昵称" :label-width="formLabelWidth">
       <el-input auto-complete="off" v-model="loginform.name"></el-input>
     </el-form-item>
-    <el-button type="primary" @click="dialogloginVisible= false" v-on:click = "createUser(loginform.name,loginform.phone,loginform.password)">个人注册</el-button>
+    <el-button type="primary" @click="dialogloginVisible= false" v-on:click = "createUser(loginform.name,loginform.phone,loginform.password,loginform.confirmpass)">个人注册</el-button>
     </el-form>
   </el-tab-pane>
     <el-tab-pane label="学校注册" name="second">
@@ -57,7 +60,14 @@
       <el-input v-model="schoolreg.agent" auto-complete="off"></el-input>
     </el-form-item>
     <el-form-item label="所在省份" :label-width="formLabelWidth">
-      <el-input v-model="schoolreg.province" auto-complete="off"></el-input>
+     <el-select v-model="selectedOption" placeholder="请选择">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
     </el-form-item>
     <el-form-item label="地址" :label-width="formLabelWidth">
       <el-input v-model="schoolreg.address" auto-complete="off"></el-input>
@@ -71,16 +81,20 @@
   </el-tabs>
 </el-dialog>
 <el-dialog :visible.sync="dialogFormVisible">
-    <el-form :model="form">
-    <el-form-item label="用户名" :label-width="formLabelWidth">
-      <el-input v-model="form.name" auto-complete="off"></el-input>
-    </el-form-item>
-    <el-form-item label="密码" :label-width="formLabelWidth">
-      <el-input v-model="form.password" type="password" auto-complete="off"></el-input>
-    </el-form-item>
-  </el-form>
+    <div class=login-box>
+      <p>
+        <el-input placeholder="请输入内容" v-model="userInfo.name">
+          <template slot="prepend">用户名：</template>
+        </el-input>
+      </p>
+      <p>
+        <el-input placeholder="请输入内容" v-model="userInfo.password">
+          <template slot="prepend">密&nbsp;&nbsp;&nbsp;码：</template>
+        </el-input>
+      </p>
+    </div>
   <div slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="dialogFormVisible = false" v-on:click = "userLogin(form.name,form.password)">登录</el-button>
+    <el-button type="primary" @click = "userLogin()">登录</el-button>
   </div>
 </el-dialog>
 
@@ -249,18 +263,20 @@
   <div class="school-center" v-if="status===2">
     <div class="left-people">
       <div class="headpic">
-        <img class="headpic" src="../assets/head.jpeg"/>
+        <img src="../assets/head.jpeg"/>
       </div>
-      <p class="people-phone" >学校编号：{{loginid}}</p>
-      <p class="people-phone" >学校名称：{{schooldata[0]}}</p>
-      <p class="people-phone" >联系方式：{{schooldata[1]}}</p>
-      <p class="people-phone" >所在省份：{{schooldata[2]}}</p>
-      <p class="people-phone" >详细地址：{{schooldata[3]}}</p>
-      <p class="people-phone" >主管单位：{{schooldata[4]}}</p>
-      <p class="people-phone" >学校代理人：{{schooldata[5]}}</p>
-      <p class="people-phone" >学校状态：北京大学</p>
-      <p class="people-phone" >已完成的项目：粉笔擦项目</p>
-      <p class="people-phone" >筹款总金额：11100</p>
+
+
+      <p class="people-phone" >学校编号：<span>{{ schooldata.id || '无' }}</span></p>
+      <p class="people-phone" >学校名称：<span>{{ schooldata.name || '暂无名称' }}</span></p>
+      <p class="people-phone" >联系方式：<span>{{ schooldata.email || 'test@test.com' }}</span></p>
+      <p class="people-phone" >所在省份：<span>{{ schooldata.province || '北京' }}</span></p>
+      <p class="people-phone" >详细地址：<span>{{ schooldata.address || '北京市海淀区' }}</span></p>
+      <p class="people-phone" >主管单位：<span>{{ schooldata.governor || '北京大学' }}</span></p>
+      <p class="people-phone" >学校代理人：<span>{{ schooldata.lagent || '仙女珺' }}</span></p>
+    <p class="people-phone" >学校状态：<span>{{ schooldata.status ? '已认证' : '未认证' }}</span></p>
+      <p class="people-phone" >已完成的项目：<span v-for="item in schooldata.project">{{ item }}</span></p>
+      <p class="people-phone" >筹款总金额：<span>{{ schooldata.money || 0 }}</span></p>
 
       <p>学校项目</p>
       <div><el-button  type="primary" @click="addProject = true">新增项目</el-button></div>
@@ -334,7 +350,7 @@
   <div class="supervise-center" v-if="status===3">
     <div class="left-people">
       <div class="headpic">
-        <img class="headpic" src="../assets/head.jpeg"/>
+        <img  src="../assets/head.jpeg"/>
       </div>
       <p class="people-phone">教育部</p>
       <p class="people-phone">电话：18966788909</p>
@@ -568,7 +584,19 @@ export default {
         center: true
       });
     },
-    createUser: async function(name, phone, password) {
+    createUser: async function(name, phone, password, confirmpass) {
+      // alert("====");
+      let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+      if (!myreg.test(phone)) {
+        alert("请输入正确的手机号");
+        return;
+      }
+      console.log("password", password);
+      console.log("confirmpass", confirmpass);
+      if (password !== confirmpass) {
+        alert("确认密码不一致");
+        return;
+      }
       await main.createUser(name, phone, password);
       //console.log("userId",userId.toString());
       alert("success");
@@ -599,17 +627,14 @@ export default {
       //console.log("userId",userId.toString());
       alert("success");
     },
-    userLogin: async function(account, password) {
-      var res = await main.login(account, password);
+    userLogin: async function() {
+      this.dialogFormVisible = false;
+      var res = await main.login(this.userInfo.name, this.userInfo.password);
       this.loginid = res[1];
       var loginstatus = parseInt(res[0]);
       if (loginstatus === 1) {
         this.userdata = await main.getUserByUserId(this.loginid);
         console.log("userdata----" + this.userdata.toString());
-        //document.getElementById("userid").innerHTML = userdata[0];
-        //document.getElementById("username").innerHTML = userdata[1];
-        //document.getElementById("userphone2").innerHTML = userdata[2];
-        //console.log("userId",userId.toString());
       } else if (loginstatus === 2) {
         this.schooldata = await main.getSchoolBySchoolId(this.loginid);
         console.log("schooldata" + this.schooldata.toString());
@@ -624,14 +649,6 @@ export default {
           let tmpproject = await main.getProjectByProjectId(projectid);
           console.log("tmpproject-----" + tmpproject.toString());
         }
-        //document.getElementById("schoolid").innerHTML = "学校编码："+ loginid;
-        //document.getElementById("schoolname").innerHTML = "学校名称："+ schooldata[0];
-        //document.getElementById("schoolemail").innerHTML = "联系方式："+ schooldata[1];
-        //document.getElementById("schoolprovince").innerHTML = "所在省份"+ schooldata[2];
-        //document.getElementById("schooladdress").innerHTML = "详细地址："+ schooldata[3];
-        //document.getElementById("schoolgovernor").innerHTML = "主管单位："+ schooldata[4];
-        //document.getElementById("schoolagent").innerHTML = "学校代理人："+ schooldata[5];
-        //console.log("userId",userId.toString());
       }
       this.status = loginstatus;
       alert("loginsuccess");
@@ -640,17 +657,66 @@ export default {
   data() {
     return {
       status: 2,
+      userInfo: {
+        // 用户信息
+        name: "",
+        password: ""
+      },
       list: ["首页", "关于", "公示", "联系"],
       dialogFormVisible: false,
-      schooldata: [],
+      schooldata: {
+        id: "",
+        name: "",
+        email: "",
+        province: "",
+        address: "",
+        governor: "",
+        lagent: "",
+        status: 1,
+        project: ["粉笔擦项目"],
+        money: 0
+      },
       loginid: 0,
       userdata: [],
       projects: null,
       datavalue1: "",
       activeName: "first",
       eopleList: [],
-      activeDetail: [],
+      activeDetail: [
+        {
+          projectId: "1",
+          projectName: "wankaishabi",
+          schoolId: "234",
+          projectTarget: "2",
+          projectTargetMoney: "34678",
+          projectCurrentMoney: "345"
+        }
+      ],
       juanzeng: false,
+      selectedOption: "", // 选中的省份
+      peopleList: [], //
+      options: [
+        {
+          value: "bj",
+          label: "北京"
+        },
+        {
+          value: "sh",
+          label: "上海"
+        },
+        {
+          value: "gz",
+          label: "广州"
+        },
+        {
+          value: "js",
+          label: "江苏"
+        },
+        {
+          value: "hlj",
+          label: "黑龙江"
+        }
+      ],
       form: {
         name: "",
         region: "",
@@ -713,15 +779,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-ul {
-  list-style: none;
-  margin-right: 20px;
-  li {
-    float: left;
-    color: #646464;
-    margin: 20px 20px 4px 20px;
+.nav {
+  ul {
+    list-style: none;
+    margin-right: 20px;
+    li {
+      float: left;
+      color: #646464;
+      margin: 20px 20px 4px 20px;
+    }
   }
 }
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -811,14 +880,29 @@ ul {
   padding-top: 10px;
 }
 .headpic {
-  // width: 30px;
-  height: 30px;
+  width: auto;
+  height: 60px;
   border-radius: 50%;
+  margin: 20px 0;
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
 }
 .people-phone {
+  width: auto;
   margin-top: 10px;
-  font-size: 10px;
+  margin: 10px 20px;
+  padding: 10px 20px;
+  padding-top: 0;
+  font-size: 14px;
   color: #6c6d09;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  span {
+    color: #333;
+  }
 }
 .right-people {
   display: flex;
@@ -857,5 +941,19 @@ ul {
 .table-info {
   display: flex;
   // flex: 0 0 70%;
+}
+.login-box {
+  // 登录框
+  p {
+    margin-bottom: 25px;
+  }
+}
+</style>
+<style lang="less">
+// 不加scoped
+.pages {
+  .el-input-group__prepend {
+    background: rgba(238, 238, 238, 0.3);
+  }
 }
 </style>
