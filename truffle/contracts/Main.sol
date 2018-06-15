@@ -67,7 +67,7 @@ contract Main {
         uint256 endorseItemId;
         uint256 projectId;
         uint256 endorsorId;
-        int256 score;//{0:未处理 1：通过 2：拒绝}
+        int256 score;//不能是0分
     }
 
 
@@ -90,27 +90,35 @@ contract Main {
     mapping(uint256=>string[]) projectNoteUrlMap;
     mapping(string=>uint256[]) provinceToEndorsorMap;
     mapping(uint256=>uint256[]) projectEnodrsorListMap;//给该项目背书的节点
-
-    function getUserDenoteCount(uint256 userId) view returns(uint256) {
+    uint256 public test = 0;
+    function getUserDenoteCount(uint256 userId) public view returns(uint256) {
         require(userId < userList.length);
         return userDenoteMap[userId].length;
     } 
  
-    function getProjectDenoteCount(uint256 projectId) view returns(uint256) {
+    function getProjectDenoteCount(uint256 projectId) public view returns(uint256) {
         require(projectId < projectList.length);
         return projectDenoteMap[projectId].length;
     }
 
-    function getEndorseItemRecord(uint256 endorseId) view returns(uint256) {
+    function getEndorseItemRecord(uint256 endorseId) public view returns(uint256) {
         require(endorseId < endorsorList.length);
         return endorseItemMap[endorseId].length;
     }
 
-    function getSchoolProjectCount(uint256 schoolId) view returns(uint256) {
+    function getSchoolProjectCount(uint256 schoolId) public view returns(uint256) {
         require(schoolId < schoolList.length);
         return schoolProjectMap[schoolId].length;
     }
- 
+    
+    function projectEnodrsorListCount(uint256 projectId) public view returns(uint256) {
+        return projectEnodrsorListMap[projectId].length;
+    }
+
+    function getProvinceToEndorsorCount(uint256 schoolId) public view returns(uint256) {
+        School school = schoolList[schoolId];
+        return provinceToEndorsorMap[school.schoolProvince].length;
+    }
 
     function Main() {
         createUser("0", "0", "0");
@@ -222,7 +230,7 @@ contract Main {
     }
 
     function getEndorseByEndorsorId(uint256 _endorsorId, uint256 _endorseItemIndex) view returns (uint256, uint256, int256) {
-        require(_endorsorId < endorsorList.length && _endorseItemIndex < endorseItemMap[_endorsorId].length);
+         require(_endorsorId < endorsorList.length && _endorseItemIndex < endorseItemMap[_endorsorId].length);
         uint256 endorseItemId = endorseItemMap[_endorsorId][_endorseItemIndex];
         EndorseItem _endorseItem = endorseItemList[endorseItemId];
         return (_endorseItem.endorsorId, _endorseItem.projectId, _endorseItem.score);
@@ -288,23 +296,35 @@ contract Main {
             emitEndorse(_projectId);
         }
     }
-
+    function getSchoolProvince(uint256 schoolId) returns(string){
+        School school = schoolList[schoolId];
+        return school.schoolProvince;
+    }
     function emitEndorse(uint256 _projectId) {
         require(_projectId < projectList.length && _projectId > 0);
         Project project = projectList[_projectId];
         School school = schoolList[project.schoolId];
-        uint256[] endorsorList = provinceToEndorsorMap[school.schoolProvince];
+        uint256[] endorsorList;
+        for(uint a = 0; a < provinceToEndorsorMap[school.schoolProvince].length;a++){
+            endorsorList.push(provinceToEndorsorMap[school.schoolProvince][a]);
+        }
         uint256[] emitEndorsorList;
         if (endorsorList.length < 3) {
             for (uint256 i=0; i < endorsorList.length; i++) {
                 emitEndorsorList.push(endorsorList[i]);
+                createEndorseItem(_projectId, endorsorList[i], 0);
+                endorseItemMap[endorsorList[i]].length++;
+                endorseItemMap[endorsorList[i]][endorseItemMap[endorsorList[i]].length-1] = endorseItemList[endorseItemList.length-1].endorsorId;
             }
         }else {
             uint256 targetEndorsorCount = endorsorList.length*2/3;
             uint256 len = endorsorList.length;
             for (uint256 j=0; j < targetEndorsorCount; j++) {
                 uint256 t = random(len);
-                emitEndorsorList.push(endorsorList[t]);
+                createEndorseItem(_projectId, endorsorList[j], 0);
+                endorseItemMap[endorsorList[j]].length++;
+                endorseItemMap[endorsorList[j]][endorseItemMap[endorsorList[j]].length-1] = endorseItemList[endorseItemList.length-1].endorsorId;
+                emitEndorsorList.push(endorsorList[j]);
                 for (uint256 k=t; k < endorsorList.length-1; k++) {
                     endorsorList[k] = endorsorList[k+1];
                 }
