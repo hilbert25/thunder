@@ -581,15 +581,18 @@ const main = web3.loadContract(
   abi,
   "0x9284B58D77BEA22B0E6397B89dC42f2BFd518eB4"
 );
+console.log(main)
 export default {
   async beforeMount() {
     let projectdata = [];
     let tmpdata = [];
     let projectcount = await main.projectCount();
+    console.log("projectcount-----",projectcount.toString())
     let userCount = await main.userCount();
     console.log("userCount", userCount.toString());
     for (let i = 1; i < projectcount; i++) {
       let project = await main.getProjectByProjectId(i);
+      console.log("=====project=======", project.toString());
       projectdata.push({
         projectId: project[0],
         schoolId: project[1],
@@ -607,7 +610,7 @@ export default {
     }
     this.$data.projects = projectdata;
     // this.projectdata = projectdata
-    console.log("=====projectdata234=======", projectdata);
+    console.log("=====projectdata234=======", projectdata.toString());
     // let arr = [];
     // for (let key in projectdata) {
     //   if (!projectdata.hasOwnProperty(key)) {
@@ -754,7 +757,7 @@ export default {
       let tt = parseInt(t / 1000);
       console.log(typeof tt);
       console.log(tt);
-      await main.createProject(this.loginid, name, tag, money, tt);
+      await main.createProject(parseInt(this.loginid.c[0]), name, tag, money, tt);
       //console.log("userId",userId.toString());
       alert("success");
     },
