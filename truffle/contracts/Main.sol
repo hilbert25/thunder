@@ -292,9 +292,9 @@ contract Main {
         Project memory project = Project({projectId:_projectId, schoolId:_schoolId, projectName:_projectName, projectCreateTime:now, projectTarget:_projectTarget, projectTargetMoney:_projectTargetMoney, projectCurrentMoney:0, projectEndorseState:2, projectFinishState:false, projectFinishTime:_projectFinishTime, projectPlanUpNoteTime:0, projectActualUpNoteTime:0, totalScore:0, totalEndorsor:0, finishEndorsor:0});
         projectList.push(project);
         schoolProjectMap[_schoolId].push(_projectId);
-        if (_schoolId != 0) {
-            emitEndorse(_projectId);
-        }
+        //if (_schoolId != 0) {
+        //    emitEndorse(_projectId);
+        //}
     }
     function getSchoolProvince(uint256 schoolId) returns(string){
         School school = schoolList[schoolId];
