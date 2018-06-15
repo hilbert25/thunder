@@ -526,7 +526,7 @@
     </div>
     <div class="right-people">
        <el-table
-      :data="manageList"
+      :data="endorsors"
       style="width: 100%">
       <el-table-column
         prop="name"
@@ -539,7 +539,7 @@
       >
       </el-table-column>
       <el-table-column
-        prop="address"
+        prop="email"
         label="邮箱">
       </el-table-column>
        
@@ -672,10 +672,10 @@ export default {
   },
   methods: {
     donate(index, scope) {
-      console.log('index',index)
+      console.log("index", index);
       this.juanzeng = true;
-      console.log('scope',scope.projectId.c[0])
-      this.donateprojectId = scope.projectId.c[0]
+      console.log("scope", scope.projectId.c[0]);
+      this.donateprojectId = scope.projectId.c[0];
     },
     test() {
       var _this = this;
@@ -759,36 +759,51 @@ export default {
       alert("success");
     },
 
-    userDenote:async function() {
-      console.log("donateprojectId----------------",this.donateprojectId);
-      console.log("donatemoney----------------",this.donatemoney);
-      console.log("loginid----------------",this.loginid.c[0]);
-      await main.userDenote(parseInt(this.loginid.c[0]), parseInt(this.donateprojectId), parseInt(this.donatemoney));
+    userDenote: async function() {
+      console.log("donateprojectId----------------", this.donateprojectId);
+      console.log("donatemoney----------------", this.donatemoney);
+      console.log("loginid----------------", this.loginid.c[0]);
+      await main.userDenote(
+        parseInt(this.loginid.c[0]),
+        parseInt(this.donateprojectId),
+        parseInt(this.donatemoney)
+      );
       //console.log("userId",userId.toString());
       alert("success");
     },
     createEndorsor: async function(org, province, email, password) {
-      console.log("org---",org)
-      console.log("province---",province)
-      console.log("email---",email)
-      console.log("password---",password)
-      await main.createEndorsor(org.toString(),province.toString(),email.toString(),password.toString());
-      console.log("success")
+      console.log("org---", org);
+      console.log("province---", province);
+      console.log("email---", email);
+      console.log("password---", password);
+      await main.createEndorsor(
+        org.toString(),
+        province.toString(),
+        email.toString(),
+        password.toString()
+      );
+      console.log("success");
+      this.userLogin();
     },
-//背书节点打分的方法
-    createEndorseItem:async function(){
-      console.log("给项目打分，需要三个参数---projectId, endorsorId,score")
-      console.log("projectId需要点击button获取")
-      console.log("score需要点击button弹出的框内添加,score有范围")
-      let projectId = ""
-      let score = ""
-      await main.createEndorseItem(projectId,parseInt(this.loginid.c[0]),score)
-      console.log("projectId",projectId)
-      console.log("score",score)
-      console.log("success")
+    //背书节点打分的方法
+    createEndorseItem: async function() {
+      console.log("给项目打分，需要三个参数---projectId, endorsorId,score");
+      console.log("projectId需要点击button获取");
+      console.log("score需要点击button弹出的框内添加,score有范围");
+      let projectId = "";
+      let score = "";
+      await main.createEndorseItem(
+        projectId,
+        parseInt(this.loginid.c[0]),
+        score
+      );
+      console.log("projectId", projectId);
+      console.log("score", score);
+      console.log("success");
     },
 
     userLogin: async function() {
+      console.log("又进入了一次");
       this.dialogFormVisible = false;
       var res = await main.login(this.userInfo.name, this.userInfo.password);
       this.loginid = res[1];
@@ -798,19 +813,29 @@ export default {
         console.log("userdata----" + this.userdata.toString());
         let i = 0;
         let allproject = [];
-        console.log("loginid--",this.loginid.c[0])
-        let userprojectcount = await main.getUserDenoteCount(parseInt(this.loginid.c[0]))
-        let l = userprojectcount.c[length]
-        let userprojects = []
-        console.log("projectcount------",userprojectcount,"------",l)
-        for(let i = 0 ; i < l ; i++){
-          console.log("for----")
-          let userproject = await main.getDenoteByUserId(parseInt(this.loginid.c[0]),i)
-          console.log("userproject--------",userproject[0].toString(), userproject[1].toString(), userproject[2].toString(), userproject[3].toString())
-          userprojects.push(userproject)
+        console.log("loginid--", this.loginid.c[0]);
+        let userprojectcount = await main.getUserDenoteCount(
+          parseInt(this.loginid.c[0])
+        );
+        let l = userprojectcount.c[length];
+        let userprojects = [];
+        console.log("projectcount------", userprojectcount, "------", l);
+        for (let i = 0; i < l; i++) {
+          console.log("for----");
+          let userproject = await main.getDenoteByUserId(
+            parseInt(this.loginid.c[0]),
+            i
+          );
+          console.log(
+            "userproject---个人中心-----",
+            userproject[0].toString(),
+            userproject[1].toString(),
+            userproject[2].toString(),
+            userproject[3].toString()
+          );
+          userprojects.push(userproject);
         }
-        this.userdonateprojects = userprojects
-
+        this.userdonateprojects = userprojects;
       } else if (loginstatus === 2) {
         this.schooldata = await main.getSchoolBySchoolId(this.loginid);
         console.log("schooldata" + this.schooldata.toString());
@@ -819,35 +844,61 @@ export default {
         );
         console.log("projectcount" + schoolprojectcount.toString());
         let tmpdata = this.projects;
-
       } else if (loginstatus === 3) {
         console.log("背书节点");
-        let endorsor = await main.getEndorsorByEndorsorId(parseInt(this.loginid.c[0]))
-        console.log("endorsor--",endorsor[0].toString(),endorsor[1].toString(),endorsor[2].toString(),endorsor[3].toString())
-        let endorsorprojectcount = await main.getEndorseItemRecord(parseInt(this.loginid.c[0]))
+        let endorsor = await main.getEndorsorByEndorsorId(
+          parseInt(this.loginid.c[0])
+        );
+        console.log(
+          "endorsor--",
+          endorsor[0].toString(),
+          endorsor[1].toString(),
+          endorsor[2].toString(),
+          endorsor[3].toString()
+        );
+        let endorsorprojectcount = await main.getEndorseItemRecord(
+          parseInt(this.loginid.c[0])
+        );
         //let getEndorseItemCountOfEndorsor = main.getEndorseItemRecord(parseInt(this.loginid.c[0]))
-        console.log("endorsorprojectcount----项目总数",endorsorprojectcount.toString())
-        let endorsorprojects = []
-        for(let i = 0; i < endorsorprojectcount.toString();i++){
-          console.log("for---------")
-          let endorsorproject = await main.getEndorseByEndorsorId(parseInt(this.loginid.c[0]),i)
-          console.log("endorsorproject----",endorsorproject)
-          endorsorprojects.push(endorsorproject)
+        console.log(
+          "endorsorprojectcount----项目总数",
+          endorsorprojectcount.toString()
+        );
+        let endorsorprojects = [];
+        for (let i = 0; i < endorsorprojectcount.toString(); i++) {
+          console.log("for---背书节点------");
+          let endorsorproject = await main.getEndorseByEndorsorId(
+            parseInt(this.loginid.c[0]),
+            i
+          );
+          console.log("endorsorproject----", endorsorproject);
+          endorsorprojects.push(endorsorproject);
         }
-        this.endorsorpaojectsdata = endorsorprojects
+        this.endorsorpaojectsdata = endorsorprojects;
+        console.log("this.endorsorpaojectsdata", this.endorsorpaojectsdata);
         //背书节点
       } else if (loginstatus === 4) {
         console.log("管理员");
-        let endorsorcount = await main.endorsorCount()
-        console.log("endorsorcount---",endorsorcount.toString())
-        let allendorsors = []
-        for (let i=1; i<endorsorcount.toString();i++){
-          console.log("for-------")
-          let endorsor = await main.getEndorsorByEndorsorId(i)
-          console.log(endorsor.toString())
-          allendorsors.push(endorsor.toString())
+        let endorsorcount = await main.endorsorCount();
+        console.log("endorsorcount---", endorsorcount.toString());
+        let allendorsors = [];
+        for (let i = 1; i < endorsorcount.toString(); i++) {
+          console.log("for--管理员-----");
+          let endorsor = await main.getEndorsorByEndorsorId(i);
+          console.log("endorsor.toString()", endorsor);
+          allendorsors.push({
+            name: endorsor[1],
+            province: endorsor[2],
+            email: endorsor[3]
+          });
         }
-        this.endorsors = allendorsors
+        console.log("allendorsors", allendorsors);
+        this.endorsors = allendorsors;
+        // for(let i =0; i<allendorsors.length;i++) {
+        //   console.log(allendorsors[i])
+        // }
+        console.log("====this.endorsors =管理员===", this.endorsors);
+
         //管理员
       } else {
         alert("登录失败");
@@ -914,9 +965,9 @@ export default {
       },
       list: ["首页", "关于", "公示", "联系"],
       dialogFormVisible: false,
-      userdonateprojects:null,
-      endorsorpaojectsdata:null,
-      endorsors:null,
+      userdonateprojects: null,
+      endorsorpaojectsdata: null,
+      endorsors: null,
       schooldata: [],
       tmpprojects: null,
       /*
