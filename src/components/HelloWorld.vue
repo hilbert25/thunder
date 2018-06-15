@@ -164,7 +164,7 @@
       <template slot-scope="scope">
         <el-button
           size="mini"
-          @click="donate(scope.$index, scope.row)">捐赠123</el-button>
+          @click="donate(scope.$index, scope.row)">捐赠</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -199,33 +199,33 @@
     </div>
     <div class="right-people">
        <el-table
-      :data="userList"
+      :data="endorsorprojects"
       style="width: 100%">
       <el-table-column
-        prop="date"
+        prop="projectName"
         label="项目名称"
        >
       </el-table-column>
       <el-table-column
-        prop="name"
+        prop="schoolId"
         label="项目发起方"
       >
       </el-table-column>
       <el-table-column
-        prop="address"
+        prop="target"
         label="用途">
       </el-table-column>
        <el-table-column
-        prop="address"
+        prop="targetMoney"
         label="目标金额">
       </el-table-column>
        <el-table-column
-        prop="address"
-        label="项目状态">
+        prop="endorsorTime"
+        label="捐赠时间">
       </el-table-column>
       <el-table-column
-        prop="address"
-        label="自己捐赠">
+        prop="money"
+        label="捐赠金额">
       </el-table-column>
     </el-table>
   </div>
@@ -839,10 +839,8 @@ export default {
           let project = await main.getProjectByProjectId(
             parseInt(userproject[1])
           );
-          console.log("project撒打算撒打算撒打算", userproject.toString());
-          let userprojects = [];
-          userprojects.push({});
-          console.log("project撒打算撒打算撒打算", project.toString());
+          console.log("project------", userproject.toString());
+          console.log("project------", project.toString());
           console.log(
             "userproject---个人中心-----",
             userproject[0].toString(),
@@ -850,13 +848,22 @@ export default {
             userproject[2].toString(),
             userproject[3].toString()
           );
+
+          userprojects.push({
+            projectName: project[2].toString(),
+            schoolId: project[1].toString(),
+            target: project[4].toString(),
+            targetMoney: project[5].toString(),
+            endorsorTime: userproject[3].toString(),
+            money: userproject[2].toString(),
+          });
           // this.arr.push(userproject[1].c[0]);
           // console.log("arr", arr);
           // for (let i = 0; i < that.activeDetail.length; i++) {
           //   console.log("===iyem", that.activeDetail[i]);
           // }
-          userprojects.push(userproject);
         }
+        this.endorsorprojects = userprojects
         // for (let j = 0; i < this.arr.length; j++) {
         //   for (let i = 0; i < that.activeDetail.length; i++) {
         //     // console.log("activeDetail.length", this.activeDetail[i]);
@@ -999,6 +1006,7 @@ export default {
       userdonateprojects: null,
       endorsorpaojectsdata: null,
       endorsors: null,
+      endorsorprojects: null,
       schooldata: [],
       tmpprojects: null,
       /*
