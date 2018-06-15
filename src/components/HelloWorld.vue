@@ -1,7 +1,7 @@
 <template>
   <div class="hello pages">
     <div class="nav">
-      <div class="logo">引火链</div>
+      <div class="logo">萤火链</div>
       <ul>
         <li>首页</li>
         <li><a href="#actitiy">项目广场</a></li>
