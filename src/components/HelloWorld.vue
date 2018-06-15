@@ -581,18 +581,18 @@ const main = web3.loadContract(
   abi,
   "0x9284B58D77BEA22B0E6397B89dC42f2BFd518eB4"
 );
-console.log(main)
+console.log(main);
 export default {
   async beforeMount() {
     let projectdata = [];
     let tmpdata = [];
     let projectcount = await main.projectCount();
-    console.log("projectcount-----",projectcount.toString())
+    console.log("projectcount-----", projectcount.toString());
     let userCount = await main.userCount();
     console.log("userCount", userCount.toString());
     for (let i = 1; i < projectcount; i++) {
       let project = await main.getProjectByProjectId(i);
-      console.log("=====project=======", project.toString());
+      // console.log("=====project=======", project.toString());
       projectdata.push({
         projectId: project[0],
         schoolId: project[1],
@@ -610,7 +610,7 @@ export default {
     }
     this.$data.projects = projectdata;
     // this.projectdata = projectdata
-    console.log("=====projectdata234=======", projectdata.toString());
+    // console.log("=====projectdata234=======", projectdata.toString());
     // let arr = [];
     // for (let key in projectdata) {
     //   if (!projectdata.hasOwnProperty(key)) {
@@ -644,7 +644,7 @@ export default {
       }
     });
     this.activeDetail = detailList;
-    console.log("====activeDetail ====", this.activeDetail);
+    // console.log("====activeDetail ====", this.activeDetail);
     //this.tableData.projectId = project[0]
     //this.tableData.schoolId = project[1]
     //this.tableData.projectName = project[2]
@@ -659,7 +659,7 @@ export default {
   name: "HelloWorld",
   filters: {
     formatTime(str) {
-      console.log("===str==", str.c[0]);
+      // console.log("===str==", str.c[0]);
       var date = new Date(str.c[0] * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
       let Y = date.getFullYear() + "-";
       let M =
@@ -757,7 +757,13 @@ export default {
       let tt = parseInt(t / 1000);
       console.log(typeof tt);
       console.log(tt);
-      await main.createProject(parseInt(this.loginid.c[0]), name, tag, money, tt);
+      await main.createProject(
+        parseInt(this.loginid.c[0]),
+        name,
+        tag,
+        money,
+        tt
+      );
       //console.log("userId",userId.toString());
       alert("success");
     },
@@ -807,6 +813,7 @@ export default {
 
     userLogin: async function() {
       console.log("又进入了一次");
+      let that = this;
       this.dialogFormVisible = false;
       var res = await main.login(this.userInfo.name, this.userInfo.password);
       this.loginid = res[1];
@@ -822,13 +829,20 @@ export default {
         );
         let l = userprojectcount.c[length];
         let userprojects = [];
-        console.log("projectcount------", userprojectcount, "------", l);
+        // console.log("projectcount------", userprojectcount, "------", l);
         for (let i = 0; i < l; i++) {
           console.log("for----");
           let userproject = await main.getDenoteByUserId(
             parseInt(this.loginid.c[0]),
             i
           );
+          let project = await main.getProjectByProjectId(
+            parseInt(userproject[1])
+          );
+          console.log("project撒打算撒打算撒打算", userproject.toString());
+          let userprojects = [];
+          userprojects.push({});
+          console.log("project撒打算撒打算撒打算", project.toString());
           console.log(
             "userproject---个人中心-----",
             userproject[0].toString(),
@@ -836,8 +850,22 @@ export default {
             userproject[2].toString(),
             userproject[3].toString()
           );
+          // this.arr.push(userproject[1].c[0]);
+          // console.log("arr", arr);
+          // for (let i = 0; i < that.activeDetail.length; i++) {
+          //   console.log("===iyem", that.activeDetail[i]);
+          // }
           userprojects.push(userproject);
         }
+        // for (let j = 0; i < this.arr.length; j++) {
+        //   for (let i = 0; i < that.activeDetail.length; i++) {
+        //     // console.log("activeDetail.length", this.activeDetail[i]);
+        //     if (this.arr[j] === this.activeDetail[i].projectId.c[0]) {
+        //       console.log("卧槽王凯是傻逼");
+        //     }
+        //   }
+        // }
+
         this.userdonateprojects = userprojects;
       } else if (loginstatus === 2) {
         this.schooldata = await main.getSchoolBySchoolId(this.loginid);
@@ -852,43 +880,43 @@ export default {
         let endorsor = await main.getEndorsorByEndorsorId(
           parseInt(this.loginid.c[0])
         );
-        console.log(
-          "endorsor--",
-          endorsor[0].toString(),
-          endorsor[1].toString(),
-          endorsor[2].toString(),
-          endorsor[3].toString()
-        );
+        // console.log(
+        //   "endorsor--",
+        //   endorsor[0].toString(),
+        //   endorsor[1].toString(),
+        //   endorsor[2].toString(),
+        //   endorsor[3].toString()
+        // );
         let endorsorprojectcount = await main.getEndorseItemRecord(
           parseInt(this.loginid.c[0])
         );
         //let getEndorseItemCountOfEndorsor = main.getEndorseItemRecord(parseInt(this.loginid.c[0]))
-        console.log(
-          "endorsorprojectcount----项目总数",
-          endorsorprojectcount.toString()
-        );
+        // console.log(
+        //   "endorsorprojectcount----项目总数",
+        //   endorsorprojectcount.toString()
+        // );
         let endorsorprojects = [];
         for (let i = 0; i < endorsorprojectcount.toString(); i++) {
-          console.log("for---背书节点------");
+          // console.log("for---背书节点------");
           let endorsorproject = await main.getEndorseByEndorsorId(
             parseInt(this.loginid.c[0]),
             i
           );
-          console.log("endorsorproject----", endorsorproject);
+          // console.log("endorsorproject----", endorsorproject);
           endorsorprojects.push(endorsorproject);
         }
         this.endorsorpaojectsdata = endorsorprojects;
-        console.log("this.endorsorpaojectsdata", this.endorsorpaojectsdata);
+        // console.log("this.endorsorpaojectsdata", this.endorsorpaojectsdata);
         //背书节点
       } else if (loginstatus === 4) {
         console.log("管理员");
         let endorsorcount = await main.endorsorCount();
-        console.log("endorsorcount---", endorsorcount.toString());
+        // console.log("endorsorcount---", endorsorcount.toString());
         let allendorsors = [];
         for (let i = 1; i < endorsorcount.toString(); i++) {
-          console.log("for--管理员-----");
+          // console.log("for--管理员-----");
           let endorsor = await main.getEndorsorByEndorsorId(i);
-          console.log("endorsor.toString()", endorsor);
+          // console.log("endorsor.toString()", endorsor);
           allendorsors.push({
             name: endorsor[1],
             province: endorsor[2],
@@ -900,7 +928,7 @@ export default {
         // for(let i =0; i<allendorsors.length;i++) {
         //   console.log(allendorsors[i])
         // }
-        console.log("====this.endorsors =管理员===", this.endorsors);
+        // console.log("====this.endorsors =管理员===", this.endorsors);
 
         //管理员
       } else {
@@ -908,12 +936,12 @@ export default {
         //登录失败的时候  不显示捐赠按钮
       }
       this.status = loginstatus;
-      console.log("this.status", this.status);
+      // console.log("this.status", this.status);
       alert("loginsuccess");
       let uselist = [];
-      console.log("this.log, inid", this.loginid);
+      // console.log("this.log, inid", this.loginid);
       this.activeDetail.forEach(item => {
-        console.log("activeDetail", item);
+        // console.log("activeDetail", item);
         if (item.schoolId.c[0] === this.loginid.c[0]) {
           uselist.push({
             projectId: item.projectId,
@@ -930,14 +958,14 @@ export default {
         }
       });
       this.listuser = uselist;
-      console.log(" this.listuser  this.listuser ", this.listuser);
+      // console.log(" this.listuser  this.listuser ", this.listuser);
     }
   },
   computed: {
     userList() {
       let uselist = [];
       this.activeDetail.forEach(item => {
-        console.log("activeDetail", item);
+        // console.log("activeDetail", qitem);
         if (item.schoolId.c[0] === this.schooldata[0]) {
           uselist.push({
             projectId: item.projectId,
@@ -1002,6 +1030,7 @@ export default {
       manageAdd: [],
       //背书节点展示的list
       manageList: [],
+      arr: [],
       options: [
         {
           value: "bj",
